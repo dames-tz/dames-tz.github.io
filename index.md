@@ -1,4 +1,4 @@
-# DEFINITIONS OF TERMS AND ABBREVIATIONS
+## DEFINITIONS OF TERMS AND ABBREVIATIONS
 
 1. DREAMS Beneficiary
     - An AGYW who is enrolled in DREAMS and has started or completed at least one DREAMS service/intervention.
@@ -32,7 +32,7 @@
     - Percentage of AGYWs who have been re-engaged back to care after they were determined to be LTFU.
 
 
-## LIST OF ACRONYMS
+### LIST OF ACRONYMS
 
   - _AGYW_ : Adolescent Girls and Young Women.
   - _ART_ : Anti-Retroviral Therapy
