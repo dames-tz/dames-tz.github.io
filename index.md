@@ -1,37 +1,48 @@
-## Welcome to GitHub Pages
+# DEFINITIONS OF TERMS AND ABBREVIATIONS
 
-You can use the [editor on GitHub](https://github.com/ecyola/ecyola.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+1. DREAMS Beneficiary
+    - An AGYW who is enrolled in DREAMS and has started or completed at least one DREAMS service/intervention.
+2. Active DREAMS Beneficiary
+    - An AGYW who is enrolled in DREAMS and has started or completed at least one DREAMS service/intervention during the reporting period.
+3. Primary Services/interventions
+    - Interventions/services that all DREAMS beneficiaries should receive. Primary services are tailored to each of the DREAMS age groups.
+    - The primary services for FY22 are:
+        - **Age group 10-14:** HURU SRH and Educational subsidies
+        - **Age groups 15-19 & 20-24:** HIV Testing Services (HTS), condom provision, community-based HIV and violence prevention (Steppingstone), and financial literacy including savings groups (WORTH+).
+4. Primary Package
+    - A standardized set of all primary interventions/services that all DREAMS beneficiaries should receive.
+5. Primary Package Completion
+    - Primary package completion means that an individual AGYW has fully completed all services/interventions within the primary package.
+6. Secondary Services/interventions
+    - Services that are part of the DREAMS program but are not mandatory for all DREAMS beneficiaries. Secondary services only offered to AGYW who are eligible to receive them based on their individual needs.
+    - The secondary services for FY22 are:
+      - **Age group 10-14:** Financial Literacy, referrals to clinical services, referral to or provision of post-violence care, HTS, and parenting and care giver programming (Furaha/Sinovuyu).
+      - **Age groups 15-19 & 20-24:** Enhanced Economic Strengthening (WINGS), contraceptive method mix (initiation/refill), parenting and care giver programming (Sinovuyu/FMP), referrals to facilities for clinical services (STI, TB, initiation of family planning, and ART services), PrEP (initiation/refill), ART (initiation/refill), referral to or provision of post-violence care.
+7. Program Completion.
+    - Program completion means that an individual AGYW has completed both the primary package for her age group as well as all secondary interventions that are appropriate based on her needs.
+8. Layering
+    - Layering refers to providing multiple interventions or services, both within the community and through the health facility, to an individual AGYW.
+9. AGYW_PREV
+    - Percentage of adolescent girls and young women (AGYW) that completed at least the DREAMS primary package of evidence-based services/interventions. This indicator reflects program data on how many AGYW are being served in DREAMS and whether all active DREAMS beneficiaries have received the intended layered services/interventions to ensure that they remain HIV-free. This indicator is reported twice in a financial year.
+10. Vulnerability Index
+    - Composite measure that uses a set of criteria to assign the degree to which an individual is likely to experience the risk for HIV infection due to exposure to individual, household, community, and structural characteristics.
+11. Lost to Follow-up (LTFU) / Inactive DREAMS Beneficiary
+    - A DREAMS beneficiary is termed as Lost to Follow-up (inactive) when she has not started or completed a service/intervention within the reporting period after having previously been active.
+12. Return rate.
+    - Percentage of AGYWs who have been re-engaged back to care after they were determined to be LTFU.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+## LIST OF ACRONYMS
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ecyola/ecyola.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+  - _AGYW_ : Adolescent Girls and Young Women.
+  - _ART_ : Anti-Retroviral Therapy
+  - _DREAMS_ : Determined, Resilient, Empowered, AIDS-free, Mentored, and Safe
+  - _FY_ : Financial Year
+  - _HTS_ : HIV Testing Services.
+  - _LTFU_ : Lost to Follow Up
+  - _PEPFAR_ : The President's Emergency Plan for AIDS Relief
+  - _PrEP_ : Pre-exposure prophylaxis
+  - _SRH_ : Sexual and Reproductive Health
+  - _SRHS_ : Sexual and Reproductive Health Services
+  - _STI_ : Sexually Transmitted Infection
+  - _TB_ : Tuberculosis
