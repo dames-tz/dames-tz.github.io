@@ -1,4 +1,4 @@
-## INDICATOR QUESTIONS & DEFINITIONS
+## INDICATOR QUESTIONS & INTERPRETATION
 1. **QUESTION** : How many newly enrolled AGYW (number and proportion) were referred from health care facilities? 
     - **Presentation** : Bar chart
     - **How to interpret the graph and indicator definition(s)**: 
