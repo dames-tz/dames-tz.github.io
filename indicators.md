@@ -1,3 +1,6 @@
+ |  [Definition of Terms](https://ecyola.github.io) | > [Questions and Interpretations](https://ecyola.github.io/indicators)|
+ |---|---|
+
 ## INDICATOR QUESTIONS & INTERPRETATION
 1. **QUESTION** : How many newly enrolled AGYW (number and proportion) were referred from health care facilities? 
     - **Presentation** : Bar chart
