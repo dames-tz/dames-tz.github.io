@@ -9,9 +9,232 @@ info:
   version: 1.0.0
 servers: 
   - url: http://localhost:8080/api/v1/dames
-  - url: http://hjf.dames.co.tz/api/v1/dames
-  - url: http://hjf.dames.co.tz:8181/api/v1/dames
+  - url: https://hjf.dames.co.tz/api/v1/dames
+  - url: https://hjf.dames.co.tz:8181/api/v1/dames
 paths:
+  /question:
+      description: Create Criterial Screening Question
+      post:
+        description: Create Question
+        security: 
+           - basicAuth: []
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateQuestionBody'
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/QuestionBody'
+  /question/list:
+    description: Fetch all questions
+    get:
+      description: Fetch all questions both active and non active
+      security: 
+         - basicAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionList'
+  /question/page:
+    description: Fetch all questions with pages
+    get:
+      description: Fetch all questions both active and non active with pages
+      security: 
+         - basicAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionListWithPagination'
+  /question/list/active/:
+    description: Fetch active questions
+    get:
+      description: Fetch all active questions
+      security: 
+         - basicAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionList'
+  /question/{code}/exists/:
+    description: Check if code exists
+    get:
+      description: Check if question code exists
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Code you want to check.
+          name: code
+          required: true
+          example: A123
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+                example: true
+                
+  /question/{code}/:
+    description: Get Question
+    get:
+      description: Get Question
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Question Code.
+          name: code
+          required: true
+          example: A123
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionBody'
+                
+  /question/{code}/answers/:
+    description: Get answers
+    get:
+      description: Get all question answers
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Question Code.
+          name: code
+          required: true
+          example: A123
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnswerList'
+                
+  /question/{code}:
+    description: Update Question
+    put:
+      description: Update Question
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Question Code.
+          name: code
+          required: true
+          example: A123
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQuestionBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionBody'
+                
+  /question/{code}/answer/:
+    description: Add Answer
+    put:
+      description: Add answer to the question
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Question Code.
+          name: code
+          required: true
+          example: A123
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswerCreateBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionBody'
+                
+  /question/answer/{id}/:
+    description: Update Answer
+    put:
+      description: Update Answer
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Answer Id.
+          name: id
+          required: true
+          example: 23
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswerCreateBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnswerBody'
+                
+  /question/answer/{id}:
+    description: Delete Answer
+    delete:
+      description: Delete Answer
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Answer Id.
+          name: id
+          required: true
+          example: 23
+          schema:
+            type: integer
+      responses:
+        202:
+          description: ACCEPTED
+  
   /screening:
     description: Create Screening 
     post:
@@ -51,11 +274,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScreenList'
-  
+                
   /screening/page:
-    description: Fetch all screening with pages
+    description: Fetch all screening in oages
     get:
-      description: Fetch all screening with pages
+      description: Fetch all screening in pages
       security: 
          - basicAuth: []
       parameters: 
@@ -98,7 +321,57 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ScreenBody'            
+                $ref: '#/components/schemas/ScreenBody'
+                
+  /screening/{id}/response:
+    description: Add Response to Screening 
+    put:
+      description: Add Response to Screening 
+      security: 
+         - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseCreateBody'
+      parameters: 
+        - in: path
+          description: Pass Screen Id.
+          name: id
+          required: true
+          example: 7
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScreenBody'
+                
+  /screening/response/{id}:
+    description: Remove Response from Screening 
+    delete:
+      description: Remove Response from Screening 
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass Screen Id.
+          name: id
+          required: true
+          example: 70
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScreenBody'
+                
   /screening/{id}:
     description: Delete Screening
     delete:
