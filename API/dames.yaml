@@ -51,6 +51,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScreenList'
+  
+  /screening/page:
+    description: Fetch all screening with pages
+    get:
+      description: Fetch all screening with pages
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data with following format
+          name: query
+          schema:
+            $ref: '#/components/schemas/ScreenQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScreenListWithPages'
                 
   /screening/{id}/:
     description: Update Screening 
@@ -1503,6 +1524,63 @@ components:
       title: "Screen Simple List"
       items:
         $ref: '#/components/schemas/ScreenBody'
+    ScreenListWithPages:
+      type: array
+      title: "Screen List with Pagination"
+      items:
+        properties:
+          content:
+            type: array
+            items:
+              $ref: '#/components/schemas/ScreenBody'
+          pageable:
+            type: object
+            properties:
+              sort:
+                type: object
+                properties:
+                  sorted:
+                    type: boolean
+                    example: false
+                  empty:
+                    type: boolean
+                    example: true
+                  unsorted:
+                    type: boolean
+                    example: true
+              pageSize:
+                type: integer
+                example: 20
+              pageNumber:
+                type: integer
+                example: 0
+              offset:
+                type: integer
+                example: 0
+              paged:
+                type: boolean
+                example: true
+              unpaged:
+                type: boolean
+                example: false
+          totalPages: 
+            type: integer
+            example: 1
+          totalElements:
+            type: integer
+            example: 2
+          last:
+            type: boolean
+            example: true
+          number: 
+            type: integer
+            example: 0
+          size:
+            type: integer
+            example: 0
+          numberOfElements:
+            type: integer
+            example: 2
           
           
           
