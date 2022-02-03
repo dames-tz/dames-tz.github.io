@@ -1,0 +1,1794 @@
+openapi: 3.0.0
+info:
+  title: Dames Collect API
+  description: Collect Api for dreams project
+  contact:
+    name: Niafikra Group LTD
+    url: http://niafikra.com/
+    email: support@niafikra.com
+  version: 1.0.0
+servers: 
+  - url: http://localhost:8080/api/v1/dames
+  - url: http://hjf.dames.co.tz/api/v1/dames
+  - url: http://hjf.dames.co.tz:8181/api/v1/dames
+paths:
+  /question:
+      description: Create Criterial Screening Question
+      post:
+        description: Create Question
+        security: 
+           - basicAuth: []
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateQuestionBody'
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/QuestionBody'
+  /question/list:
+    description: Fetch all questions
+    get:
+      description: Fetch all questions both active and non active
+      security: 
+         - basicAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionList'
+  /question/page:
+    description: Fetch all questions with pages
+    get:
+      description: Fetch all questions both active and non active with pages
+      security: 
+         - basicAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionListWithPagination'
+  /question/list/active/:
+    description: Fetch active questions
+    get:
+      description: Fetch all active questions
+      security: 
+         - basicAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionList'
+  /question/{code}/exists/:
+    description: Check if code exists
+    get:
+      description: Check if question code exists
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Code you want to check.
+          name: code
+          required: true
+          example: A123
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+                example: true
+                
+  /question/{code}/:
+    description: Get Question
+    get:
+      description: Get Question
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Question Code.
+          name: code
+          required: true
+          example: A123
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionBody'
+                
+  /question/{code}/answers/:
+    description: Get answers
+    get:
+      description: Get all question answers
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Question Code.
+          name: code
+          required: true
+          example: A123
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnswerList'
+                
+  /question/{code}:
+    description: Update Question
+    put:
+      description: Update Question
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Question Code.
+          name: code
+          required: true
+          example: A123
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQuestionBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionBody'
+                
+  /question/{code}/answer/:
+    description: Add Answer
+    put:
+      description: Add answer to the question
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Question Code.
+          name: code
+          required: true
+          example: A123
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswerCreateBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionBody'
+                
+  /question/answer/{id}/:
+    description: Update Answer
+    put:
+      description: Update Answer
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Answer Id.
+          name: id
+          required: true
+          example: 23
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswerCreateBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnswerBody'
+                
+  /question/answer/{id}:
+    description: Delete Answer
+    delete:
+      description: Delete Answer
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Answer Id.
+          name: id
+          required: true
+          example: 23
+          schema:
+            type: integer
+      responses:
+        202:
+          description: ACCEPTED
+  
+  /screening:
+    description: Create Screening 
+    post:
+      description: Post Screening. What to consider agreed key should be check 'true' if the candidate agreed to be enrolled. If checked 'false' screening will never be linked with any enrollment.
+      security: 
+         - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScreenCreateBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScreenBody'
+                
+  /screening/list:
+    description: Fetch all screening
+    get:
+      description: Fetch all screening
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data with following format
+          name: query
+          schema:
+            $ref: '#/components/schemas/ScreenQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScreenList'
+                
+  /screening/{id}/:
+    description: Update Screening 
+    put:
+      description: Update Screening
+      security: 
+         - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScreenCreateBody'
+      parameters: 
+        - in: path
+          description: Pass Screen Id.
+          name: id
+          required: true
+          example: 7
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScreenBody'
+                
+  /screening/{id}/response:
+    description: Add Response to Screening 
+    put:
+      description: Add Response to Screening 
+      security: 
+         - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseCreateBody'
+      parameters: 
+        - in: path
+          description: Pass Screen Id.
+          name: id
+          required: true
+          example: 7
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScreenBody'
+                
+  /screening/response/{id}:
+    description: Remove Response from Screening 
+    delete:
+      description: Remove Response from Screening 
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass Screen Id.
+          name: id
+          required: true
+          example: 70
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScreenBody'
+                
+  /screening/{id}:
+    description: Delete Screening
+    delete:
+      description: Delete Not Enrolled Screening
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Screening Id.
+          name: id
+          required: true
+          example: 23
+          schema:
+            type: integer
+      responses:
+        202:
+          description: ACCEPTED
+          
+  /level/list:
+    description: List all levels
+    get:
+      description: List all levels
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data with following format
+          name: query
+          schema:
+            $ref: '#/components/schemas/levelQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/levelSimpleList'
+  /level/page:
+    description: List Levels in page
+    get:
+      description: List Levels in pages
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data with following format
+          name: query
+          schema:
+            $ref: '#/components/schemas/levelQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/levelList'
+  /service/list:
+    description: List Services
+    get:
+      description: Find services 
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data with following format
+          name: query
+          schema:
+            $ref: '#/components/schemas/ServiceQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceSimpleList'
+  /service/{id}:
+    description: Get Service by ID
+    get:
+      description: Pass Service Id to fetch Service Object
+      security:
+        - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass service id.
+          name: id
+          required: true
+          example: 23
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+  /intervention/list:
+    description: List Interventions
+    get:
+      description: List services 
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data with following format
+          name: query
+          schema:
+            $ref: '#/components/schemas/InterventionQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InterventionSimpleList'
+  /intervention/page:
+    description: List Intervention in page
+    get:
+      description: List Intervention in pages
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data with following format
+          name: query
+          schema:
+            $ref: '#/components/schemas/InterventionQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InterventionList'
+  /enrollment/codePattern:
+    description: Fetch code pattern
+    get: 
+      description: Fetch enrollment code pattern
+      security: 
+         - basicAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 00-00-AA-AA
+  /enrollment/{code}:
+    description: Create or Update Enrollment
+    put:
+      description: Create or Update Enrollment, For new code will create but for existing one will update
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass enrollment code.
+          name: code
+          required: true
+          example: 1234
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentPostOject'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/Enrollment'
+  /enrollment/{code}/exist:
+    description: Check if code exists
+    get:
+      description: Check if enrollment code exists
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass new generated enrollment code 
+          name: code
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: true
+  /enrollment/{code}/:
+    description: Get Enrollment
+    get:
+      description: Get enrollment by code
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass enrollment code
+          name: code
+          required: true
+          schema:
+            type: string
+          example: 123
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Enrollment'
+                
+  /enrollment/bulk:
+    description: Post bulk enrollment.
+    post:
+      description: Post bulk enrollment. Posting multiple enrollment objects at once
+      security: 
+         - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+                schema:
+                  $ref: '#/components/schemas/EnrollmentPostOjectList'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentList'
+  /enrollment/list/:
+    description: Find all enrollments
+    get:
+      description: Find all posted enrollments
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data from as any of these keys
+          name: query
+          schema:
+            $ref: '#/components/schemas/EnrollmentQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentList'
+         
+  /enrollment/count/:
+    description: Count enrollments from query
+    get:
+      description: Count enrollments from query 
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data from as any of these keys. It shall return whole count if nothing passed
+          name: query
+          schema:
+            $ref: '#/components/schemas/EnrollmentQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+             application/text:
+              schema:
+                type: integer
+                example: 10
+  /enrollment/minimumAge:
+    description: get minimum age from level
+    get:
+      description: get minimum age from level
+      security: 
+         - basicAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/text:
+              schema:
+                type: integer
+                example: 6
+  /enrollment/maximumAge:
+    description: get maximum age from level
+    get:
+      description: get maximum age from level
+      security: 
+         - basicAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/text:
+              schema:
+                type: integer
+                example: 46
+  /encounter:
+    description: Create Encounter
+    post:
+      description: Create Encounter 
+      security: 
+         - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EncounterPostObject'
+      responses:
+        201:
+          description: CREATED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Encounter'
+  /encounter/bulk:
+    description: Create Encounter in bulk
+    post:
+      description: Create Encounter in bulk 
+      security: 
+         - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EncounterPostListObject'
+      responses:
+        201:
+          description: CREATED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EncounterList'
+  /encounter/list/:
+    description: Find all encounters
+    get:
+      description: Find all posted encounters by logged user
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data from as any of these keys. It shall return everything if nothing passed.
+          name: query
+          schema:
+            $ref: '#/components/schemas/EncounterQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EncounterList'
+  /encounter/count/:
+    description: Count encounters from query
+    get:
+      description: Count encounters from query
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data from as any of these keys. It shall return all count if nothing passed
+          name: query
+          schema:
+            $ref: '#/components/schemas/EncounterQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+             application/text:
+              schema:
+                type: integer
+                example: 10
+  /encounter/page/:
+    description: Find all encounters in page
+    get:
+      description: Find all posted encounters by logged user in page
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data from as any of these keys. It shall return all count if nothing passed
+          name: query
+          schema:
+            $ref: '#/components/schemas/EncounterQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EncounterList'
+  /encounter/{id}:
+    description: Delete Encounter
+    delete:
+      description: Delete Encounter
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass Encounter id
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 100
+      responses:
+        202:
+          description: ACCEPTED
+        
+              
+components:
+  securitySchemes:
+    basicAuth:    
+      type: http
+      scheme: basic
+  schemas:
+    level:
+        type: object
+        properties:
+          id:
+            type: integer
+          name: 
+            type: string
+            example: 10-20
+          ageForm:
+            type: integer
+            example: 10
+          ageTo:
+            type: integer
+            example: 20
+          category:
+            type: string
+            example: adult
+    levelQuery:
+      type: object
+      title: "Level Query Params"
+      properties:
+        name:
+          type: string
+        startAgeFrom:
+          type: integer
+          description: "Fill with startAgeTo"
+        startAgeTo:
+          type: integer
+          description: "Fill with startAgeFrom"
+        endAgeFrom:
+          type: integer
+          description: "Fill with endAgeTo"
+        endAgeTo:
+          type: integer
+          description: "Fill with endAgeFrom"
+        categoryId:
+         type: integer
+    levelList:
+      type: array
+      title: "Level List Object with Pages"
+      items:
+        properties:
+          content:
+            type: array
+            items:
+              $ref: '#/components/schemas/level'
+          pageable:
+            type: object
+            properties:
+              sort:
+                type: object
+                properties:
+                  sorted:
+                    type: boolean
+                    example: false
+                  empty:
+                    type: boolean
+                    example: true
+                  unsorted:
+                    type: boolean
+                    example: true
+              pageSize:
+                type: integer
+                example: 20
+              pageNumber:
+                type: integer
+                example: 0
+              offset:
+                type: integer
+                example: 0
+              paged:
+                type: boolean
+                example: true
+              unpaged:
+                type: boolean
+                example: false
+          totalPages: 
+            type: integer
+            example: 1
+          totalElements:
+            type: integer
+            example: 2
+          last:
+            type: boolean
+            example: true
+          number: 
+            type: integer
+            example: 0
+          size:
+            type: integer
+            example: 0
+          numberOfElements:
+            type: integer
+            example: 2
+    levelSimpleList:
+      title: "Level List Object"
+      type: array
+      items:
+        $ref: '#/components/schemas/level'
+    Stage:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 290
+        order:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: initial
+        code:
+          type: string
+          example: "1234"
+    Service:
+      type: object
+      properties:
+        id: 
+          type: integer
+          example: 5
+        name:
+          type: string
+        code:
+          type: string
+        category:
+          type: string
+          example: First category
+        stages:
+          type: array
+          items:
+            properties:
+              stage: 
+                $ref: '#/components/schemas/Stage'
+    ServiceSimpleList:
+      type: array
+      title: "Service Simple List Object"
+      items:
+        properties:
+          name: 
+            type: string
+          category:
+            type: string
+          stages:
+            $ref: '#/components/schemas/Stage'
+    ServiceQuery:
+      type: object
+      properties:
+        name: 
+          type: string
+        code:
+          type: string
+    ServiceList:
+      type: array
+      items:
+        properties:
+          content:
+            type: array
+            items:
+              $ref: '#/components/schemas/Service'
+          pageable:
+            type: object
+            properties:
+              sort:
+                type: object
+                properties:
+                  sorted:
+                    type: boolean
+                    example: false
+                  empty:
+                    type: boolean
+                    example: true
+                  unsorted:
+                    type: boolean
+                    example: true
+              pageSize:
+                type: integer
+                example: 20
+              pageNumber:
+                type: integer
+                example: 0
+              offset:
+                type: integer
+                example: 0
+              paged:
+                type: boolean
+                example: true
+              unpaged:
+                type: boolean
+                example: false
+          totalPages: 
+            type: integer
+            example: 1
+          totalElements:
+            type: integer
+            example: 2
+          last:
+            type: boolean
+            example: true
+          number: 
+            type: integer
+            example: 0
+          size:
+            type: integer
+            example: 0
+          numberOfElements:
+            type: integer
+            example: 2
+    Intervention:
+      type: object
+      title: "Intervention Object"
+      properties:
+        level:
+          $ref: '#/components/schemas/level'
+        category:
+          type: string
+        service:
+          $ref: '#/components/schemas/Service'
+        mandatory:
+          type: boolean
+          example: true
+    InterventionQuery:
+      type: object
+      title: "Intervention Query Params"
+      properties:
+        categoryId:
+          type: integer
+        levelId:
+          type: integer
+        serviceId:
+          type: integer
+        mandatory:
+          type: boolean
+          example: false
+    InterventionSimpleList:
+      type: array
+      title: "Intervention Simple List"
+      items:
+        $ref: '#/components/schemas/Intervention'
+    InterventionList:
+      type: array
+      title: "Intervention List with Pagination"
+      items:
+        properties:
+          content:
+            type: array
+            items:
+              $ref: '#/components/schemas/Intervention'
+          pageable:
+            type: object
+            properties:
+              sort:
+                type: object
+                properties:
+                  sorted:
+                    type: boolean
+                    example: false
+                  empty:
+                    type: boolean
+                    example: true
+                  unsorted:
+                    type: boolean
+                    example: true
+              pageSize:
+                type: integer
+                example: 20
+              pageNumber:
+                type: integer
+                example: 0
+              offset:
+                type: integer
+                example: 0
+              paged:
+                type: boolean
+                example: true
+              unpaged:
+                type: boolean
+                example: false
+          totalPages: 
+            type: integer
+            example: 1
+          totalElements:
+            type: integer
+            example: 2
+          last:
+            type: boolean
+            example: true
+          number: 
+            type: integer
+            example: 0
+          size:
+            type: integer
+            example: 0
+          numberOfElements:
+            type: integer
+            example: 2
+    PredefinedData:
+      type: object
+      title: "Predfined Data Object"
+      properties:
+        id:
+          type: integer
+        question: 
+          type: string
+        answer:
+          type: string
+        originalAnswer:
+          type: string
+        memberOf:
+          $ref: '#/components/schemas/PredefinedData'
+        systemDefined:
+          type: boolean
+          example: true
+        timecreated:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+    SNU:
+      type: object
+      title: "SNU object"
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        code:
+          type: string
+    PSNU:
+      type: object
+      title: "PSNU Object"
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        code:
+          type: string
+        snu:
+          $ref: '#/components/schemas/SNU'
+    PSNUSimpleList:
+      type: array
+      title: "PSNU Simple List"
+      items:
+        $ref: '#/components/schemas/PSNU'
+    CSO:
+      type: object
+      title: "CSO Object"
+      properties:
+        id:
+          type: object
+        name:
+          type: string
+        code:
+          type: string
+        supportedLevels:
+          $ref: '#/components/schemas/levelSimpleList'
+        supportedPSNU:
+          $ref: '#/components/schemas/PSNUSimpleList'
+    Enrollment:
+      type: object
+      title: "Enrollment Object"
+      properties:
+          timeEnrolled:
+            type: string
+            format: date-time
+          code:
+            type: string
+            example: 123
+          firstName:
+            type: string
+          lastName:
+            type: string
+          phoneNumber:
+            type: string
+          dateOfBirth:
+            type: string
+            format: date
+          ward:
+            $ref: '#/components/schemas/PredefinedData'
+          street:
+            type: string
+          cso:
+            type: string
+          psnu:
+            type: string
+          referral:
+            type: boolean
+            example: true
+          referralFacility:
+            $ref: '#/components/schemas/PredefinedData'
+          level:
+            $ref: '#/components/schemas/level'
+    EnrollmentsListWithPagination:
+      type: array
+      title: "Enrollment list with pagination"
+      items:
+        properties:
+          content:
+            type: array
+            items:
+              $ref: '#/components/schemas/Enrollment'
+          pageable:
+            type: object
+            properties:
+              sort:
+                type: object
+                properties:
+                  sorted:
+                    type: boolean
+                    example: false
+                  empty:
+                    type: boolean
+                    example: true
+                  unsorted:
+                    type: boolean
+                    example: true
+              pageSize:
+                type: integer
+                example: 20
+              pageNumber:
+                type: integer
+                example: 0
+              offset:
+                type: integer
+                example: 0
+              paged:
+                type: boolean
+                example: true
+              unpaged:
+                type: boolean
+                example: false
+          totalPages: 
+            type: integer
+            example: 1
+          totalElements:
+            type: integer
+            example: 2
+          last:
+            type: boolean
+            example: true
+          number: 
+            type: integer
+            example: 0
+          size:
+            type: integer
+            example: 0
+          numberOfElements:
+            type: integer
+            example: 2
+    EnrollmentQuery:
+      type: object
+      title: "Enrollment Query Params"
+      properties:
+        dateEnrolledForm:
+          type: string
+          format: date-time
+          example: '2021-12-29T10:30:12.396348'
+        dateEnrolledTo:
+          type: string
+          format: date-time
+          example: '2021-12-29T10:30:12.396348'
+        street:
+          type: string
+          example: 'Mtakuja st.'
+        ward:
+         type: integer
+         example: 11
+        firstName:
+          type: string
+          example: 'Jane'
+        lastName:
+          type: string
+          example: 'Doe'
+    EnrollmentPostOject:
+      type: object
+      title: "Enrollment Create/Update Object"
+      description: "Used during posting"
+      required: 
+        - timeEnrolled
+        - firstName
+        - lastName
+        - phoneNumber
+        - dateOfBirth
+        - level
+        - ward
+        - street
+        - code
+        - cso
+        - psnu
+      properties:
+        timeEnrolled:
+            type: string
+            format: date-time
+            example: '2021-12-29T10:30:12.396348'
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phoneNumber:
+          type: string
+        dateOfBirth:
+            type: string
+            format: date
+        level:
+          type: integer
+          example: 2
+        ward:
+          type: integer
+          example: 3
+        street:
+          type: integer
+          example: 1
+        cso:
+          type: integer
+          example: 13
+        psnu:
+          type: integer
+          example: 112
+        referral:
+          type: boolean
+          example: false
+          description: "If this is true, make sure you provide referral facility"
+        referralFacility:
+          type: integer
+          description: "Can be null if referral is marked false"
+    EnrollmentPostObjectForList:
+      type: object
+      title: "Enrollment Create/Update Object for list"
+      description: "Used during posting bulk enrollments" 
+      required: 
+        - timeEnrolled
+        - firstName
+        - lastName
+        - phoneNumber
+        - dateOfBirth
+        - level
+        - ward
+        - street
+        - code
+      properties:
+        timeEnrolled:
+            type: string
+            format: date
+            example: '2021-12-12'
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phoneNumber:
+          type: string
+        dateOfBirth:
+            type: string
+            format: date
+            example: '2010-12-12'
+        level:
+          type: integer
+          example: 2
+        ward:
+          type: integer
+          example: 3
+        street:
+          type: integer
+          example: 1
+        referral:
+          type: boolean
+          example: false
+        referralFacility:
+          type: integer
+          example: 17
+        code:
+          type: string
+          example: 112
+    EnrollmentPostOjectList:
+      type: array
+      title: "Enrollment Create/Update Bulk List"
+      items:
+        $ref: '#/components/schemas/EnrollmentPostObjectForList'
+    EnrollmentList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Enrollment'
+    Encounter:
+      type: object
+      title: "Encounter Object"
+      properties:
+        enrollment: 
+          $ref: '#/components/schemas/Enrollment'
+        stage:
+          $ref: '#/components/schemas/Stage'
+        date:
+          type: string
+          format: "YYYY-MM-DD"
+    EncounterList:
+      type: array
+      title: "Encounter Simple List"
+      items:
+        $ref: '#/components/schemas/Encounter'
+    EncounterListWithPagination:
+      type: array
+      title: "Encounter List with Pagination"
+      items:
+        properties:
+          content:
+            type: array
+            items:
+              $ref: '#/components/schemas/Encounter'
+          pageable:
+            type: object
+            properties:
+              sort:
+                type: object
+                properties:
+                  sorted:
+                    type: boolean
+                    example: false
+                  empty:
+                    type: boolean
+                    example: true
+                  unsorted:
+                    type: boolean
+                    example: true
+              pageSize:
+                type: integer
+                example: 20
+              pageNumber:
+                type: integer
+                example: 0
+              offset:
+                type: integer
+                example: 0
+              paged:
+                type: boolean
+                example: true
+              unpaged:
+                type: boolean
+                example: false
+          totalPages: 
+            type: integer
+            example: 1
+          totalElements:
+            type: integer
+            example: 2
+          last:
+            type: boolean
+            example: true
+          number: 
+            type: integer
+            example: 0
+          size:
+            type: integer
+            example: 0
+          numberOfElements:
+            type: integer
+            example: 2
+    EncounterPostObject:
+      type: object
+      title: "Encounter Create/Update Object"
+      description: "Used during posting" 
+      required: 
+        - date
+        - stage
+        - enrollment
+      properties:
+        date: 
+          type: string
+          format: date
+        stage:
+          type: integer
+          example: 11
+        enrollment:
+          type: string
+          description: Enrollment code
+          example: 1234
+    EncounterPostListObject:
+      type: array
+      title: "Encounter Create/Update List Objects"
+      items:
+        $ref: '#/components/schemas/EncounterPostObject'
+    EncounterQuery:
+      type: object
+      title: "Encounter Query Params"
+      properties:
+        dateForm:
+          type: string
+          format: date('yyyy-mm-dd')
+          example: '2021-12-29'
+        dateTo:
+          type: string
+          format: date('yyyy-mm-dd')
+          example: '2021-12-29'
+        street:
+          type: string
+          example: 'Mtakuja st.'
+        wardId:
+         type: integer
+         example: 11
+        levelId:
+         type: integer
+         example: 8
+        serviceId:
+         type: integer
+         example: 11
+    GeneralStatObject:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date('yyyy-mm-dd')
+          example: '2021-12-29'
+        today:
+          type: integer
+          example: 7
+        lastThirtyDays:
+          type: integer
+          example: 25
+        total: 
+          type: integer
+          example: 120
+    CreateQuestionBody:
+      type: object
+      title: "Query Create/Update Object"
+      description: "Used during create and update question"
+      required: 
+        - code
+        - title
+        - order
+        - active
+        - answers
+      properties:
+        code: 
+          type: string
+        title:
+          type: string
+        order: 
+          type: integer
+        active:
+          type: boolean
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnswerCreateBody'
+    QuestionBody:
+      type: object
+      title: "Question Object"
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        title:
+          type: string
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnswerBody'
+        activeCriteria:
+          type: array
+          description: "Map of question and answer id. From which detrmines question visibility"
+          items:
+            type: object
+            properties:
+              questionId:
+                type: integer
+              answerId:
+                type: integer
+        order:
+          type: integer
+        active:
+          type: boolean
+    AnswerBody:
+      type: object
+      title: "Answer Object"
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        weight:
+          type: integer
+        order:
+          type: integer
+    AnswerCreateBody:
+      type: object
+      title: "Answer Create/Update Object"
+      description: "Used during create and update answer"
+      required: 
+        - title
+        - weight
+        - order
+      properties:
+        title:
+          type: string
+        weight:
+          type: integer
+        order:
+          type: integer
+    QuestionList:
+      type: array
+      items:
+        $ref: '#/components/schemas/QuestionBody'
+    QuestionListWithPagination:
+      type: array
+      title: "Question List with Pagination"
+      items:
+        properties:
+          content:
+            type: array
+            items:
+              $ref: '#/components/schemas/QuestionBody'
+          pageable:
+            type: object
+            properties:
+              sort:
+                type: object
+                properties:
+                  sorted:
+                    type: boolean
+                    example: false
+                  empty:
+                    type: boolean
+                    example: true
+                  unsorted:
+                    type: boolean
+                    example: true
+              pageSize:
+                type: integer
+                example: 20
+              pageNumber:
+                type: integer
+                example: 0
+              offset:
+                type: integer
+                example: 0
+              paged:
+                type: boolean
+                example: true
+              unpaged:
+                type: boolean
+                example: false
+          totalPages: 
+            type: integer
+            example: 1
+          totalElements:
+            type: integer
+            example: 2
+          last:
+            type: boolean
+            example: true
+          number: 
+            type: integer
+            example: 0
+          size:
+            type: integer
+            example: 0
+          numberOfElements:
+            type: integer
+            example: 2
+    AnswerList:
+      type: array
+      title: "Answers Simple List"
+      items:
+        $ref: '#/components/schemas/AnswerBody'
+    ResponseBody:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 17
+        mark:
+          type: integer
+          example: 1
+        question:
+          $ref: '#/components/schemas/QuestionBody'
+        answer:
+          $ref: '#/components/schemas/AnswerBody'
+    ResponseCreateBody:
+      type: object
+      title: "Response Create/Update Object"
+      description: "Used during create and update response"
+      required: 
+        - questionId
+        - answerId
+        - mark
+      properties:
+        questionId:
+          type: integer
+        answerId:
+          type: integer
+        mark:
+          type: integer
+    ScreenBody:
+      title: "Screen Object"
+      type: object
+      properties:
+        id:
+          type: integer
+        date:
+          type: string
+          format: date
+        dateOfBirth:
+          type: string
+          format: date
+        ward:
+          $ref: '#/components/schemas/PredefinedData'
+        street:
+          type: string
+        score:
+          type: integer
+        eligible:
+          type: boolean
+        agreed:
+          type: boolean
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseBody'
+        enrollment:
+          $ref: '#/components/schemas/Enrollment'
+        decliningReason:
+          $ref: '#/components/schemas/PredefinedData'
+        decliningReasonNotes:
+          type: string
+    ScreenCreateBody:
+      title: "Screan Create/Update Object"
+      description: "Used during create and update screen"
+      required: 
+        - date
+        - dateOfBirth
+        - ward
+        - street
+        - responses
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        dateOfBirth:
+          type: string
+          format: date
+        ward:
+          type: integer
+          example: 11
+        street:
+          type: string
+          example: Mazinde
+        agreed:
+          type: boolean
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseCreateBody'
+        enrollmentCode:
+          type: string
+        decliningReason:
+          type: integer
+        decliningReasonNotes:
+          type: string
+    ScreenQuery:
+      type: object
+      title: "Screen Query Params"
+      properties:
+        dateForm:
+          type: string
+          format: date('yyyy-mm-dd')
+          example: '2021-12-29'
+        dateTo:
+          type: string
+          format: date('yyyy-mm-dd')
+          example: '2021-12-29'
+        street:
+          type: string
+          example: 'Mtakuja st.'
+        ward:
+         type: integer
+         example: 11
+        eligible:
+         type: boolean
+         example: true
+        agreed:
+         type: boolean
+         example: true
+        enrollmentCode:
+          type: string
+          example: "A000000"
+        decliningReason:
+          type: integer
+          example: 23
+    ScreenList:
+      type: array
+      title: "Screen Simple List"
+      items:
+        $ref: '#/components/schemas/ScreenBody'
+          
+          
+          
+        
+        
+          
+        
+      
+    
+    
+            
+                    
+          
+                
+  
+  
