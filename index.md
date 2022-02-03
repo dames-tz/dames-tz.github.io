@@ -1,4 +1,4 @@
- | **[Definition of Terms](https://ecyola.github.io)** |[Questions and Interpretations](https://ecyola.github.io/indicators)|
+ | **[Definition of Terms](https://dames-tz.github.io)** |[Questions and Interpretations](https://dames-tz.github.io/indicators)|
 
 
 ## DEFINITIONS OF TERMS AND ABBREVIATIONS
