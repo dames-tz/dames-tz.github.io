@@ -389,6 +389,28 @@ paths:
       responses:
         202:
           description: ACCEPTED
+  
+  /screening/count/:
+    description: Count screens from query
+    get:
+      description: Count screens from query 
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data from as any of these keys. It shall return whole count if nothing passed
+          name: query
+          schema:
+            $ref: '#/components/schemas/ScreenQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+             application/text:
+              schema:
+                type: integer
+                example: 100
           
   /level/list:
     description: List all levels
