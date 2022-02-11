@@ -30,6 +30,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/ScreenBody'
                 
+  /screening/count/:
+    description: Count screens from query
+    get:
+      description: Count screens from query 
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: You can Query data from as any of these keys. It shall return whole count if nothing passed
+          name: query
+          schema:
+            $ref: '#/components/schemas/ScreenQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+             application/text:
+              schema:
+                type: integer
+                example: 10
+                
   /screening/list:
     description: Fetch all screening
     get:
