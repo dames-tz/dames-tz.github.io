@@ -1282,12 +1282,12 @@ components:
       properties:
         dateEnrolledForm:
           type: string
-          format: date-time
-          example: '2021-12-29T10:30:12.396348'
+          format: date-time('dd-MM-yyyy HH:mm:ss')
+          example: '01-12-2021 06:00:00'
         dateEnrolledTo:
           type: string
-          format: date-time
-          example: '2021-12-29T10:30:12.396348'
+          format: date-time('dd-MM-yyyy HH:mm:ss')
+          example: '12-01-2022 13:12:00'
         street:
           type: string
           example: 'Mtakuja st.'
@@ -1329,7 +1329,8 @@ components:
           type: string
         dateOfBirth:
             type: string
-            format: date
+            format: date('yyyy-mm-dd')
+            example: '2020-10-02'
         level:
           type: integer
           example: 2
@@ -1379,7 +1380,7 @@ components:
           type: string
         dateOfBirth:
             type: string
-            format: date
+            format: date('yyyy-mm-dd')
             example: '2010-12-12'
         level:
           type: integer
@@ -1492,7 +1493,8 @@ components:
       properties:
         date: 
           type: string
-          format: date
+          format: date('yyyy-mm-dd')
+          example: '2021-01-12'
         stage:
           type: integer
           example: 11
@@ -1511,12 +1513,12 @@ components:
       properties:
         dateForm:
           type: string
-          format: date('yyyy-mm-dd')
-          example: '2021-12-29'
+          format: date('dd-mm-yyyy')
+          example: '01-12-2021'
         dateTo:
           type: string
-          format: date('yyyy-mm-dd')
-          example: '2021-12-29'
+          format: date('dd-mm-yyyy')
+          example: '12-02-2022'
         street:
           type: string
           example: 'Mtakuja st.'
@@ -1535,7 +1537,7 @@ components:
         date:
           type: string
           format: date('yyyy-mm-dd')
-          example: '2021-12-29'
+          example: '2021-12-09'
         today:
           type: integer
           example: 7
@@ -1728,7 +1730,8 @@ components:
           format: date
         dateOfBirth:
           type: string
-          format: date
+          format: date('yyyy-mm-dd')
+          example: '2021-12-01'
         ward:
           $ref: '#/components/schemas/PredefinedData'
         street:
@@ -1790,12 +1793,12 @@ components:
       properties:
         dateForm:
           type: string
-          format: date('yyyy-mm-dd')
-          example: '2021-12-29'
+          format: date('dd-mm-yyyy')
+          example: '01-11-2021'
         dateTo:
           type: string
-          format: date('yyyy-mm-dd')
-          example: '2021-12-29'
+          format: date('dd-mm-yyyy')
+          example: '20-12-2021'
         street:
           type: string
           example: 'Mtakuja st.'
