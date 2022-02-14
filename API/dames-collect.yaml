@@ -398,8 +398,9 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: You can Query data from as any of these keys. It shall return whole count if nothing passed
+          description: "Any or All of: dateFrom('dd-mm-yyyy'),dateTo('dd-mm-yyyy'),street,ward,eligible,agreed,enrollmentCode,decliningReason."
           name: query
+          style: form
           schema:
             $ref: '#/components/schemas/ScreenQuery'
           required: false
@@ -1283,11 +1284,11 @@ components:
         dateEnrolledForm:
           type: string
           format: date-time('dd-MM-yyyy HH:mm:ss')
-          example: '01-12-2021 06:00:00'
+          example: '01-12-2021 00:00:00'
         dateEnrolledTo:
           type: string
           format: date-time('dd-MM-yyyy HH:mm:ss')
-          example: '12-01-2022 13:12:00'
+          example: '12-01-2022 23:59:00'
         street:
           type: string
           example: 'Mtakuja st.'

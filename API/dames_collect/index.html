@@ -554,7 +554,9 @@
     background-color: #4c8eca;
     color: #fff;
   }
-
+  
+  
+  00427D
   
   .sidenav > .active > a {
     position: relative;
@@ -896,7 +898,8 @@
   "properties" : {
     "date" : {
       "type" : "string",
-      "format" : "date"
+      "format" : "date('yyyy-mm-dd')",
+      "example" : "2021-01-12"
     },
     "stage" : {
       "type" : "integer",
@@ -916,13 +919,13 @@
   "properties" : {
     "dateForm" : {
       "type" : "string",
-      "format" : "date('yyyy-mm-dd')",
-      "example" : "2021-12-29"
+      "format" : "date('dd-mm-yyyy')",
+      "example" : "01-12-2021"
     },
     "dateTo" : {
       "type" : "string",
-      "format" : "date('yyyy-mm-dd')",
-      "example" : "2021-12-29"
+      "format" : "date('dd-mm-yyyy')",
+      "example" : "12-02-2022"
     },
     "street" : {
       "type" : "string",
@@ -1018,7 +1021,7 @@
     },
     "dateOfBirth" : {
       "type" : "string",
-      "format" : "date",
+      "format" : "date('yyyy-mm-dd')",
       "example" : "2010-12-12"
     },
     "level" : {
@@ -1068,7 +1071,8 @@
     },
     "dateOfBirth" : {
       "type" : "string",
-      "format" : "date"
+      "format" : "date('yyyy-mm-dd')",
+      "example" : "2020-10-02"
     },
     "level" : {
       "type" : "integer",
@@ -1115,11 +1119,13 @@
   "properties" : {
     "dateEnrolledForm" : {
       "type" : "string",
-      "format" : "date-time"
+      "format" : "date-time('dd-MM-yyyy HH:mm:ss')",
+      "example" : "01-12-2021 00:00:00"
     },
     "dateEnrolledTo" : {
       "type" : "string",
-      "format" : "date-time"
+      "format" : "date-time('dd-MM-yyyy HH:mm:ss')",
+      "example" : "12-01-2022 23:59:00"
     },
     "street" : {
       "type" : "string",
@@ -1228,7 +1234,7 @@
     "date" : {
       "type" : "string",
       "format" : "date('yyyy-mm-dd')",
-      "example" : "2021-12-29"
+      "example" : "2021-12-09"
     },
     "today" : {
       "type" : "integer",
@@ -1771,7 +1777,8 @@
     },
     "dateOfBirth" : {
       "type" : "string",
-      "format" : "date"
+      "format" : "date('yyyy-mm-dd')",
+      "example" : "2021-12-01"
     },
     "ward" : {
       "$ref" : "#/components/schemas/PredefinedData"
@@ -1943,13 +1950,13 @@
   "properties" : {
     "dateForm" : {
       "type" : "string",
-      "format" : "date('yyyy-mm-dd')",
-      "example" : "2021-12-29"
+      "format" : "date('dd-mm-yyyy')",
+      "example" : "01-11-2021"
     },
     "dateTo" : {
       "type" : "string",
-      "format" : "date('yyyy-mm-dd')",
-      "example" : "2021-12-29"
+      "format" : "date('dd-mm-yyyy')",
+      "example" : "20-12-2021"
     },
     "street" : {
       "type" : "string",
@@ -2287,16 +2294,16 @@
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>Dames Collect API <a href="./openapi.json">[Download Open API]</a></h1>
+            <h1>Dames Collect API <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></h1>
           </div>
           <div class="clearfix"></div>
         </div>
         <div id="header">
           <div id="api-_">
-            <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
+            <h2 id="welcome-to-apidoc">API and SDK Documentation <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></h2>
               <div class="app-desc">Version: 1.0.0</div>
             <hr>
-            <div>Collect Api for dreams project  <a href="./openapi.json">[Download Open API]</a></div>
+            <div>Collect Api for dreams project <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></div>
           </div>
         </div>
         <div id="sections">
@@ -11898,7 +11905,7 @@ public class DefaultApiExample {
         basicAuth.setPassword("YOUR PASSWORD");
 
         DefaultApi apiInstance = new DefaultApi();
-        ScreenQuery query = ; // ScreenQuery | You can Query data from as any of these keys. It shall return whole count if nothing passed
+        ScreenQuery query = ; // ScreenQuery | Any or All of: dateFrom('dd-mm-yyyy'),dateTo('dd-mm-yyyy'),street,ward,eligible,agreed,enrollmentCode,decliningReason.
         try {
             'Integer' result = apiInstance.screeningCountGet(query);
             System.out.println(result);
@@ -11917,7 +11924,7 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        ScreenQuery query = ; // ScreenQuery | You can Query data from as any of these keys. It shall return whole count if nothing passed
+        ScreenQuery query = ; // ScreenQuery | Any or All of: dateFrom('dd-mm-yyyy'),dateTo('dd-mm-yyyy'),street,ward,eligible,agreed,enrollmentCode,decliningReason.
         try {
             'Integer' result = apiInstance.screeningCountGet(query);
             System.out.println(result);
@@ -11937,7 +11944,7 @@ public class DefaultApiExample {
 // Configure HTTP basic authorization (authentication scheme: basicAuth)
 [apiConfig setUsername:@"YOUR_USERNAME"];
 [apiConfig setPassword:@"YOUR_PASSWORD"];
-ScreenQuery *query = ; // You can Query data from as any of these keys. It shall return whole count if nothing passed (optional)
+ScreenQuery *query = ; // Any or All of: dateFrom('dd-mm-yyyy'),dateTo('dd-mm-yyyy'),street,ward,eligible,agreed,enrollmentCode,decliningReason. (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -11963,7 +11970,7 @@ basicAuth.password = 'YOUR PASSWORD'
 
 var api = new DamesCollectApi.DefaultApi()
 var opts = { 
-  'query':  // {{ScreenQuery}} You can Query data from as any of these keys. It shall return whole count if nothing passed
+  'query':  // {{ScreenQuery}} Any or All of: dateFrom('dd-mm-yyyy'),dateTo('dd-mm-yyyy'),street,ward,eligible,agreed,enrollmentCode,decliningReason.
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -11997,7 +12004,7 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new DefaultApi();
-            var query = new ScreenQuery(); // ScreenQuery | You can Query data from as any of these keys. It shall return whole count if nothing passed (optional) 
+            var query = new ScreenQuery(); // ScreenQuery | Any or All of: dateFrom('dd-mm-yyyy'),dateTo('dd-mm-yyyy'),street,ward,eligible,agreed,enrollmentCode,decliningReason. (optional) 
 
             try
             {
@@ -12022,7 +12029,7 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERN
 Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$query = ; // ScreenQuery | You can Query data from as any of these keys. It shall return whole count if nothing passed
+$query = ; // ScreenQuery | Any or All of: dateFrom('dd-mm-yyyy'),dateTo('dd-mm-yyyy'),street,ward,eligible,agreed,enrollmentCode,decliningReason.
 
 try {
     $result = $api_instance->screeningCountGet($query);
@@ -12042,7 +12049,7 @@ $WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
 $WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $query = ; # ScreenQuery | You can Query data from as any of these keys. It shall return whole count if nothing passed
+my $query = ; # ScreenQuery | Any or All of: dateFrom('dd-mm-yyyy'),dateTo('dd-mm-yyyy'),street,ward,eligible,agreed,enrollmentCode,decliningReason.
 
 eval { 
     my $result = $api_instance->screeningCountGet(query => $query);
@@ -12065,7 +12072,7 @@ swagger_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-query =  # ScreenQuery | You can Query data from as any of these keys. It shall return whole count if nothing passed (optional)
+query =  # ScreenQuery | Any or All of: dateFrom('dd-mm-yyyy'),dateTo('dd-mm-yyyy'),street,ward,eligible,agreed,enrollmentCode,decliningReason. (optional)
 
 try: 
     api_response = api_instance.screening_count_get(query=query)
@@ -12099,7 +12106,7 @@ except ApiException as e:
                                                 </span>
                                 
                                                     <div class="inner description">
-                                                        You can Query data from as any of these keys. It shall return whole count if nothing passed
+                                                        Any or All of: dateFrom(&#x27;dd-mm-yyyy&#x27;),dateTo(&#x27;dd-mm-yyyy&#x27;),street,ward,eligible,agreed,enrollmentCode,decliningReason.
                                                     </div>
                                             </div>
                                         </div>
