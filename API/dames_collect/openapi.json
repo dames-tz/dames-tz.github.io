@@ -607,7 +607,7 @@
         "parameters" : [ {
           "name" : "query",
           "in" : "query",
-          "description" : "You can Query data from as any of these keys. It shall return whole count if nothing passed",
+          "description" : "Any or All of: dateFrom('dd-mm-yyyy'),dateTo('dd-mm-yyyy'),street,ward,eligible,agreed,enrollmentCode,decliningReason.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -1625,11 +1625,13 @@
         "properties" : {
           "dateEnrolledForm" : {
             "type" : "string",
-            "format" : "date-time"
+            "format" : "date-time('dd-MM-yyyy HH:mm:ss')",
+            "example" : "01-12-2021 00:00:00"
           },
           "dateEnrolledTo" : {
             "type" : "string",
-            "format" : "date-time"
+            "format" : "date-time('dd-MM-yyyy HH:mm:ss')",
+            "example" : "12-01-2022 23:59:00"
           },
           "street" : {
             "type" : "string",
@@ -1669,7 +1671,8 @@
           },
           "dateOfBirth" : {
             "type" : "string",
-            "format" : "date"
+            "format" : "date('yyyy-mm-dd')",
+            "example" : "2020-10-02"
           },
           "level" : {
             "type" : "integer",
@@ -1724,7 +1727,7 @@
           },
           "dateOfBirth" : {
             "type" : "string",
-            "format" : "date",
+            "format" : "date('yyyy-mm-dd')",
             "example" : "2010-12-12"
           },
           "level" : {
@@ -1804,7 +1807,8 @@
         "properties" : {
           "date" : {
             "type" : "string",
-            "format" : "date"
+            "format" : "date('yyyy-mm-dd')",
+            "example" : "2021-01-12"
           },
           "stage" : {
             "type" : "integer",
@@ -1831,13 +1835,13 @@
         "properties" : {
           "dateForm" : {
             "type" : "string",
-            "format" : "date('yyyy-mm-dd')",
-            "example" : "2021-12-29"
+            "format" : "date('dd-mm-yyyy')",
+            "example" : "01-12-2021"
           },
           "dateTo" : {
             "type" : "string",
-            "format" : "date('yyyy-mm-dd')",
-            "example" : "2021-12-29"
+            "format" : "date('dd-mm-yyyy')",
+            "example" : "12-02-2022"
           },
           "street" : {
             "type" : "string",
@@ -1863,7 +1867,7 @@
           "date" : {
             "type" : "string",
             "format" : "date('yyyy-mm-dd')",
-            "example" : "2021-12-29"
+            "example" : "2021-12-09"
           },
           "today" : {
             "type" : "integer",
@@ -2043,7 +2047,8 @@
           },
           "dateOfBirth" : {
             "type" : "string",
-            "format" : "date"
+            "format" : "date('yyyy-mm-dd')",
+            "example" : "2021-12-01"
           },
           "ward" : {
             "$ref" : "#/components/schemas/PredefinedData"
@@ -2125,13 +2130,13 @@
         "properties" : {
           "dateForm" : {
             "type" : "string",
-            "format" : "date('yyyy-mm-dd')",
-            "example" : "2021-12-29"
+            "format" : "date('dd-mm-yyyy')",
+            "example" : "01-11-2021"
           },
           "dateTo" : {
             "type" : "string",
-            "format" : "date('yyyy-mm-dd')",
-            "example" : "2021-12-29"
+            "format" : "date('dd-mm-yyyy')",
+            "example" : "20-12-2021"
           },
           "street" : {
             "type" : "string",
