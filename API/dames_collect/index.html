@@ -942,6 +942,10 @@
     "serviceId" : {
       "type" : "integer",
       "example" : 11
+    },
+    "creatorId" : {
+      "type" : "integer",
+      "example" : 100
     }
   }
 };
@@ -1142,6 +1146,10 @@
     "lastName" : {
       "type" : "string",
       "example" : "Doe"
+    },
+    "creatorId" : {
+      "type" : "integer",
+      "example" : 100
     }
   }
 };
@@ -1981,6 +1989,10 @@
     "decliningReason" : {
       "type" : "integer",
       "example" : 23
+    },
+    "creatorId" : {
+      "type" : "integer",
+      "example" : 100
     }
   },
   "description" : "You can pass all or some of these"
@@ -2657,7 +2669,7 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Query can be in format: ?dateForm&#x3D;01-12-2021&amp;dateTo&#x3D;02-01-2022&amp;street&#x3D;Mtakuja%St&amp;wardId&#x3D;11&amp;serviceId&#x3D;11&amp;levelId&#x3D;8</p>
+                        <p class="marked">Count submitted encounters by login user</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/encounter/count</span></code></pre>
@@ -2704,7 +2716,7 @@ public class DefaultApiExample {
         basicAuth.setPassword("YOUR PASSWORD");
 
         DefaultApi apiInstance = new DefaultApi();
-        EncounterQuery query = ; // EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed
+        EncounterQuery query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
         try {
             'Integer' result = apiInstance.encounterCountGet(query);
             System.out.println(result);
@@ -2723,7 +2735,7 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        EncounterQuery query = ; // EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed
+        EncounterQuery query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
         try {
             'Integer' result = apiInstance.encounterCountGet(query);
             System.out.println(result);
@@ -2743,7 +2755,7 @@ public class DefaultApiExample {
 // Configure HTTP basic authorization (authentication scheme: basicAuth)
 [apiConfig setUsername:@"YOUR_USERNAME"];
 [apiConfig setPassword:@"YOUR_PASSWORD"];
-EncounterQuery *query = ; // You can Query data from as any of these keys. It shall return all count if nothing passed (optional)
+EncounterQuery *query = ; // Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100 (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -2769,7 +2781,7 @@ basicAuth.password = 'YOUR PASSWORD'
 
 var api = new DamesCollectApi.DefaultApi()
 var opts = { 
-  'query':  // {{EncounterQuery}} You can Query data from as any of these keys. It shall return all count if nothing passed
+  'query':  // {{EncounterQuery}} Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -2803,7 +2815,7 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new DefaultApi();
-            var query = new EncounterQuery(); // EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed (optional) 
+            var query = new EncounterQuery(); // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100 (optional) 
 
             try
             {
@@ -2828,7 +2840,7 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERN
 Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$query = ; // EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed
+$query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
 
 try {
     $result = $api_instance->encounterCountGet($query);
@@ -2848,7 +2860,7 @@ $WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
 $WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $query = ; # EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed
+my $query = ; # EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
 
 eval { 
     my $result = $api_instance->encounterCountGet(query => $query);
@@ -2871,7 +2883,7 @@ swagger_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-query =  # EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed (optional)
+query =  # EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100 (optional)
 
 try: 
     api_response = api_instance.encounter_count_get(query=query)
@@ -2905,7 +2917,7 @@ except ApiException as e:
                                                 </span>
                                 
                                                     <div class="inner description">
-                                                        You can Query data from as any of these keys. It shall return all count if nothing passed
+                                                        Query can be in format: ?dateForm&#x3D;01-12-2021&amp;dateTo&#x3D;02-01-2022&amp;street&#x3D;Mtakuja%St&amp;wardId&#x3D;11&amp;serviceId&#x3D;11&amp;levelId&#x3D;8&amp;creatorId&#x3D;100
                                                     </div>
                                             </div>
                                         </div>
@@ -3294,7 +3306,7 @@ public class DefaultApiExample {
         basicAuth.setPassword("YOUR PASSWORD");
 
         DefaultApi apiInstance = new DefaultApi();
-        EncounterQuery query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8
+        EncounterQuery query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
         try {
             EncounterList result = apiInstance.encounterListGet(query);
             System.out.println(result);
@@ -3313,7 +3325,7 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        EncounterQuery query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8
+        EncounterQuery query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
         try {
             EncounterList result = apiInstance.encounterListGet(query);
             System.out.println(result);
@@ -3333,7 +3345,7 @@ public class DefaultApiExample {
 // Configure HTTP basic authorization (authentication scheme: basicAuth)
 [apiConfig setUsername:@"YOUR_USERNAME"];
 [apiConfig setPassword:@"YOUR_PASSWORD"];
-EncounterQuery *query = ; // Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8 (optional)
+EncounterQuery *query = ; // Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100 (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -3359,7 +3371,7 @@ basicAuth.password = 'YOUR PASSWORD'
 
 var api = new DamesCollectApi.DefaultApi()
 var opts = { 
-  'query':  // {{EncounterQuery}} Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8
+  'query':  // {{EncounterQuery}} Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -3393,7 +3405,7 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new DefaultApi();
-            var query = new EncounterQuery(); // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8 (optional) 
+            var query = new EncounterQuery(); // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100 (optional) 
 
             try
             {
@@ -3418,7 +3430,7 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERN
 Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8
+$query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
 
 try {
     $result = $api_instance->encounterListGet($query);
@@ -3438,7 +3450,7 @@ $WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
 $WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $query = ; # EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8
+my $query = ; # EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
 
 eval { 
     my $result = $api_instance->encounterListGet(query => $query);
@@ -3461,7 +3473,7 @@ swagger_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-query =  # EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8 (optional)
+query =  # EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100 (optional)
 
 try: 
     api_response = api_instance.encounter_list_get(query=query)
@@ -3495,7 +3507,7 @@ except ApiException as e:
                                                 </span>
                                 
                                                     <div class="inner description">
-                                                        Query can be in format: ?dateForm&#x3D;01-12-2021&amp;dateTo&#x3D;02-01-2022&amp;street&#x3D;Mtakuja%St&amp;wardId&#x3D;11&amp;serviceId&#x3D;11&amp;levelId&#x3D;8
+                                                        Query can be in format: ?dateForm&#x3D;01-12-2021&amp;dateTo&#x3D;02-01-2022&amp;street&#x3D;Mtakuja%St&amp;wardId&#x3D;11&amp;serviceId&#x3D;11&amp;levelId&#x3D;8&amp;creatorId&#x3D;100
                                                     </div>
                                             </div>
                                         </div>
@@ -3565,7 +3577,7 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Query can be in format: ?dateForm&#x3D;01-12-2021&amp;dateTo&#x3D;02-01-2022&amp;street&#x3D;Mtakuja%St&amp;wardId&#x3D;11&amp;serviceId&#x3D;11&amp;levelId&#x3D;8</p>
+                        <p class="marked">List in pages Encounters</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/encounter/page</span></code></pre>
@@ -3612,7 +3624,7 @@ public class DefaultApiExample {
         basicAuth.setPassword("YOUR PASSWORD");
 
         DefaultApi apiInstance = new DefaultApi();
-        EncounterQuery query = ; // EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed
+        EncounterQuery query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
         try {
             EncounterList result = apiInstance.encounterPageGet(query);
             System.out.println(result);
@@ -3631,7 +3643,7 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        EncounterQuery query = ; // EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed
+        EncounterQuery query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
         try {
             EncounterList result = apiInstance.encounterPageGet(query);
             System.out.println(result);
@@ -3651,7 +3663,7 @@ public class DefaultApiExample {
 // Configure HTTP basic authorization (authentication scheme: basicAuth)
 [apiConfig setUsername:@"YOUR_USERNAME"];
 [apiConfig setPassword:@"YOUR_PASSWORD"];
-EncounterQuery *query = ; // You can Query data from as any of these keys. It shall return all count if nothing passed (optional)
+EncounterQuery *query = ; // Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100 (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -3677,7 +3689,7 @@ basicAuth.password = 'YOUR PASSWORD'
 
 var api = new DamesCollectApi.DefaultApi()
 var opts = { 
-  'query':  // {{EncounterQuery}} You can Query data from as any of these keys. It shall return all count if nothing passed
+  'query':  // {{EncounterQuery}} Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -3711,7 +3723,7 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new DefaultApi();
-            var query = new EncounterQuery(); // EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed (optional) 
+            var query = new EncounterQuery(); // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100 (optional) 
 
             try
             {
@@ -3736,7 +3748,7 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERN
 Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$query = ; // EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed
+$query = ; // EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
 
 try {
     $result = $api_instance->encounterPageGet($query);
@@ -3756,7 +3768,7 @@ $WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
 $WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $query = ; # EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed
+my $query = ; # EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100
 
 eval { 
     my $result = $api_instance->encounterPageGet(query => $query);
@@ -3779,7 +3791,7 @@ swagger_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-query =  # EncounterQuery | You can Query data from as any of these keys. It shall return all count if nothing passed (optional)
+query =  # EncounterQuery | Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100 (optional)
 
 try: 
     api_response = api_instance.encounter_page_get(query=query)
@@ -3813,7 +3825,7 @@ except ApiException as e:
                                                 </span>
                                 
                                                     <div class="inner description">
-                                                        You can Query data from as any of these keys. It shall return all count if nothing passed
+                                                        Query can be in format: ?dateForm&#x3D;01-12-2021&amp;dateTo&#x3D;02-01-2022&amp;street&#x3D;Mtakuja%St&amp;wardId&#x3D;11&amp;serviceId&#x3D;11&amp;levelId&#x3D;8&amp;creatorId&#x3D;100
                                                     </div>
                                             </div>
                                         </div>
@@ -5852,7 +5864,7 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Count enrollments from query</p>
+                        <p class="marked">Count enrollments by query</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/enrollment/count</span></code></pre>
@@ -5899,7 +5911,7 @@ public class DefaultApiExample {
         basicAuth.setPassword("YOUR PASSWORD");
 
         DefaultApi apiInstance = new DefaultApi();
-        EnrollmentQuery query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe
+        EnrollmentQuery query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100
         try {
             'Integer' result = apiInstance.enrollmentCountGet(query);
             System.out.println(result);
@@ -5918,7 +5930,7 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        EnrollmentQuery query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe
+        EnrollmentQuery query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100
         try {
             'Integer' result = apiInstance.enrollmentCountGet(query);
             System.out.println(result);
@@ -5938,7 +5950,7 @@ public class DefaultApiExample {
 // Configure HTTP basic authorization (authentication scheme: basicAuth)
 [apiConfig setUsername:@"YOUR_USERNAME"];
 [apiConfig setPassword:@"YOUR_PASSWORD"];
-EnrollmentQuery *query = ; // Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe (optional)
+EnrollmentQuery *query = ; // Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100 (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -5964,7 +5976,7 @@ basicAuth.password = 'YOUR PASSWORD'
 
 var api = new DamesCollectApi.DefaultApi()
 var opts = { 
-  'query':  // {{EnrollmentQuery}} Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe
+  'query':  // {{EnrollmentQuery}} Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -5998,7 +6010,7 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new DefaultApi();
-            var query = new EnrollmentQuery(); // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe (optional) 
+            var query = new EnrollmentQuery(); // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100 (optional) 
 
             try
             {
@@ -6023,7 +6035,7 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERN
 Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe
+$query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100
 
 try {
     $result = $api_instance->enrollmentCountGet($query);
@@ -6043,7 +6055,7 @@ $WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
 $WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $query = ; # EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe
+my $query = ; # EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100
 
 eval { 
     my $result = $api_instance->enrollmentCountGet(query => $query);
@@ -6066,7 +6078,7 @@ swagger_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-query =  # EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe (optional)
+query =  # EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100 (optional)
 
 try: 
     api_response = api_instance.enrollment_count_get(query=query)
@@ -6100,7 +6112,7 @@ except ApiException as e:
                                                 </span>
                                 
                                                     <div class="inner description">
-                                                        Query can be in format: ?dateEnrolledForm&#x3D;01-12-2021%00:00:00&amp;dateEnrolledTo&#x3D;02-01-2022%23:59:00&amp;street&#x3D;Mtakuja%St&amp;wardId&#x3D;11&amp;firstName&#x3D;Jane&amp;lastName&#x3D;Doe
+                                                        Query can be in format: ?dateEnrolledForm&#x3D;01-12-2021%00:00:00&amp;dateEnrolledTo&#x3D;02-01-2022%23:59:00&amp;street&#x3D;Mtakuja%St&amp;wardId&#x3D;11&amp;firstName&#x3D;Jane&amp;lastName&#x3D;Doe&amp;creatorId&#x3D;100
                                                     </div>
                                             </div>
                                         </div>
@@ -6219,7 +6231,7 @@ public class DefaultApiExample {
         basicAuth.setPassword("YOUR PASSWORD");
 
         DefaultApi apiInstance = new DefaultApi();
-        EnrollmentQuery query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe
+        EnrollmentQuery query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100
         try {
             EnrollmentList result = apiInstance.enrollmentListGet(query);
             System.out.println(result);
@@ -6238,7 +6250,7 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        EnrollmentQuery query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe
+        EnrollmentQuery query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100
         try {
             EnrollmentList result = apiInstance.enrollmentListGet(query);
             System.out.println(result);
@@ -6258,7 +6270,7 @@ public class DefaultApiExample {
 // Configure HTTP basic authorization (authentication scheme: basicAuth)
 [apiConfig setUsername:@"YOUR_USERNAME"];
 [apiConfig setPassword:@"YOUR_PASSWORD"];
-EnrollmentQuery *query = ; // Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe (optional)
+EnrollmentQuery *query = ; // Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100 (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -6284,7 +6296,7 @@ basicAuth.password = 'YOUR PASSWORD'
 
 var api = new DamesCollectApi.DefaultApi()
 var opts = { 
-  'query':  // {{EnrollmentQuery}} Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe
+  'query':  // {{EnrollmentQuery}} Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -6318,7 +6330,7 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new DefaultApi();
-            var query = new EnrollmentQuery(); // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe (optional) 
+            var query = new EnrollmentQuery(); // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100 (optional) 
 
             try
             {
@@ -6343,7 +6355,7 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERN
 Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe
+$query = ; // EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100
 
 try {
     $result = $api_instance->enrollmentListGet($query);
@@ -6363,7 +6375,7 @@ $WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
 $WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $query = ; # EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe
+my $query = ; # EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100
 
 eval { 
     my $result = $api_instance->enrollmentListGet(query => $query);
@@ -6386,7 +6398,7 @@ swagger_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-query =  # EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe (optional)
+query =  # EnrollmentQuery | Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100 (optional)
 
 try: 
     api_response = api_instance.enrollment_list_get(query=query)
@@ -6420,7 +6432,7 @@ except ApiException as e:
                                                 </span>
                                 
                                                     <div class="inner description">
-                                                        Query can be in format: ?dateEnrolledForm&#x3D;01-12-2021%00:00:00&amp;dateEnrolledTo&#x3D;02-01-2022%23:59:00&amp;street&#x3D;Mtakuja%St&amp;wardId&#x3D;11&amp;firstName&#x3D;Jane&amp;lastName&#x3D;Doe
+                                                        Query can be in format: ?dateEnrolledForm&#x3D;01-12-2021%00:00:00&amp;dateEnrolledTo&#x3D;02-01-2022%23:59:00&amp;street&#x3D;Mtakuja%St&amp;wardId&#x3D;11&amp;firstName&#x3D;Jane&amp;lastName&#x3D;Doe&amp;creatorId&#x3D;100
                                                     </div>
                                             </div>
                                         </div>
@@ -11909,7 +11921,7 @@ public class DefaultApiExample {
         basicAuth.setPassword("YOUR PASSWORD");
 
         DefaultApi apiInstance = new DefaultApi();
-        ScreenQuery query = ; // ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23
+        ScreenQuery query = ; // ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23&creatorId=100
         try {
             'Integer' result = apiInstance.screeningCountGet(query);
             System.out.println(result);
@@ -11928,7 +11940,7 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        ScreenQuery query = ; // ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23
+        ScreenQuery query = ; // ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23&creatorId=100
         try {
             'Integer' result = apiInstance.screeningCountGet(query);
             System.out.println(result);
@@ -11948,7 +11960,7 @@ public class DefaultApiExample {
 // Configure HTTP basic authorization (authentication scheme: basicAuth)
 [apiConfig setUsername:@"YOUR_USERNAME"];
 [apiConfig setPassword:@"YOUR_PASSWORD"];
-ScreenQuery *query = ; // Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23 (optional)
+ScreenQuery *query = ; // Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23&creatorId=100 (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -11974,7 +11986,7 @@ basicAuth.password = 'YOUR PASSWORD'
 
 var api = new DamesCollectApi.DefaultApi()
 var opts = { 
-  'query':  // {{ScreenQuery}} Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23
+  'query':  // {{ScreenQuery}} Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23&creatorId=100
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -12008,7 +12020,7 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new DefaultApi();
-            var query = new ScreenQuery(); // ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23 (optional) 
+            var query = new ScreenQuery(); // ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23&creatorId=100 (optional) 
 
             try
             {
@@ -12033,7 +12045,7 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERN
 Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$query = ; // ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23
+$query = ; // ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23&creatorId=100
 
 try {
     $result = $api_instance->screeningCountGet($query);
@@ -12053,7 +12065,7 @@ $WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
 $WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $query = ; # ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23
+my $query = ; # ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23&creatorId=100
 
 eval { 
     my $result = $api_instance->screeningCountGet(query => $query);
@@ -12076,7 +12088,7 @@ swagger_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-query =  # ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23 (optional)
+query =  # ScreenQuery | Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23&creatorId=100 (optional)
 
 try: 
     api_response = api_instance.screening_count_get(query=query)
@@ -12110,7 +12122,7 @@ except ApiException as e:
                                                 </span>
                                 
                                                     <div class="inner description">
-                                                        Query format can be. ?dateFrom&#x3D;12-12-2021&amp;dateTo&#x3D;16-12-2022&amp;street&#x3D;Mtakuja&amp;ward&#x3D;11&amp;eligible&#x3D;true&amp;enrollmentCode&#x3D;A00000&amp;decliningReason&#x3D;23
+                                                        Query format can be. ?dateFrom&#x3D;12-12-2021&amp;dateTo&#x3D;16-12-2022&amp;street&#x3D;Mtakuja&amp;ward&#x3D;11&amp;eligible&#x3D;true&amp;enrollmentCode&#x3D;A00000&amp;decliningReason&#x3D;23&amp;creatorId&#x3D;100
                                                     </div>
                                             </div>
                                         </div>

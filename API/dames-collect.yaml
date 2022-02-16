@@ -398,7 +398,7 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23"
+          description: "Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23&creatorId=100"
           name: query
           style: form
           schema:
@@ -664,7 +664,7 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe"
+          description: "Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100"
           name: query
           schema:
             $ref: '#/components/schemas/EnrollmentQuery'
@@ -680,12 +680,12 @@ paths:
   /enrollment/count:
     description: Count enrollments from query
     get:
-      description: Count enrollments from query 
+      description: Count enrollments by query 
       security: 
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe"
+          description: "Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100"
           name: query
           schema:
             $ref: '#/components/schemas/EnrollmentQuery'
@@ -770,7 +770,7 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8"
+          description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100"
           name: query
           schema:
             $ref: '#/components/schemas/EncounterQuery'
@@ -785,12 +785,12 @@ paths:
   /encounter/count:
     description: Count encounters from query
     get:
-      description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8"
+      description: Count submitted encounters by login user
       security: 
          - basicAuth: []
       parameters: 
         - in: query
-          description: You can Query data from as any of these keys. It shall return all count if nothing passed
+          description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100"
           name: query
           schema:
             $ref: '#/components/schemas/EncounterQuery'
@@ -806,12 +806,12 @@ paths:
   /encounter/page:
     description: Find all encounters in page
     get:
-      description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8"
+      description: List in pages Encounters
       security: 
          - basicAuth: []
       parameters: 
         - in: query
-          description: You can Query data from as any of these keys. It shall return all count if nothing passed
+          description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100"
           name: query
           schema:
             $ref: '#/components/schemas/EncounterQuery'
@@ -1322,6 +1322,9 @@ components:
         lastName:
           type: string
           example: 'Doe'
+        creatorId:
+         type: integer
+         example: 100
     EnrollmentPostOject:
       type: object
       title: "Enrollment Create/Update Object"
@@ -1553,6 +1556,9 @@ components:
         serviceId:
          type: integer
          example: 11
+        creatorId:
+         type: integer
+         example: 100
     GeneralStatObject:
       type: object
       properties:
@@ -1840,6 +1846,9 @@ components:
         decliningReason:
           type: integer
           example: 23
+        creatorId:
+         type: integer
+         example: 100
     ScreenList:
       type: array
       title: "Screen Simple List"
@@ -1902,20 +1911,3 @@ components:
           numberOfElements:
             type: integer
             example: 2
-    
-          
-          
-          
-        
-        
-          
-        
-      
-    
-    
-            
-                    
-          
-                
-  
-  
