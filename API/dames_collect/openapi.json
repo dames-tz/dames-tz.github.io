@@ -433,7 +433,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "You can Query data with following format",
+            "description": "Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/ScreenQuery"
@@ -640,7 +640,7 @@
         }
       }
     },
-    "/screening/count/": {
+    "/screening/count": {
       "description": "Count screens from query",
       "get": {
         "description": "Count screens from query",
@@ -652,8 +652,9 @@
         "parameters": [
           {
             "in": "query",
-            "description": "You can Query data from as any of these keys. It shall return whole count if nothing passed",
+            "description": "Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23",
             "name": "query",
+            "style": "form",
             "schema": {
               "$ref": "#/components/schemas/ScreenQuery"
             },
@@ -675,6 +676,41 @@
         }
       }
     },
+    "/user/{userId}/cso": {
+      "description": "Get CSo by userID",
+      "get": {
+        "description": "Fetch the CSO by user ID",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass enrollment user ID.",
+            "name": "userId",
+            "required": true,
+            "example": 10,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CSO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/level/list": {
       "description": "List all levels",
       "get": {
@@ -687,7 +723,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "You can Query data with following format",
+            "description": "Query format can be. ?name=10-12&startAgeFrom=1&startAgeTo=10&ward=11&endAgeFrom=10&endAgeTo=12&categoryId=3",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/levelQuery"
@@ -721,7 +757,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "You can Query data with following format",
+            "description": "Query format can be. ?name=10-12&startAgeFrom=1&startAgeTo=10&ward=11&endAgeFrom=10&endAgeTo=12&categoryId=3",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/levelQuery"
@@ -755,7 +791,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "You can Query data with following format",
+            "description": "Query format can be. ?name=condom provision&code=CON-12",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/ServiceQuery"
@@ -824,7 +860,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "You can Query data with following format",
+            "description": "Query format can be. ?categoryId=2&levelId=5&serviceId=2&mandatory=false",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/InterventionQuery"
@@ -858,7 +894,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "You can Query data with following format",
+            "description": "Query format can be. ?categoryId=2&levelId=5&serviceId=2&mandatory=false",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/InterventionQuery"
@@ -1050,7 +1086,7 @@
         }
       }
     },
-    "/enrollment/list/": {
+    "/enrollment/list": {
       "description": "Find all enrollments",
       "get": {
         "description": "Find all posted enrollments",
@@ -1062,7 +1098,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "You can Query data from as any of these keys",
+            "description": "Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/EnrollmentQuery"
@@ -1084,7 +1120,7 @@
         }
       }
     },
-    "/enrollment/count/": {
+    "/enrollment/count": {
       "description": "Count enrollments from query",
       "get": {
         "description": "Count enrollments from query",
@@ -1096,7 +1132,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "You can Query data from as any of these keys. It shall return whole count if nothing passed",
+            "description": "Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/EnrollmentQuery"
@@ -1231,7 +1267,7 @@
         }
       }
     },
-    "/encounter/list/": {
+    "/encounter/list": {
       "description": "Find all encounters",
       "get": {
         "description": "Find all posted encounters by logged user",
@@ -1243,7 +1279,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "You can Query data from as any of these keys. It shall return everything if nothing passed.",
+            "description": "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/EncounterQuery"
@@ -1265,10 +1301,10 @@
         }
       }
     },
-    "/encounter/count/": {
+    "/encounter/count": {
       "description": "Count encounters from query",
       "get": {
-        "description": "Count encounters from query",
+        "description": "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8",
         "security": [
           {
             "basicAuth": []
@@ -1300,10 +1336,10 @@
         }
       }
     },
-    "/encounter/page/": {
+    "/encounter/page": {
       "description": "Find all encounters in page",
       "get": {
-        "description": "Find all posted encounters by logged user in page",
+        "description": "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8",
         "security": [
           {
             "basicAuth": []
@@ -1870,7 +1906,7 @@
         "title": "CSO Object",
         "properties": {
           "id": {
-            "type": "object"
+            "type": "integer"
           },
           "name": {
             "type": "string"
@@ -2022,18 +2058,18 @@
           "dateEnrolledForm": {
             "type": "string",
             "format": "date-time('dd-MM-yyyy HH:mm:ss')",
-            "example": "01-12-2021 06:00:00"
+            "example": "01-12-2021 00:00:00"
           },
           "dateEnrolledTo": {
             "type": "string",
             "format": "date-time('dd-MM-yyyy HH:mm:ss')",
-            "example": "12-01-2022 13:12:00"
+            "example": "12-01-2022 23:59:00"
           },
           "street": {
             "type": "string",
             "example": "Mtakuja st."
           },
-          "ward": {
+          "wardId": {
             "type": "integer",
             "example": 11
           },
@@ -2723,6 +2759,7 @@
       },
       "ScreenQuery": {
         "type": "object",
+        "description": "You can pass all or some of these",
         "title": "Screen Query Params",
         "properties": {
           "dateForm": {
