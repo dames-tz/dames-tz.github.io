@@ -1449,15 +1449,12 @@ components:
           items:
             $ref: '#/components/schemas/AnswerBody'
         activeCriteria:
-          type: array
-          description: "Map of question and answer id. From which detrmines question visibility"
-          items:
             type: object
             properties:
               questionId:
-                type: integer
-              answerId:
-                type: integer
+                type: string
+                example: "answerId"
+                description: "This is key:value pair where key is question ID and value is Answer ID"
         order:
           type: integer
         active:
@@ -1763,3 +1760,22 @@ components:
           example: "W0000"
         psnu:
           $ref: '#/components/schemas/PSNU'
+  
+          
+    
+          
+          
+          
+        
+        
+          
+        
+      
+    
+    
+            
+                    
+          
+                
+  
+  
