@@ -181,55 +181,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ScreenBody'
                 
-  /screening/{id}/response:
-    description: Add Response to Screening 
-    put:
-      description: Add Response to Screening 
-      security: 
-         - basicAuth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ResponseCreateBody'
-      parameters: 
-        - in: path
-          description: Pass Screen Id.
-          name: id
-          required: true
-          example: 7
-          schema:
-            type: integer
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ScreenBody'
-                
-  /screening/response/{id}:
-    description: Remove Response from Screening 
-    delete:
-      description: Remove Response from Screening 
-      security: 
-         - basicAuth: []
-      parameters: 
-        - in: path
-          description: Pass Screen Id.
-          name: id
-          required: true
-          example: 70
-          schema:
-            type: integer
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ScreenBody'
-                
   /screening/{id}:
     description: Delete Screening
     delete:
@@ -270,6 +221,7 @@ paths:
               schema:
                 type: integer
                 example: 100
+                
   /user/{userId}/cso:
     description: Get CSo by userID
     get:
@@ -281,7 +233,7 @@ paths:
           description: Pass enrollment user ID.
           name: userId
           required: true
-          example: 10
+          example: 0
           schema:
             type: integer
       responses:
@@ -291,7 +243,50 @@ paths:
             application/json:
               schema:
                $ref: '#/components/schemas/CSO'
+                
+  /cso/{id}:
+    description: Get CSO
+    get:
+      description: Get CSO by ID
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass CSO ID.
+          name: id
+          required: true
+          example: 0
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CSO'
           
+  /cso/list:
+    description: List all CSO
+    get:
+      description: List all CSO
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: "Query format can be: ?code=C12&name=Tumaini&levelId=10&psnuId=11"
+          name: query
+          schema:
+            $ref: '#/components/schemas/CSOQquery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CSOLists'
+                
   /level/list:
     description: List all levels
     get:
@@ -300,7 +295,7 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?name=10-12&startAgeFrom=1&startAgeTo=10&ward=11&endAgeFrom=10&endAgeTo=12&categoryId=3"
+          description: "Query format can be: ?name=10-12&startAgeFrom=1&startAgeTo=10&ward=11&endAgeFrom=10&endAgeTo=12&categoryId=3"
           name: query
           schema:
             $ref: '#/components/schemas/levelQuery'
@@ -312,18 +307,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/levelSimpleList'
-  /level/page:
-    description: List Levels in page
+                
+  /level/{id}:
+    description: Get level
     get:
-      description: List Levels in pages
+      description: Get level by ID
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass Level ID.
+          name: id
+          required: true
+          example: 0
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/level'
+                
+  /ward/list:
+    description: List all wards
+    get:
+      description: List all wards
       security: 
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?name=10-12&startAgeFrom=1&startAgeTo=10&ward=11&endAgeFrom=10&endAgeTo=12&categoryId=3"
+          description: "Query format can be: ?name=Baruku&code=W0009&psnuId=7"
           name: query
           schema:
-            $ref: '#/components/schemas/levelQuery'
+            $ref: '#/components/schemas/WardQuery'
           required: false
       responses:
         200:
@@ -331,7 +349,71 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/levelList'
+                $ref: '#/components/schemas/WardList'
+                
+  /ward/{id}:
+    description: Get level
+    get:
+      description: Get ward by ID
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass ward ID.
+          name: id
+          required: true
+          example: 0
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WardObject'
+
+  /period/list:
+    description: List all periods
+    get:
+      description: List all periods
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: "Query format can be: ?name=FY22&startDateFrom=01-02-2022&startDateTo=05-02-2022&endDateFrom=06-02-2022&endDateTo=07-02-2022&closed=false"
+          name: query
+          schema:
+            $ref: '#/components/schemas/PeriodQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListPeriods'
+  /period/{id}:
+    description: Get period
+    get:
+      description: Get period ID
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass period ID.
+          name: id
+          required: true
+          example: 574
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeriodObject'
   /service/list:
     description: List Services
     get:
@@ -363,7 +445,7 @@ paths:
           description: Pass service id.
           name: id
           required: true
-          example: 23
+          example: 5
           schema:
             type: integer
       responses:
@@ -413,6 +495,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InterventionList'
+  /intervention/{id}:
+    description: Get Intervention by ID
+    get:
+      description: Pass Intervention Id to fetch Intervention Object
+      security:
+        - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass Intervention id.
+          name: id
+          required: true
+          example: 5
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Intervention'
   /enrollment/codePattern:
     description: Fetch code pattern
     get: 
@@ -695,7 +798,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EncounterList'
+                $ref: '#/components/schemas/EncounterListWithPagination'
   /encounter/{id}:
     description: Delete Encounter
     delete:
@@ -713,8 +816,88 @@ paths:
       responses:
         202:
           description: ACCEPTED
-        
-              
+  /snu/list:
+    description: List SNU
+    get:
+      description: Find all SNU 
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: "Query format can be. ?name=Mbeya&code=S12"
+          name: query
+          schema:
+            $ref: '#/components/schemas/SNUQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SNUList'
+  /snu/{id}:
+    description: Get SNU by ID
+    get:
+      description: Pass SNU Id to fetch SNU Object
+      security:
+        - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass snu id.
+          name: id
+          required: true
+          example: 5
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SNU'
+  /psnu/list:
+    description: List PSNU
+    get:
+      description: Find all PSNU 
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: "Query format can be. ?name=Kyela&code=P12&snuId=7"
+          name: query
+          schema:
+            $ref: '#/components/schemas/PSNUQuery'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PSNUSimpleList'
+  /psnu/{id}:
+    description: Get PSNU by ID
+    get:
+      description: Pass PSNU Id to fetch SNU Object
+      security:
+        - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass service id.
+          name: id
+          required: true
+          example: 0
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PSNU'
 components:
   securitySchemes:
     basicAuth:    
@@ -736,8 +919,17 @@ components:
             type: integer
             example: 20
           category:
-            type: string
-            example: adult
+            $ref: '#/components/schemas/Category'
+    Category:
+      type: object
+      title: "Category Object"
+      properties:
+        id:
+          type: integer
+          example: 2
+        name:
+          type: string
+          example: "INDIVIDUAL"
     levelQuery:
       type: object
       title: "Level Query Params"
@@ -935,7 +1127,7 @@ components:
         level:
           $ref: '#/components/schemas/level'
         category:
-          type: string
+          $ref: '#/components/schemas/Category'
         service:
           $ref: '#/components/schemas/Service'
         mandatory:
@@ -1050,6 +1242,18 @@ components:
           type: string
         code:
           type: string
+    SNUQuery:
+      type: object
+      title: "SNU Query Params"
+      properties:
+        name:
+          type: string
+        code:
+          type: string
+    SNUList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SNU'
     PSNU:
       type: object
       title: "PSNU Object"
@@ -1062,6 +1266,16 @@ components:
           type: string
         snu:
           $ref: '#/components/schemas/SNU'
+    PSNUQuery:
+      type: object
+      title: "PSNU Query Params"
+      properties:
+        name:
+          type: string
+        code:
+          type: string
+        snuId:
+          type: integer
     PSNUSimpleList:
       type: array
       title: "PSNU Simple List"
@@ -1081,6 +1295,23 @@ components:
           $ref: '#/components/schemas/levelSimpleList'
         supportedPSNU:
           $ref: '#/components/schemas/PSNUSimpleList'
+    CSOLists:
+      title: "CSO list"
+      type: array
+      items:
+        $ref: '#/components/schemas/CSOLists'
+    CSOQquery:
+      type: object
+      title: "CSO query params"
+      properties:
+        name:
+          type: string
+        code:
+          type: string
+        levelId:
+          type: integer
+        psnuId:
+          type: integer
     Enrollment:
       type: object
       title: "Enrollment Object"
@@ -1395,22 +1626,6 @@ components:
         creatorId:
          type: integer
          example: 100
-    GeneralStatObject:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date('yyyy-mm-dd')
-          example: '2021-12-09'
-        today:
-          type: integer
-          example: 7
-        lastThirtyDays:
-          type: integer
-          example: 25
-        total: 
-          type: integer
-          example: 120
     CreateQuestionBody:
       type: object
       title: "Query Create/Update Object"
@@ -1547,11 +1762,6 @@ components:
           numberOfElements:
             type: integer
             example: 2
-    AnswerList:
-      type: array
-      title: "Answers Simple List"
-      items:
-        $ref: '#/components/schemas/AnswerBody'
     ResponseBody:
       type: object
       properties:
@@ -1574,9 +1784,9 @@ components:
         - answerId
         - mark
       properties:
-        questionId:
+        question:
           type: integer
-        answerId:
+        answer:
           type: integer
         mark:
           type: integer
@@ -1586,15 +1796,21 @@ components:
       properties:
         id:
           type: integer
+          example: 23
+        recordedTime:
+          type: string
+          example: "2022-02-17T14:00:18.074211"
         date:
           type: string
-          format: date
+          format: date('yyyy-mm-dd')
         dateOfBirth:
           type: string
           format: date('yyyy-mm-dd')
           example: '2021-12-01'
+        cso:
+          $ref: '#/components/schemas/CSO'
         ward:
-          $ref: '#/components/schemas/PredefinedData'
+          $ref: '#/components/schemas/WardObject'
         street:
           type: string
         score:
@@ -1617,6 +1833,7 @@ components:
       title: "Screan Create/Update Object"
       description: "Used during create and update screen"
       required: 
+        - recordedTime
         - date
         - dateOfBirth
         - ward
@@ -1624,12 +1841,18 @@ components:
         - responses
       type: object
       properties:
+        recordedTime:
+            type: string
+            example: "2022-02-17T14:00:18.074211"
         date:
           type: string
-          format: date
+          format: date('yyyy-mm-dd')
         dateOfBirth:
           type: string
-          format: date
+          format: date('yyyy-mm-dd')
+        cso:
+          type: integer
+          example: 245
         ward:
           type: integer
           example: 11
@@ -1760,22 +1983,75 @@ components:
           example: "W0000"
         psnu:
           $ref: '#/components/schemas/PSNU'
-  
-          
-    
-          
-          
-          
-        
-        
-          
-        
-      
-    
-    
-            
-                    
-          
-                
-  
-  
+    WardQuery:
+      type: object
+      title: "Ward Query"
+      description: "Ward query parameters"
+      properties:
+        name:
+          type: string
+          example: "Baruku"
+        code:
+          type: string
+          example: "W0009"
+        psnuId:
+          type: integer
+          example: 7
+    WardList:
+      type: array
+      title: "Ward list"
+      description: "Ward list structure"
+      items:
+        $ref: '#/components/schemas/WardObject'
+    PeriodObject:
+      type: object
+      title: "Period Object"
+      description: "Object representing period structure"
+      properties:
+        id:
+          type: integer
+          example: 574
+        startDate:
+          type: string
+          example: "2021-10-01"
+        endDate:
+          type: string
+          example: "2021-12-31"
+        closed:
+          type: boolean
+          example: false
+        timeCreated:
+          type: string
+          example: "2022-02-16T17:34:50.682676" 
+        lastUpdated:
+          type: string
+          example: "2022-02-16T17:34:50.682602" 
+    PeriodQuery:
+      type: object
+      title: "Period Query"
+      description: "Query structure for period"
+      properties:
+        name:
+          type: string
+          example: "FY22Q1"
+        startDateFrom:
+          type: string
+          example: "2022-02-16"
+        startDateTo:
+          type: string
+          example: "2022-02-16"
+        endDateFrom:
+          type: string
+          example: "2022-02-17"
+        endDateTo:
+          type: string
+          example: "2022-02-19"
+        closed:
+          type: boolean
+          example: false
+    ListPeriods:
+      type: array
+      title: "List of periods"
+      description: "Period list structure"
+      items:
+        $ref: '#/components/schemas/PeriodObject'
