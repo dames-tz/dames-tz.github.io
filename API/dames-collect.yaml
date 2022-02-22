@@ -646,7 +646,7 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100"
+          description: "Query can be in format: ?dateForm=01-12-2021&dateETo=02-01-2022&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100"
           name: query
           schema:
             $ref: '#/components/schemas/EnrollmentQuery'
@@ -667,7 +667,7 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100"
+          description: "Query can be in format: ?dateForm=01-12-2021&dateETo=02-01-2022&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100"
           name: query
           schema:
             $ref: '#/components/schemas/EnrollmentQuery'
@@ -688,7 +688,7 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100"
+          description: "Query can be in format: ?dateForm=01-12-2021&dateETo=02-01-2022&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100"
           name: query
           schema:
             $ref: '#/components/schemas/EnrollmentQuery'
@@ -1407,14 +1407,14 @@ components:
       type: object
       title: "Enrollment Query Params"
       properties:
-        dateEnrolledForm:
+        dateForm:
           type: string
-          format: date-time('dd-MM-yyyy HH:mm:ss')
-          example: '01-12-2021 00:00:00'
-        dateEnrolledTo:
+          format: date-time('dd-MM-yyyy')
+          example: '01-12-2021'
+        dateTo:
           type: string
-          format: date-time('dd-MM-yyyy HH:mm:ss')
-          example: '12-01-2022 23:59:00'
+          format: date-time('dd-MM-yyyy')
+          example: '12-01-2022 '
         street:
           type: string
           example: 'Mtakuja st.'
