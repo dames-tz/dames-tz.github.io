@@ -197,7 +197,7 @@ paths:
             type: integer
       responses:
         202:
-          description: ACCEPTED
+          description: OK
   
   /screening/count:
     description: Count screens from query
@@ -815,7 +815,7 @@ paths:
           example: 100
       responses:
         202:
-          description: ACCEPTED
+          description: OK
   /snu/list:
     description: List SNU
     get:
@@ -1332,12 +1332,10 @@ components:
             type: string
             format: date
           ward:
-            $ref: '#/components/schemas/PredefinedData'
+            $ref: '#/components/schemas/WardObject'
           street:
             type: string
           cso:
-            type: string
-          psnu:
             type: string
           referral:
             type: boolean

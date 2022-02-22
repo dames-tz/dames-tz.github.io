@@ -325,7 +325,7 @@
         ],
         "responses": {
           "202": {
-            "description": "ACCEPTED"
+            "description": "OK"
           }
         }
       }
@@ -1348,7 +1348,7 @@
         ],
         "responses": {
           "202": {
-            "description": "ACCEPTED"
+            "description": "OK"
           }
         }
       }
@@ -2113,15 +2113,12 @@
             "format": "date"
           },
           "ward": {
-            "$ref": "#/components/schemas/PredefinedData"
+            "$ref": "#/components/schemas/WardObject"
           },
           "street": {
             "type": "string"
           },
           "cso": {
-            "type": "string"
-          },
-          "psnu": {
             "type": "string"
           },
           "referral": {
