@@ -100,7 +100,7 @@
         }
       }
     },
-    "/question/list/active/": {
+    "/question/list/active": {
       "description": "Fetch active questions",
       "get": {
         "description": "Fetch all active questions",
@@ -123,248 +123,10 @@
         }
       }
     },
-    "/question/{code}/exists/": {
-      "description": "Check if code exists",
-      "get": {
-        "description": "Check if question code exists",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "description": "Pass Code you want to check.",
-            "name": "code",
-            "required": true,
-            "example": "A123",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean",
-                  "example": true
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/question/{code}/": {
-      "description": "Get Question",
-      "get": {
-        "description": "Get Question",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "description": "Pass Question Code.",
-            "name": "code",
-            "required": true,
-            "example": "A123",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/QuestionBody"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/question/{code}/answers/": {
-      "description": "Get answers",
-      "get": {
-        "description": "Get all question answers",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "description": "Pass Question Code.",
-            "name": "code",
-            "required": true,
-            "example": "A123",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AnswerList"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/question/{code}": {
-      "description": "Update Question",
-      "put": {
-        "description": "Update Question",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "description": "Pass Question Code.",
-            "name": "code",
-            "required": true,
-            "example": "A123",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateQuestionBody"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/QuestionBody"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/question/{code}/answer/": {
-      "description": "Add Answer",
-      "put": {
-        "description": "Add answer to the question",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "description": "Pass Question Code.",
-            "name": "code",
-            "required": true,
-            "example": "A123",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AnswerCreateBody"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/QuestionBody"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/question/answer/{id}/": {
-      "description": "Update Answer",
-      "put": {
-        "description": "Update Answer",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "description": "Pass Answer Id.",
-            "name": "id",
-            "required": true,
-            "example": 23,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AnswerCreateBody"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AnswerBody"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/question/answer/{id}": {
-      "description": "Delete Answer",
-      "delete": {
-        "description": "Delete Answer",
+      "description": "Get Answer",
+      "get": {
+        "description": "Get Single Answer",
         "security": [
           {
             "basicAuth": []
@@ -384,7 +146,14 @@
         ],
         "responses": {
           "202": {
-            "description": "ACCEPTED"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnswerBody"
+                }
+              }
+            }
           }
         }
       }
@@ -533,85 +302,6 @@
         }
       }
     },
-    "/screening/{id}/response": {
-      "description": "Add Response to Screening",
-      "put": {
-        "description": "Add Response to Screening",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResponseCreateBody"
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "in": "path",
-            "description": "Pass Screen Id.",
-            "name": "id",
-            "required": true,
-            "example": 7,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ScreenBody"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/screening/response/{id}": {
-      "description": "Remove Response from Screening",
-      "delete": {
-        "description": "Remove Response from Screening",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "description": "Pass Screen Id.",
-            "name": "id",
-            "required": true,
-            "example": 70,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ScreenBody"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/screening/{id}": {
       "description": "Delete Screening",
       "delete": {
@@ -691,7 +381,7 @@
             "description": "Pass enrollment user ID.",
             "name": "userId",
             "required": true,
-            "example": 10,
+            "example": 0,
             "schema": {
               "type": "integer"
             }
@@ -711,6 +401,75 @@
         }
       }
     },
+    "/cso/{id}": {
+      "description": "Get CSO",
+      "get": {
+        "description": "Get CSO by ID",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass CSO ID.",
+            "name": "id",
+            "required": true,
+            "example": 0,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CSO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cso/list": {
+      "description": "List all CSO",
+      "get": {
+        "description": "List all CSO",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "description": "Query format can be: ?code=C12&name=Tumaini&levelId=10&psnuId=11",
+            "name": "query",
+            "schema": {
+              "$ref": "#/components/schemas/CSOQquery"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CSOLists"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/level/list": {
       "description": "List all levels",
       "get": {
@@ -723,7 +482,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query format can be. ?name=10-12&startAgeFrom=1&startAgeTo=10&ward=11&endAgeFrom=10&endAgeTo=12&categoryId=3",
+            "description": "Query format can be: ?name=10-12&startAgeFrom=1&startAgeTo=10&ward=11&endAgeFrom=10&endAgeTo=12&categoryId=3",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/levelQuery"
@@ -745,10 +504,45 @@
         }
       }
     },
-    "/level/page": {
-      "description": "List Levels in page",
+    "/level/{id}": {
+      "description": "Get level",
       "get": {
-        "description": "List Levels in pages",
+        "description": "Get level by ID",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass Level ID.",
+            "name": "id",
+            "required": true,
+            "example": 0,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/level"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ward/list": {
+      "description": "List all wards",
+      "get": {
+        "description": "List all wards",
         "security": [
           {
             "basicAuth": []
@@ -757,10 +551,10 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query format can be. ?name=10-12&startAgeFrom=1&startAgeTo=10&ward=11&endAgeFrom=10&endAgeTo=12&categoryId=3",
+            "description": "Query format can be: ?name=Baruku&code=W0009&psnuId=7",
             "name": "query",
             "schema": {
-              "$ref": "#/components/schemas/levelQuery"
+              "$ref": "#/components/schemas/WardQuery"
             },
             "required": false
           }
@@ -771,7 +565,111 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/levelList"
+                  "$ref": "#/components/schemas/WardList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ward/{id}": {
+      "description": "Get level",
+      "get": {
+        "description": "Get ward by ID",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass ward ID.",
+            "name": "id",
+            "required": true,
+            "example": 0,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WardObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/period/list": {
+      "description": "List all periods",
+      "get": {
+        "description": "List all periods",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "description": "Query format can be: ?name=FY22&startDateFrom=01-02-2022&startDateTo=05-02-2022&endDateFrom=06-02-2022&endDateTo=07-02-2022&closed=false",
+            "name": "query",
+            "schema": {
+              "$ref": "#/components/schemas/PeriodQuery"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListPeriods"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/period/{id}": {
+      "description": "Get period",
+      "get": {
+        "description": "Get period ID",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass period ID.",
+            "name": "id",
+            "required": true,
+            "example": 574,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PeriodObject"
                 }
               }
             }
@@ -828,7 +726,7 @@
             "description": "Pass service id.",
             "name": "id",
             "required": true,
-            "example": 23,
+            "example": 5,
             "schema": {
               "type": "integer"
             }
@@ -916,10 +814,45 @@
         }
       }
     },
+    "/intervention/{id}": {
+      "description": "Get Intervention by ID",
+      "get": {
+        "description": "Pass Intervention Id to fetch Intervention Object",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass Intervention id.",
+            "name": "id",
+            "required": true,
+            "example": 5,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Intervention"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/enrollment/codePattern": {
       "description": "Fetch code pattern",
       "get": {
-        "description": "Fetch enrollment code pattern",
+        "description": "Fetch enrollment code pattern. Can help to verify UIC entries pattern from users",
         "security": [
           {
             "basicAuth": []
@@ -932,7 +865,7 @@
               "text/plain": {
                 "schema": {
                   "type": "string",
-                  "example": "00-00-AA-AA"
+                  "example": "^[0-9]"
                 }
               }
             }
@@ -940,25 +873,61 @@
         }
       }
     },
-    "/enrollment/{code}": {
-      "description": "Create or Update Enrollment",
-      "put": {
-        "description": "Create or Update Enrollment, For new code will create but for existing one will update",
+    "/enrollment/minimumAge": {
+      "description": "get minimum age from level",
+      "get": {
+        "description": "get minimum age system supports",
         "security": [
           {
             "basicAuth": []
           }
         ],
-        "parameters": [
-          {
-            "in": "path",
-            "description": "Pass enrollment code.",
-            "name": "code",
-            "required": true,
-            "example": 1234,
-            "schema": {
-              "type": "string"
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/text": {
+                "schema": {
+                  "type": "integer",
+                  "example": 10
+                }
+              }
             }
+          }
+        }
+      }
+    },
+    "/enrollment/maximumAge": {
+      "description": "get maximum age from level",
+      "get": {
+        "description": "get maximum age system supports",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/text": {
+                "schema": {
+                  "type": "integer",
+                  "example": 24
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/enrollment": {
+      "description": "Create or Update Enrollment",
+      "put": {
+        "description": "Create or Update Enrollment, For new code will create but for existing one will update. So the main identifying component is Code",
+        "security": [
+          {
+            "basicAuth": []
           }
         ],
         "requestBody": {
@@ -1098,7 +1067,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100",
+            "description": "Query can be in format: ?dateForm=01-12-2021&dateETo=02-01-2022&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/EnrollmentQuery"
@@ -1120,6 +1089,40 @@
         }
       }
     },
+    "/enrollment/page": {
+      "description": "List all enrollments in Pages",
+      "get": {
+        "description": "List all enrollments in Pages",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "description": "Query can be in format: ?dateForm=01-12-2021&dateETo=02-01-2022&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100",
+            "name": "query",
+            "schema": {
+              "$ref": "#/components/schemas/EnrollmentQuery"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnrollmentsListWithPagination"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/enrollment/count": {
       "description": "Count enrollments from query",
       "get": {
@@ -1132,7 +1135,7 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query can be in format: ?dateEnrolledForm=01-12-2021%00:00:00&dateEnrolledTo=02-01-2022%23:59:00&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100",
+            "description": "Query can be in format: ?dateForm=01-12-2021&dateETo=02-01-2022&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100",
             "name": "query",
             "schema": {
               "$ref": "#/components/schemas/EnrollmentQuery"
@@ -1148,54 +1151,6 @@
                 "schema": {
                   "type": "integer",
                   "example": 10
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/enrollment/minimumAge": {
-      "description": "get minimum age from level",
-      "get": {
-        "description": "get minimum age from level",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/text": {
-                "schema": {
-                  "type": "integer",
-                  "example": 6
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/enrollment/maximumAge": {
-      "description": "get maximum age from level",
-      "get": {
-        "description": "get maximum age from level",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/text": {
-                "schema": {
-                  "type": "integer",
-                  "example": 46
                 }
               }
             }
@@ -1362,7 +1317,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EncounterList"
+                  "$ref": "#/components/schemas/EncounterListWithPagination"
                 }
               }
             }
@@ -1397,6 +1352,144 @@
           }
         }
       }
+    },
+    "/snu/list": {
+      "description": "List SNU",
+      "get": {
+        "description": "Find all SNU",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "description": "Query format can be. ?name=Mbeya&code=S12",
+            "name": "query",
+            "schema": {
+              "$ref": "#/components/schemas/SNUQuery"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SNUList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/snu/{id}": {
+      "description": "Get SNU by ID",
+      "get": {
+        "description": "Pass SNU Id to fetch SNU Object",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass snu id.",
+            "name": "id",
+            "required": true,
+            "example": 5,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SNU"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/psnu/list": {
+      "description": "List PSNU",
+      "get": {
+        "description": "Find all PSNU",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "description": "Query format can be. ?name=Kyela&code=P12&snuId=7",
+            "name": "query",
+            "schema": {
+              "$ref": "#/components/schemas/PSNUQuery"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PSNUSimpleList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/psnu/{id}": {
+      "description": "Get PSNU by ID",
+      "get": {
+        "description": "Pass PSNU Id to fetch SNU Object",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass service id.",
+            "name": "id",
+            "required": true,
+            "example": 0,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PSNU"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1426,8 +1519,21 @@
             "example": 20
           },
           "category": {
+            "$ref": "#/components/schemas/Category"
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "title": "Category Object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 2
+          },
+          "name": {
             "type": "string",
-            "example": "adult"
+            "example": "INDIVIDUAL"
           }
         }
       },
@@ -1711,7 +1817,7 @@
             "$ref": "#/components/schemas/level"
           },
           "category": {
-            "type": "string"
+            "$ref": "#/components/schemas/Category"
           },
           "service": {
             "$ref": "#/components/schemas/Service"
@@ -1845,7 +1951,8 @@
             "type": "string"
           },
           "memberOf": {
-            "$ref": "#/components/schemas/PredefinedData"
+            "type": "object",
+            "description": "Other predefidened data object"
           },
           "systemDefined": {
             "type": "boolean",
@@ -1876,6 +1983,24 @@
           }
         }
       },
+      "SNUQuery": {
+        "type": "object",
+        "title": "SNU Query Params",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "SNUList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SNU"
+        }
+      },
       "PSNU": {
         "type": "object",
         "title": "PSNU Object",
@@ -1891,6 +2016,21 @@
           },
           "snu": {
             "$ref": "#/components/schemas/SNU"
+          }
+        }
+      },
+      "PSNUQuery": {
+        "type": "object",
+        "title": "PSNU Query Params",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "snuId": {
+            "type": "integer"
           }
         }
       },
@@ -1919,6 +2059,31 @@
           },
           "supportedPSNU": {
             "$ref": "#/components/schemas/PSNUSimpleList"
+          }
+        }
+      },
+      "CSOLists": {
+        "title": "CSO list",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CSOLists"
+        }
+      },
+      "CSOQquery": {
+        "type": "object",
+        "title": "CSO query params",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "levelId": {
+            "type": "integer"
+          },
+          "psnuId": {
+            "type": "integer"
           }
         }
       },
@@ -2055,15 +2220,15 @@
         "type": "object",
         "title": "Enrollment Query Params",
         "properties": {
-          "dateEnrolledForm": {
+          "dateForm": {
             "type": "string",
-            "format": "date-time('dd-MM-yyyy HH:mm:ss')",
-            "example": "01-12-2021 00:00:00"
+            "format": "date-time('dd-MM-yyyy')",
+            "example": "01-12-2021"
           },
-          "dateEnrolledTo": {
+          "dateTo": {
             "type": "string",
-            "format": "date-time('dd-MM-yyyy HH:mm:ss')",
-            "example": "12-01-2022 23:59:00"
+            "format": "date-time('dd-MM-yyyy')",
+            "example": "12-01-2022 "
           },
           "street": {
             "type": "string",
@@ -2092,7 +2257,9 @@
         "title": "Enrollment Create/Update Object",
         "description": "Used during posting",
         "required": [
-          "timeEnrolled",
+          "recordedTime",
+          "date",
+          "code",
           "firstName",
           "lastName",
           "phoneNumber",
@@ -2100,15 +2267,22 @@
           "level",
           "ward",
           "street",
-          "code",
-          "cso",
-          "psnu"
+          "cso"
         ],
         "properties": {
-          "timeEnrolled": {
+          "recordedTime": {
             "type": "string",
             "format": "date-time",
             "example": "2021-12-29T10:30:12.396348"
+          },
+          "date": {
+            "type": "string",
+            "format": "date('yyyy-mm-dd')",
+            "example": "2021-12-30"
+          },
+          "code": {
+            "type": "string",
+            "description": "UIC"
           },
           "firstName": {
             "type": "string"
@@ -2140,10 +2314,6 @@
             "type": "integer",
             "example": 13
           },
-          "psnu": {
-            "type": "integer",
-            "example": 112
-          },
           "referral": {
             "type": "boolean",
             "example": false,
@@ -2155,72 +2325,11 @@
           }
         }
       },
-      "EnrollmentPostObjectForList": {
-        "type": "object",
-        "title": "Enrollment Create/Update Object for list",
-        "description": "Used during posting bulk enrollments",
-        "required": [
-          "timeEnrolled",
-          "firstName",
-          "lastName",
-          "phoneNumber",
-          "dateOfBirth",
-          "level",
-          "ward",
-          "street",
-          "code"
-        ],
-        "properties": {
-          "timeEnrolled": {
-            "type": "string",
-            "format": "date",
-            "example": "2021-12-12"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "phoneNumber": {
-            "type": "string"
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date('yyyy-mm-dd')",
-            "example": "2010-12-12"
-          },
-          "level": {
-            "type": "integer",
-            "example": 2
-          },
-          "ward": {
-            "type": "integer",
-            "example": 3
-          },
-          "street": {
-            "type": "integer",
-            "example": 1
-          },
-          "referral": {
-            "type": "boolean",
-            "example": false
-          },
-          "referralFacility": {
-            "type": "integer",
-            "example": 17
-          },
-          "code": {
-            "type": "string",
-            "example": 112
-          }
-        }
-      },
       "EnrollmentPostOjectList": {
         "type": "array",
         "title": "Enrollment Create/Update Bulk List",
         "items": {
-          "$ref": "#/components/schemas/EnrollmentPostObjectForList"
+          "$ref": "#/components/schemas/EnrollmentPostOject"
         }
       },
       "EnrollmentList": {
@@ -2334,14 +2443,19 @@
       },
       "EncounterPostObject": {
         "type": "object",
-        "title": "Encounter Create/Update Object",
+        "title": "Encounter Create Object",
         "description": "Used during posting",
         "required": [
+          "recordedTime",
           "date",
           "stage",
           "enrollment"
         ],
         "properties": {
+          "recordedTime": {
+            "type": "string",
+            "example": "2022-02-17T14:00:18.074211"
+          },
           "date": {
             "type": "string",
             "format": "date('yyyy-mm-dd')",
@@ -2349,18 +2463,19 @@
           },
           "stage": {
             "type": "integer",
-            "example": 11
+            "example": 11,
+            "description": "Stage ID found inside services"
           },
           "enrollment": {
             "type": "string",
-            "description": "Enrollment code",
+            "description": "Enrollment code UIC",
             "example": 1234
           }
         }
       },
       "EncounterPostListObject": {
         "type": "array",
-        "title": "Encounter Create/Update List Objects",
+        "title": "Encounter Create List Objects",
         "items": {
           "$ref": "#/components/schemas/EncounterPostObject"
         }
@@ -2398,28 +2513,6 @@
           "creatorId": {
             "type": "integer",
             "example": 100
-          }
-        }
-      },
-      "GeneralStatObject": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string",
-            "format": "date('yyyy-mm-dd')",
-            "example": "2021-12-09"
-          },
-          "today": {
-            "type": "integer",
-            "example": 7
-          },
-          "lastThirtyDays": {
-            "type": "integer",
-            "example": 25
-          },
-          "total": {
-            "type": "integer",
-            "example": 120
           }
         }
       },
@@ -2475,17 +2568,12 @@
             }
           },
           "activeCriteria": {
-            "type": "array",
-            "description": "Map of question and answer id. From which detrmines question visibility",
-            "items": {
-              "type": "object",
-              "properties": {
-                "questionId": {
-                  "type": "integer"
-                },
-                "answerId": {
-                  "type": "integer"
-                }
+            "type": "object",
+            "properties": {
+              "questionId": {
+                "type": "string",
+                "example": "answerId",
+                "description": "This is key:value pair where key is question ID and value is Answer ID"
               }
             }
           },
@@ -2622,13 +2710,6 @@
           }
         }
       },
-      "AnswerList": {
-        "type": "array",
-        "title": "Answers Simple List",
-        "items": {
-          "$ref": "#/components/schemas/AnswerBody"
-        }
-      },
       "ResponseBody": {
         "type": "object",
         "properties": {
@@ -2658,10 +2739,10 @@
           "mark"
         ],
         "properties": {
-          "questionId": {
+          "question": {
             "type": "integer"
           },
-          "answerId": {
+          "answer": {
             "type": "integer"
           },
           "mark": {
@@ -2674,19 +2755,27 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "example": 23
+          },
+          "recordedTime": {
+            "type": "string",
+            "example": "2022-02-17T14:00:18.074211"
           },
           "date": {
             "type": "string",
-            "format": "date"
+            "format": "date('yyyy-mm-dd')"
           },
           "dateOfBirth": {
             "type": "string",
             "format": "date('yyyy-mm-dd')",
             "example": "2021-12-01"
           },
+          "cso": {
+            "$ref": "#/components/schemas/CSO"
+          },
           "ward": {
-            "$ref": "#/components/schemas/PredefinedData"
+            "$ref": "#/components/schemas/WardObject"
           },
           "street": {
             "type": "string"
@@ -2721,6 +2810,7 @@
         "title": "Screan Create/Update Object",
         "description": "Used during create and update screen",
         "required": [
+          "recordedTime",
           "date",
           "dateOfBirth",
           "ward",
@@ -2729,13 +2819,21 @@
         ],
         "type": "object",
         "properties": {
+          "recordedTime": {
+            "type": "string",
+            "example": "2022-02-17T14:00:18.074211"
+          },
           "date": {
             "type": "string",
-            "format": "date"
+            "format": "date('yyyy-mm-dd')"
           },
           "dateOfBirth": {
             "type": "string",
-            "format": "date"
+            "format": "date('yyyy-mm-dd')"
+          },
+          "cso": {
+            "type": "integer",
+            "example": 245
           },
           "ward": {
             "type": "integer",
@@ -2895,6 +2993,125 @@
               "example": 2
             }
           }
+        }
+      },
+      "WardObject": {
+        "type": "object",
+        "title": "Ward Object",
+        "description": "Ward Object Structure",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 574
+          },
+          "name": {
+            "type": "string",
+            "example": "Ubaruku"
+          },
+          "code": {
+            "type": "string",
+            "example": "W0000"
+          },
+          "psnu": {
+            "$ref": "#/components/schemas/PSNU"
+          }
+        }
+      },
+      "WardQuery": {
+        "type": "object",
+        "title": "Ward Query",
+        "description": "Ward query parameters",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Baruku"
+          },
+          "code": {
+            "type": "string",
+            "example": "W0009"
+          },
+          "psnuId": {
+            "type": "integer",
+            "example": 7
+          }
+        }
+      },
+      "WardList": {
+        "type": "array",
+        "title": "Ward list",
+        "description": "Ward list structure",
+        "items": {
+          "$ref": "#/components/schemas/WardObject"
+        }
+      },
+      "PeriodObject": {
+        "type": "object",
+        "title": "Period Object",
+        "description": "Object representing period structure",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 574
+          },
+          "startDate": {
+            "type": "string",
+            "example": "2021-10-01"
+          },
+          "endDate": {
+            "type": "string",
+            "example": "2021-12-31"
+          },
+          "closed": {
+            "type": "boolean",
+            "example": false
+          },
+          "timeCreated": {
+            "type": "string",
+            "example": "2022-02-16T17:34:50.682676"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "example": "2022-02-16T17:34:50.682602"
+          }
+        }
+      },
+      "PeriodQuery": {
+        "type": "object",
+        "title": "Period Query",
+        "description": "Query structure for period",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "FY22Q1"
+          },
+          "startDateFrom": {
+            "type": "string",
+            "example": "2022-02-16"
+          },
+          "startDateTo": {
+            "type": "string",
+            "example": "2022-02-16"
+          },
+          "endDateFrom": {
+            "type": "string",
+            "example": "2022-02-17"
+          },
+          "endDateTo": {
+            "type": "string",
+            "example": "2022-02-19"
+          },
+          "closed": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "ListPeriods": {
+        "type": "array",
+        "title": "List of periods",
+        "description": "Period list structure",
+        "items": {
+          "$ref": "#/components/schemas/PeriodObject"
         }
       }
     }
