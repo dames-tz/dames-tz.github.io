@@ -689,41 +689,6 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
-            defs["AnswerBody"] = {
-  "title" : "Answer Object",
-  "type" : "object",
-  "properties" : {
-    "id" : {
-      "type" : "integer"
-    },
-    "title" : {
-      "type" : "string"
-    },
-    "weight" : {
-      "type" : "integer"
-    },
-    "order" : {
-      "type" : "integer"
-    }
-  }
-};
-            defs["AnswerCreateBody"] = {
-  "title" : "Answer Create/Update Object",
-  "required" : [ "order", "title", "weight" ],
-  "type" : "object",
-  "properties" : {
-    "title" : {
-      "type" : "string"
-    },
-    "weight" : {
-      "type" : "integer"
-    },
-    "order" : {
-      "type" : "integer"
-    }
-  },
-  "description" : "Used during create and update answer"
-};
             defs["CSO"] = {
   "title" : "CSO Object",
   "type" : "object",
@@ -783,32 +748,6 @@
       "example" : "INDIVIDUAL"
     }
   }
-};
-            defs["CreateQuestionBody"] = {
-  "title" : "Query Create/Update Object",
-  "required" : [ "active", "answers", "code", "order", "title" ],
-  "type" : "object",
-  "properties" : {
-    "code" : {
-      "type" : "string"
-    },
-    "title" : {
-      "type" : "string"
-    },
-    "order" : {
-      "type" : "integer"
-    },
-    "active" : {
-      "type" : "boolean"
-    },
-    "answers" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/components/schemas/AnswerCreateBody"
-      }
-    }
-  },
-  "description" : "Used during create and update question"
 };
             defs["Encounter"] = {
   "title" : "Encounter Object",
@@ -1052,10 +991,6 @@
     "ward" : {
       "type" : "integer",
       "example" : 3
-    },
-    "period" : {
-      "type" : "integer",
-      "example" : 1
     },
     "cso" : {
       "type" : "integer",
@@ -1377,89 +1312,6 @@
     },
     "category" : {
       "$ref" : "#/components/schemas/Category"
-    }
-  }
-};
-            defs["levelList"] = {
-  "title" : "Level List Object with Pages",
-  "type" : "array",
-  "items" : {
-    "$ref" : "#/components/schemas/levelList_inner"
-  }
-};
-            defs["levelList_inner"] = {
-  "properties" : {
-    "content" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/components/schemas/level"
-      }
-    },
-    "pageable" : {
-      "type" : "object",
-      "properties" : {
-        "sort" : {
-          "type" : "object",
-          "properties" : {
-            "sorted" : {
-              "type" : "boolean",
-              "example" : false
-            },
-            "empty" : {
-              "type" : "boolean",
-              "example" : true
-            },
-            "unsorted" : {
-              "type" : "boolean",
-              "example" : true
-            }
-          }
-        },
-        "pageSize" : {
-          "type" : "integer",
-          "example" : 20
-        },
-        "pageNumber" : {
-          "type" : "integer",
-          "example" : 0
-        },
-        "offset" : {
-          "type" : "integer",
-          "example" : 0
-        },
-        "paged" : {
-          "type" : "boolean",
-          "example" : true
-        },
-        "unpaged" : {
-          "type" : "boolean",
-          "example" : false
-        }
-      }
-    },
-    "totalPages" : {
-      "type" : "integer",
-      "example" : 1
-    },
-    "totalElements" : {
-      "type" : "integer",
-      "example" : 2
-    },
-    "last" : {
-      "type" : "boolean",
-      "example" : true
-    },
-    "number" : {
-      "type" : "integer",
-      "example" : 0
-    },
-    "size" : {
-      "type" : "integer",
-      "example" : 0
-    },
-    "numberOfElements" : {
-      "type" : "integer",
-      "example" : 2
     }
   }
 };
@@ -1896,206 +1748,6 @@
   },
   "description" : "Query structure for period"
 };
-            defs["PredefinedData"] = {
-  "title" : "Predfined Data Object",
-  "type" : "object",
-  "properties" : {
-    "id" : {
-      "type" : "integer"
-    },
-    "question" : {
-      "type" : "string"
-    },
-    "answer" : {
-      "type" : "string"
-    },
-    "originalAnswer" : {
-      "type" : "string"
-    },
-    "memberOf" : {
-      "type" : "object",
-      "description" : "Other predefidened data object"
-    },
-    "systemDefined" : {
-      "type" : "boolean",
-      "example" : true
-    },
-    "timecreated" : {
-      "type" : "string",
-      "format" : "date-time"
-    },
-    "lastUpdated" : {
-      "type" : "string",
-      "format" : "date-time"
-    }
-  }
-};
-            defs["QuestionBody"] = {
-  "title" : "Question Object",
-  "type" : "object",
-  "properties" : {
-    "id" : {
-      "type" : "integer"
-    },
-    "code" : {
-      "type" : "string"
-    },
-    "title" : {
-      "type" : "string"
-    },
-    "answers" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/components/schemas/AnswerBody"
-      }
-    },
-    "activeCriteria" : {
-      "$ref" : "#/components/schemas/QuestionBody_activeCriteria"
-    },
-    "order" : {
-      "type" : "integer"
-    },
-    "active" : {
-      "type" : "boolean"
-    }
-  }
-};
-            defs["QuestionBody_activeCriteria"] = {
-  "type" : "object",
-  "properties" : {
-    "questionId" : {
-      "type" : "string",
-      "description" : "This is key:value pair where key is question ID and value is Answer ID",
-      "example" : "answerId"
-    }
-  },
-  "example" : null
-};
-            defs["QuestionList"] = {
-  "type" : "array",
-  "items" : {
-    "$ref" : "#/components/schemas/QuestionBody"
-  }
-};
-            defs["QuestionListWithPagination"] = {
-  "title" : "Question List with Pagination",
-  "type" : "array",
-  "items" : {
-    "$ref" : "#/components/schemas/QuestionListWithPagination_inner"
-  }
-};
-            defs["QuestionListWithPagination_inner"] = {
-  "properties" : {
-    "content" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/components/schemas/QuestionBody"
-      }
-    },
-    "pageable" : {
-      "type" : "object",
-      "properties" : {
-        "sort" : {
-          "type" : "object",
-          "properties" : {
-            "sorted" : {
-              "type" : "boolean",
-              "example" : false
-            },
-            "empty" : {
-              "type" : "boolean",
-              "example" : true
-            },
-            "unsorted" : {
-              "type" : "boolean",
-              "example" : true
-            }
-          }
-        },
-        "pageSize" : {
-          "type" : "integer",
-          "example" : 20
-        },
-        "pageNumber" : {
-          "type" : "integer",
-          "example" : 0
-        },
-        "offset" : {
-          "type" : "integer",
-          "example" : 0
-        },
-        "paged" : {
-          "type" : "boolean",
-          "example" : true
-        },
-        "unpaged" : {
-          "type" : "boolean",
-          "example" : false
-        }
-      }
-    },
-    "totalPages" : {
-      "type" : "integer",
-      "example" : 1
-    },
-    "totalElements" : {
-      "type" : "integer",
-      "example" : 2
-    },
-    "last" : {
-      "type" : "boolean",
-      "example" : true
-    },
-    "number" : {
-      "type" : "integer",
-      "example" : 0
-    },
-    "size" : {
-      "type" : "integer",
-      "example" : 0
-    },
-    "numberOfElements" : {
-      "type" : "integer",
-      "example" : 2
-    }
-  }
-};
-            defs["ResponseBody"] = {
-  "type" : "object",
-  "properties" : {
-    "id" : {
-      "type" : "integer",
-      "example" : 17
-    },
-    "mark" : {
-      "type" : "integer",
-      "example" : 1
-    },
-    "question" : {
-      "$ref" : "#/components/schemas/QuestionBody"
-    },
-    "answer" : {
-      "$ref" : "#/components/schemas/AnswerBody"
-    }
-  }
-};
-            defs["ResponseCreateBody"] = {
-  "title" : "Response Create/Update Object",
-  "required" : [ "answerId", "mark", "questionId" ],
-  "type" : "object",
-  "properties" : {
-    "question" : {
-      "type" : "integer"
-    },
-    "answer" : {
-      "type" : "integer"
-    },
-    "mark" : {
-      "type" : "integer"
-    }
-  },
-  "description" : "Used during create and update response"
-};
             defs["SNU"] = {
   "title" : "SNU object",
   "type" : "object",
@@ -2359,88 +2011,6 @@
       "items" : {
         "$ref" : "#/components/schemas/Service_stages"
       }
-    }
-  }
-};
-            defs["ServiceList"] = {
-  "type" : "array",
-  "items" : {
-    "$ref" : "#/components/schemas/ServiceList_inner"
-  }
-};
-            defs["ServiceList_inner"] = {
-  "properties" : {
-    "content" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/components/schemas/Service"
-      }
-    },
-    "pageable" : {
-      "type" : "object",
-      "properties" : {
-        "sort" : {
-          "type" : "object",
-          "properties" : {
-            "sorted" : {
-              "type" : "boolean",
-              "example" : false
-            },
-            "empty" : {
-              "type" : "boolean",
-              "example" : true
-            },
-            "unsorted" : {
-              "type" : "boolean",
-              "example" : true
-            }
-          }
-        },
-        "pageSize" : {
-          "type" : "integer",
-          "example" : 20
-        },
-        "pageNumber" : {
-          "type" : "integer",
-          "example" : 0
-        },
-        "offset" : {
-          "type" : "integer",
-          "example" : 0
-        },
-        "paged" : {
-          "type" : "boolean",
-          "example" : true
-        },
-        "unpaged" : {
-          "type" : "boolean",
-          "example" : false
-        }
-      }
-    },
-    "totalPages" : {
-      "type" : "integer",
-      "example" : 1
-    },
-    "totalElements" : {
-      "type" : "integer",
-      "example" : 2
-    },
-    "last" : {
-      "type" : "boolean",
-      "example" : true
-    },
-    "number" : {
-      "type" : "integer",
-      "example" : 0
-    },
-    "size" : {
-      "type" : "integer",
-      "example" : 0
-    },
-    "numberOfElements" : {
-      "type" : "integer",
-      "example" : 2
     }
   }
 };
@@ -2861,16 +2431,16 @@
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>Dames API <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></h1>
+            <h1>Dames API</h1>
           </div>
           <div class="clearfix"></div>
         </div>
         <div id="header">
           <div id="api-_">
-            <h2 id="welcome-to-apidoc">API and SDK Documentation <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></h2>
+            <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
               <div class="app-desc">Version: 1.0.0</div>
             <hr>
-            <div>Dames Api for Dreams project. Help to connect/send data to Dames Dashboard <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></div>
+            <div>Dames Api for Dreams project. Help to connect/send data to Dames Dashboard</div>
           </div>
         </div>
         <div id="sections">

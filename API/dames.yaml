@@ -1092,63 +1092,6 @@ components:
           description: "Fill with endAgeFrom"
         categoryId:
          type: integer
-    levelList:
-      type: array
-      title: "Level List Object with Pages"
-      items:
-        properties:
-          content:
-            type: array
-            items:
-              $ref: '#/components/schemas/level'
-          pageable:
-            type: object
-            properties:
-              sort:
-                type: object
-                properties:
-                  sorted:
-                    type: boolean
-                    example: false
-                  empty:
-                    type: boolean
-                    example: true
-                  unsorted:
-                    type: boolean
-                    example: true
-              pageSize:
-                type: integer
-                example: 20
-              pageNumber:
-                type: integer
-                example: 0
-              offset:
-                type: integer
-                example: 0
-              paged:
-                type: boolean
-                example: true
-              unpaged:
-                type: boolean
-                example: false
-          totalPages: 
-            type: integer
-            example: 1
-          totalElements:
-            type: integer
-            example: 2
-          last:
-            type: boolean
-            example: true
-          number: 
-            type: integer
-            example: 0
-          size:
-            type: integer
-            example: 0
-          numberOfElements:
-            type: integer
-            example: 2
     levelSimpleList:
       title: "Level List Object"
       type: array
@@ -1206,62 +1149,6 @@ components:
           type: string
         code:
           type: string
-    ServiceList:
-      type: array
-      items:
-        properties:
-          content:
-            type: array
-            items:
-              $ref: '#/components/schemas/Service'
-          pageable:
-            type: object
-            properties:
-              sort:
-                type: object
-                properties:
-                  sorted:
-                    type: boolean
-                    example: false
-                  empty:
-                    type: boolean
-                    example: true
-                  unsorted:
-                    type: boolean
-                    example: true
-              pageSize:
-                type: integer
-                example: 20
-              pageNumber:
-                type: integer
-                example: 0
-              offset:
-                type: integer
-                example: 0
-              paged:
-                type: boolean
-                example: true
-              unpaged:
-                type: boolean
-                example: false
-          totalPages: 
-            type: integer
-            example: 1
-          totalElements:
-            type: integer
-            example: 2
-          last:
-            type: boolean
-            example: true
-          number: 
-            type: integer
-            example: 0
-          size:
-            type: integer
-            example: 0
-          numberOfElements:
-            type: integer
-            example: 2
     Intervention:
       type: object
       title: "Intervention Object"
@@ -1350,30 +1237,6 @@ components:
           numberOfElements:
             type: integer
             example: 2
-    PredefinedData:
-      type: object
-      title: "Predfined Data Object"
-      properties:
-        id:
-          type: integer
-        question: 
-          type: string
-        answer:
-          type: string
-        originalAnswer:
-          type: string
-        memberOf:
-          type: object
-          description: "Other predefidened data object"
-        systemDefined:
-          type: boolean
-          example: true
-        timecreated:
-          type: string
-          format: date-time
-        lastUpdated:
-          type: string
-          format: date-time
     SNU:
       type: object
       title: "SNU object"
@@ -1618,9 +1481,6 @@ components:
         ward:
           type: integer
           example: 3
-        period:
-          type: integer
-          example: 1
         cso:
           type: integer
           example: 13
@@ -1769,170 +1629,6 @@ components:
         serviceId:
          type: integer
          example: 100
-    CreateQuestionBody:
-      type: object
-      title: "Query Create/Update Object"
-      description: "Used during create and update question"
-      required: 
-        - code
-        - title
-        - order
-        - active
-        - answers
-      properties:
-        code: 
-          type: string
-        title:
-          type: string
-        order: 
-          type: integer
-        active:
-          type: boolean
-        answers:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnswerCreateBody'
-    QuestionBody:
-      type: object
-      title: "Question Object"
-      properties:
-        id:
-          type: integer
-        code:
-          type: string
-        title:
-          type: string
-        answers:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnswerBody'
-        activeCriteria:
-            type: object
-            properties:
-              questionId:
-                type: string
-                example: "answerId"
-                description: "This is key:value pair where key is question ID and value is Answer ID"
-        order:
-          type: integer
-        active:
-          type: boolean
-    AnswerBody:
-      type: object
-      title: "Answer Object"
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        weight:
-          type: integer
-        order:
-          type: integer
-    AnswerCreateBody:
-      type: object
-      title: "Answer Create/Update Object"
-      description: "Used during create and update answer"
-      required: 
-        - title
-        - weight
-        - order
-      properties:
-        title:
-          type: string
-        weight:
-          type: integer
-        order:
-          type: integer
-    QuestionList:
-      type: array
-      items:
-        $ref: '#/components/schemas/QuestionBody'
-    QuestionListWithPagination:
-      type: array
-      title: "Question List with Pagination"
-      items:
-        properties:
-          content:
-            type: array
-            items:
-              $ref: '#/components/schemas/QuestionBody'
-          pageable:
-            type: object
-            properties:
-              sort:
-                type: object
-                properties:
-                  sorted:
-                    type: boolean
-                    example: false
-                  empty:
-                    type: boolean
-                    example: true
-                  unsorted:
-                    type: boolean
-                    example: true
-              pageSize:
-                type: integer
-                example: 20
-              pageNumber:
-                type: integer
-                example: 0
-              offset:
-                type: integer
-                example: 0
-              paged:
-                type: boolean
-                example: true
-              unpaged:
-                type: boolean
-                example: false
-          totalPages: 
-            type: integer
-            example: 1
-          totalElements:
-            type: integer
-            example: 2
-          last:
-            type: boolean
-            example: true
-          number: 
-            type: integer
-            example: 0
-          size:
-            type: integer
-            example: 0
-          numberOfElements:
-            type: integer
-            example: 2
-    ResponseBody:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 17
-        mark:
-          type: integer
-          example: 1
-        question:
-          $ref: '#/components/schemas/QuestionBody'
-        answer:
-          $ref: '#/components/schemas/AnswerBody'
-    ResponseCreateBody:
-      type: object
-      title: "Response Create/Update Object"
-      description: "Used during create and update response"
-      required: 
-        - questionId
-        - answerId
-        - mark
-      properties:
-        question:
-          type: integer
-        answer:
-          type: integer
-        mark:
-          type: integer
     ScreenBody:
       title: "Screen Object"
       type: object
