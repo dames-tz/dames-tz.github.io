@@ -202,10 +202,71 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23",
-            "name": "query",
+            "description": "Screen date from",
+            "name": "dateFrom",
             "schema": {
-              "$ref": "#/components/schemas/ScreenQuery"
+              "type": "string",
+              "format": "date('dd-mm-yyyy')"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Screen date to",
+            "name": "dateTo",
+            "schema": {
+              "type": "string",
+              "format": "date('dd-mm-yyyy')"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Is eligible",
+            "name": "eligible",
+            "schema": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrollment UIC",
+            "name": "enrollmentCode",
+            "schema": {
+              "type": "string",
+              "example": "A00000"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "AGWY from Street",
+            "name": "street",
+            "schema": {
+              "type": "string",
+              "example": "Mazinde St"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Predefined Declining Reason",
+            "name": "decliningReason",
+            "schema": {
+              "type": "integer",
+              "example": 23
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "True to show personal information",
+            "name": "pi",
+            "schema": {
+              "type": "boolean",
+              "example": true
             },
             "required": false
           }
@@ -236,10 +297,71 @@
         "parameters": [
           {
             "in": "query",
-            "description": "You can Query data with following format",
-            "name": "query",
+            "description": "Screen date from",
+            "name": "dateFrom",
             "schema": {
-              "$ref": "#/components/schemas/ScreenQuery"
+              "type": "string",
+              "format": "date('dd-mm-yyyy')"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Screen date to",
+            "name": "dateTo",
+            "schema": {
+              "type": "string",
+              "format": "date('dd-mm-yyyy')"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Is eligible",
+            "name": "eligible",
+            "schema": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrollment UIC",
+            "name": "enrollmentCode",
+            "schema": {
+              "type": "string",
+              "example": "A00000"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "AGWY from Street",
+            "name": "street",
+            "schema": {
+              "type": "string",
+              "example": "Mazinde St"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Predefined Declining Reason",
+            "name": "decliningReason",
+            "schema": {
+              "type": "integer",
+              "example": 23
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "True to show personal information",
+            "name": "pi",
+            "schema": {
+              "type": "boolean",
+              "example": true
             },
             "required": false
           }
@@ -342,11 +464,71 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&street=Mtakuja&ward=11&eligible=true&enrollmentCode=A00000&decliningReason=23&creatorId=100",
-            "name": "query",
-            "style": "form",
+            "description": "Screen date from",
+            "name": "dateFrom",
             "schema": {
-              "$ref": "#/components/schemas/ScreenQuery"
+              "type": "string",
+              "format": "date('dd-mm-yyyy')"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Screen date to",
+            "name": "dateTo",
+            "schema": {
+              "type": "string",
+              "format": "date('dd-mm-yyyy')"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Is eligible",
+            "name": "eligible",
+            "schema": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrollment UIC",
+            "name": "enrollmentCode",
+            "schema": {
+              "type": "string",
+              "example": "A00000"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "AGWY from Street",
+            "name": "street",
+            "schema": {
+              "type": "string",
+              "example": "Mazinde St"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Predefined Declining Reason",
+            "name": "decliningReason",
+            "schema": {
+              "type": "integer",
+              "example": 23
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "True to show personal information",
+            "name": "pi",
+            "schema": {
+              "type": "boolean",
+              "example": true
             },
             "required": false
           }
@@ -436,6 +618,40 @@
         }
       }
     },
+    "/cso/code/{code}": {
+      "description": "Get CSO",
+      "get": {
+        "description": "Get CSO by CODE",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass CSO CODE.",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CSO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/cso/list": {
       "description": "List all CSO",
       "get": {
@@ -448,10 +664,37 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query format can be: ?code=C12&name=Tumaini&levelId=10&psnuId=11",
-            "name": "query",
+            "description": "CSO identity code",
+            "name": "code",
             "schema": {
-              "$ref": "#/components/schemas/CSOQquery"
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "CSO name",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Supported Level ID (All CSOs supported by level)",
+            "name": "levelId",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "PSNU ID. (All CSOs in PSNU)",
+            "name": "psnuId",
+            "schema": {
+              "type": "string"
             },
             "required": false
           }
@@ -482,10 +725,59 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query format can be: ?name=10-12&startAgeFrom=1&startAgeTo=10&ward=11&endAgeFrom=10&endAgeTo=12&categoryId=3",
-            "name": "query",
+            "description": "Age from, start point",
+            "name": "startAgeFrom",
             "schema": {
-              "$ref": "#/components/schemas/levelQuery"
+              "type": "integer",
+              "example": 1
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Age from, end point",
+            "name": "startAgeTo",
+            "schema": {
+              "type": "integer",
+              "example": 9
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "End Age from, start point",
+            "name": "endAgeFrom",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "End Age to, end point",
+            "name": "endAgeTo",
+            "schema": {
+              "type": "integer",
+              "example": 15
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Level name",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Supported Category ID (All levels under category)",
+            "name": "categoryId",
+            "schema": {
+              "type": "string"
             },
             "required": false
           }
@@ -539,6 +831,41 @@
         }
       }
     },
+    "/level/name/{name}": {
+      "description": "Get level",
+      "get": {
+        "description": "Get level by Name",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass Level Name.",
+            "name": "name",
+            "required": true,
+            "example": 0,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/level"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/ward/list": {
       "description": "List all wards",
       "get": {
@@ -551,10 +878,28 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query format can be: ?name=Baruku&code=W0009&psnuId=7",
-            "name": "query",
+            "description": "Name of ward",
+            "name": "name",
             "schema": {
-              "$ref": "#/components/schemas/WardQuery"
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Code of ward",
+            "name": "code",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "PSNU ID where wards belong",
+            "name": "psnuId",
+            "schema": {
+              "type": "integer"
             },
             "required": false
           }
@@ -608,6 +953,41 @@
         }
       }
     },
+    "/ward/code/{code}": {
+      "description": "Get level",
+      "get": {
+        "description": "Get ward by Code",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass ward Code.",
+            "name": "code",
+            "required": true,
+            "example": 0,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WardObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/period/list": {
       "description": "List all periods",
       "get": {
@@ -620,10 +1000,61 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query format can be: ?name=FY22&startDateFrom=01-02-2022&startDateTo=05-02-2022&endDateFrom=06-02-2022&endDateTo=07-02-2022&closed=false",
-            "name": "query",
+            "description": "Period start date, start point",
+            "name": "startDateFrom",
             "schema": {
-              "$ref": "#/components/schemas/PeriodQuery"
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Period start date, end point",
+            "name": "startDateTo",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Period end date, start point",
+            "name": "endDateFrom",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Period end date, end point",
+            "name": "endDateTo",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Period name",
+            "name": "name",
+            "schema": {
+              "type": "string",
+              "example": "FY22Q1"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Is period closed/ fetch all period based on is closed flag",
+            "name": "closed",
+            "schema": {
+              "type": "boolean",
+              "example": false
             },
             "required": false
           }
@@ -689,10 +1120,61 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query format can be. ?name=condom provision&code=CON-12",
-            "name": "query",
+            "description": "Period start date, start point",
+            "name": "startDateFrom",
             "schema": {
-              "$ref": "#/components/schemas/ServiceQuery"
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Period start date, end point",
+            "name": "startDateTo",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Period end date, start point",
+            "name": "endDateFrom",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Period end date, end point",
+            "name": "endDateTo",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Period name",
+            "name": "name",
+            "schema": {
+              "type": "string",
+              "example": "FY22Q1"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Is period closed/ fetch all period based on is closed flag",
+            "name": "closed",
+            "schema": {
+              "type": "boolean",
+              "example": false
             },
             "required": false
           }
@@ -746,6 +1228,41 @@
         }
       }
     },
+    "/service/stage/{code}": {
+      "description": "Get Service Stage by Code",
+      "get": {
+        "description": "Pass Service Stage Code to fetch Stage Object",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass service stage code.",
+            "name": "code",
+            "required": true,
+            "example": "1234",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/intervention/list": {
       "description": "List Interventions",
       "get": {
@@ -758,10 +1275,40 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query format can be. ?categoryId=2&levelId=5&serviceId=2&mandatory=false",
-            "name": "query",
+            "description": "All interventions under Category Id",
+            "name": "categoryId",
             "schema": {
-              "$ref": "#/components/schemas/InterventionQuery"
+              "type": "integer",
+              "example": 2
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "All interventions under Level Id",
+            "name": "levelId",
+            "schema": {
+              "type": "integer",
+              "example": 0
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "All interventions has Service Id",
+            "name": "serviceId",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "All interventions is/not mandatory",
+            "name": "mandatory",
+            "schema": {
+              "type": "boolean",
+              "example": true
             },
             "required": false
           }
@@ -792,10 +1339,40 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query format can be. ?categoryId=2&levelId=5&serviceId=2&mandatory=false",
-            "name": "query",
+            "description": "All interventions under Category Id",
+            "name": "categoryId",
             "schema": {
-              "$ref": "#/components/schemas/InterventionQuery"
+              "type": "integer",
+              "example": 2
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "All interventions under Level Id",
+            "name": "levelId",
+            "schema": {
+              "type": "integer",
+              "example": 0
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "All interventions has Service Id",
+            "name": "serviceId",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "All interventions is/not mandatory",
+            "name": "mandatory",
+            "schema": {
+              "type": "boolean",
+              "example": true
             },
             "required": false
           }
@@ -866,6 +1443,30 @@
                 "schema": {
                   "type": "string",
                   "example": "^[0-9]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/enrollment/phoneNumberPattern": {
+      "description": "Fetch phone number pattern",
+      "get": {
+        "description": "Fetch enrollment phone number pattern. Can help to verify phone number entry",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "^\\d{10}$"
                 }
               }
             }
@@ -1067,10 +1668,71 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query can be in format: ?dateForm=01-12-2021&dateETo=02-01-2022&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100",
-            "name": "query",
+            "description": "Enrolled Date From",
+            "name": "dateFrom",
             "schema": {
-              "$ref": "#/components/schemas/EnrollmentQuery"
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrolled Date To",
+            "name": "dateTo",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrolled from street",
+            "name": "street",
+            "schema": {
+              "type": "string",
+              "example": "Mtakuja St"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrolled from ward ID",
+            "name": "wardId",
+            "schema": {
+              "type": "integer",
+              "example": 123
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "AGYW firstName",
+            "name": "firstName",
+            "schema": {
+              "type": "string",
+              "example": "Jane"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "AGYW lastName",
+            "name": "lastName",
+            "schema": {
+              "type": "string",
+              "example": "Doe"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Who submited the data. CSO User ID",
+            "name": "creatorId",
+            "schema": {
+              "type": "integer",
+              "example": 20
             },
             "required": false
           }
@@ -1101,10 +1763,71 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query can be in format: ?dateForm=01-12-2021&dateETo=02-01-2022&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100",
-            "name": "query",
+            "description": "Enrolled Date From",
+            "name": "dateFrom",
             "schema": {
-              "$ref": "#/components/schemas/EnrollmentQuery"
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrolled Date To",
+            "name": "dateTo",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrolled from street",
+            "name": "street",
+            "schema": {
+              "type": "string",
+              "example": "Mtakuja St"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrolled from ward ID",
+            "name": "wardId",
+            "schema": {
+              "type": "integer",
+              "example": 123
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "AGYW firstName",
+            "name": "firstName",
+            "schema": {
+              "type": "string",
+              "example": "Jane"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "AGYW lastName",
+            "name": "lastName",
+            "schema": {
+              "type": "string",
+              "example": "Doe"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Who submited the data. CSO User ID",
+            "name": "creatorId",
+            "schema": {
+              "type": "integer",
+              "example": 20
             },
             "required": false
           }
@@ -1135,10 +1858,71 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query can be in format: ?dateForm=01-12-2021&dateETo=02-01-2022&street=Mtakuja%St&wardId=11&firstName=Jane&lastName=Doe&creatorId=100",
-            "name": "query",
+            "description": "Enrolled Date From",
+            "name": "dateFrom",
             "schema": {
-              "$ref": "#/components/schemas/EnrollmentQuery"
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrolled Date To",
+            "name": "dateTo",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrolled from street",
+            "name": "street",
+            "schema": {
+              "type": "string",
+              "example": "Mtakuja St"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrolled from ward ID",
+            "name": "wardId",
+            "schema": {
+              "type": "integer",
+              "example": 123
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "AGYW firstName",
+            "name": "firstName",
+            "schema": {
+              "type": "string",
+              "example": "Jane"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "AGYW lastName",
+            "name": "lastName",
+            "schema": {
+              "type": "string",
+              "example": "Doe"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Who submited the data. CSO User ID",
+            "name": "creatorId",
+            "schema": {
+              "type": "integer",
+              "example": 20
             },
             "required": false
           }
@@ -1234,10 +2018,81 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100",
-            "name": "query",
+            "description": "Interventions of Date From",
+            "name": "dateFrom",
             "schema": {
-              "$ref": "#/components/schemas/EncounterQuery"
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Interventions of Date To",
+            "name": "dateTo",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Intervention took place street",
+            "name": "street",
+            "schema": {
+              "type": "string",
+              "example": "Mtakuja St"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Intervention took place ward ID",
+            "name": "wardId",
+            "schema": {
+              "type": "integer",
+              "example": 123
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Service ID provided",
+            "name": "serviceId",
+            "schema": {
+              "type": "integer",
+              "example": 11
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Level ID of AGYW",
+            "name": "levelId",
+            "schema": {
+              "type": "integer",
+              "example": 112
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Who submited the data. CSO User ID",
+            "name": "creatorId",
+            "schema": {
+              "type": "integer",
+              "example": 20
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrollment UIC",
+            "name": "enrollmentCode",
+            "schema": {
+              "type": "string",
+              "example": "A00000"
             },
             "required": false
           }
@@ -1268,10 +2123,81 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100",
-            "name": "query",
+            "description": "Interventions of Date From",
+            "name": "dateFrom",
             "schema": {
-              "$ref": "#/components/schemas/EncounterQuery"
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Interventions of Date To",
+            "name": "dateTo",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Intervention took place street",
+            "name": "street",
+            "schema": {
+              "type": "string",
+              "example": "Mtakuja St"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Intervention took place ward ID",
+            "name": "wardId",
+            "schema": {
+              "type": "integer",
+              "example": 123
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Service ID provided",
+            "name": "serviceId",
+            "schema": {
+              "type": "integer",
+              "example": 11
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Level ID of AGYW",
+            "name": "levelId",
+            "schema": {
+              "type": "integer",
+              "example": 112
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Who submited the data. CSO User ID",
+            "name": "creatorId",
+            "schema": {
+              "type": "integer",
+              "example": 20
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrollment UIC",
+            "name": "enrollmentCode",
+            "schema": {
+              "type": "string",
+              "example": "A00000"
             },
             "required": false
           }
@@ -1303,10 +2229,81 @@
         "parameters": [
           {
             "in": "query",
-            "description": "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&street=Mtakuja%St&wardId=11&serviceId=11&levelId=8&creatorId=100",
-            "name": "query",
+            "description": "Interventions of Date From",
+            "name": "dateFrom",
             "schema": {
-              "$ref": "#/components/schemas/EncounterQuery"
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Interventions of Date To",
+            "name": "dateTo",
+            "schema": {
+              "type": "string",
+              "format": "date(\"dd-mm-yyyy\")"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Intervention took place street",
+            "name": "street",
+            "schema": {
+              "type": "string",
+              "example": "Mtakuja St"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Intervention took place ward ID",
+            "name": "wardId",
+            "schema": {
+              "type": "integer",
+              "example": 123
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Service ID provided",
+            "name": "serviceId",
+            "schema": {
+              "type": "integer",
+              "example": 11
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Level ID of AGYW",
+            "name": "levelId",
+            "schema": {
+              "type": "integer",
+              "example": 112
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Who submited the data. CSO User ID",
+            "name": "creatorId",
+            "schema": {
+              "type": "integer",
+              "example": 20
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "description": "Enrollment UIC",
+            "name": "enrollmentCode",
+            "schema": {
+              "type": "string",
+              "example": "A00000"
             },
             "required": false
           }
@@ -1422,6 +2419,40 @@
         }
       }
     },
+    "/snu/code/{code}": {
+      "description": "Get SNU by CODE",
+      "get": {
+        "description": "Pass SNU CODE to fetch SNU Object",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass snu Code.",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SNU"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/psnu/list": {
       "description": "List PSNU",
       "get": {
@@ -1459,7 +2490,7 @@
     "/psnu/{id}": {
       "description": "Get PSNU by ID",
       "get": {
-        "description": "Pass PSNU Id to fetch SNU Object",
+        "description": "Pass PSNU Id to fetch PSNU Object",
         "security": [
           {
             "basicAuth": []
@@ -1468,12 +2499,46 @@
         "parameters": [
           {
             "in": "path",
-            "description": "Pass service id.",
+            "description": "Pass PSNU id.",
             "name": "id",
             "required": true,
             "example": 0,
             "schema": {
               "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PSNU"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/psnu/code/{code}": {
+      "description": "Get PSNU by CODE",
+      "get": {
+        "description": "Pass PSNU CODE to fetch PSNU Object",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Pass PSNU code.",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
