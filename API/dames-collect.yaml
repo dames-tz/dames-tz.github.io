@@ -1586,11 +1586,22 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?name=Kyela&code=P12&snuId=7"
-          name: query
+          description: "Name of PSNU"
+          name: name
           schema:
-            $ref: '#/components/schemas/PSNUQuery'
-          required: false
+            type: string
+            example: Kyela
+        - in: query
+          description: "PSNU Code"
+          name: code
+          schema:
+            type: string
+            example: KYELA
+        - in: query
+          description: "SNU where PSNU belongs"
+          name: snuId
+          schema:
+            type: integer
       responses:
         200:
           description: OK

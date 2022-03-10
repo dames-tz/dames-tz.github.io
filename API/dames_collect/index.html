@@ -2472,14 +2472,14 @@
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>Dames Collect API <a href="./openapi.json">[VIEW OPEN API]</a></h1>
+            <h1>Dames Collect API <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></h1>
           </div>
           <div class="clearfix"></div>
         </div>
         <div id="header">
           <div id="api-_">
-            <h2 id="welcome-to-apidoc">API and SDK Documentation <a href="./openapi.json">[VIEW OPEN API]</a></h2>
-              <div class="app-desc">Version: 1.0.0</div>
+            <h2 id="welcome-to-apidoc">API and SDK Documentation <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></h2>
+              <div class="app-desc">Version: 1.0.0 <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></div>
             <hr>
             <div>Collect Api for dreams project</div>
           </div>
@@ -13644,7 +13644,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Basic [[basicHash]]"\
 -H "Accept: application/json"\
-"http://localhost:8080/api/v1/dames/psnu/list?query="</code></pre>
+"http://localhost:8080/api/v1/dames/psnu/list?name=&code=&snuId="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-psnuListGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -13665,9 +13665,11 @@ public class DefaultApiExample {
         basicAuth.setPassword("YOUR PASSWORD");
 
         DefaultApi apiInstance = new DefaultApi();
-        PSNUQuery query = ; // PSNUQuery | Query format can be. ?name=Kyela&code=P12&snuId=7
+        String name = name_example; // String | Name of PSNU
+        String code = code_example; // String | PSNU Code
+        Integer snuId = 56; // Integer | SNU where PSNU belongs
         try {
-            PSNUSimpleList result = apiInstance.psnuListGet(query);
+            PSNUSimpleList result = apiInstance.psnuListGet(name, code, snuId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#psnuListGet");
@@ -13684,9 +13686,11 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        PSNUQuery query = ; // PSNUQuery | Query format can be. ?name=Kyela&code=P12&snuId=7
+        String name = name_example; // String | Name of PSNU
+        String code = code_example; // String | PSNU Code
+        Integer snuId = 56; // Integer | SNU where PSNU belongs
         try {
-            PSNUSimpleList result = apiInstance.psnuListGet(query);
+            PSNUSimpleList result = apiInstance.psnuListGet(name, code, snuId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#psnuListGet");
@@ -13704,11 +13708,15 @@ public class DefaultApiExample {
 // Configure HTTP basic authorization (authentication scheme: basicAuth)
 [apiConfig setUsername:@"YOUR_USERNAME"];
 [apiConfig setPassword:@"YOUR_PASSWORD"];
-PSNUQuery *query = ; // Query format can be. ?name=Kyela&code=P12&snuId=7 (optional)
+String *name = name_example; // Name of PSNU (optional)
+String *code = code_example; // PSNU Code (optional)
+Integer *snuId = 56; // SNU where PSNU belongs (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-[apiInstance psnuListGetWith:query
+[apiInstance psnuListGetWith:name
+    code:code
+    snuId:snuId
               completionHandler: ^(PSNUSimpleList output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -13730,7 +13738,9 @@ basicAuth.password = 'YOUR PASSWORD'
 
 var api = new DamesCollectApi.DefaultApi()
 var opts = { 
-  'query':  // {{PSNUQuery}} Query format can be. ?name=Kyela&code=P12&snuId=7
+  'name': name_example, // {{String}} Name of PSNU
+  'code': code_example, // {{String}} PSNU Code
+  'snuId': 56 // {{Integer}} SNU where PSNU belongs
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -13764,11 +13774,13 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new DefaultApi();
-            var query = new PSNUQuery(); // PSNUQuery | Query format can be. ?name=Kyela&code=P12&snuId=7 (optional) 
+            var name = name_example;  // String | Name of PSNU (optional) 
+            var code = code_example;  // String | PSNU Code (optional) 
+            var snuId = 56;  // Integer | SNU where PSNU belongs (optional) 
 
             try
             {
-                PSNUSimpleList result = apiInstance.psnuListGet(query);
+                PSNUSimpleList result = apiInstance.psnuListGet(name, code, snuId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -13789,10 +13801,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERN
 Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$query = ; // PSNUQuery | Query format can be. ?name=Kyela&code=P12&snuId=7
+$name = name_example; // String | Name of PSNU
+$code = code_example; // String | PSNU Code
+$snuId = 56; // Integer | SNU where PSNU belongs
 
 try {
-    $result = $api_instance->psnuListGet($query);
+    $result = $api_instance->psnuListGet($name, $code, $snuId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->psnuListGet: ', $e->getMessage(), PHP_EOL;
@@ -13809,10 +13823,12 @@ $WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
 $WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $query = ; # PSNUQuery | Query format can be. ?name=Kyela&code=P12&snuId=7
+my $name = name_example; # String | Name of PSNU
+my $code = code_example; # String | PSNU Code
+my $snuId = 56; # Integer | SNU where PSNU belongs
 
 eval { 
-    my $result = $api_instance->psnuListGet(query => $query);
+    my $result = $api_instance->psnuListGet(name => $name, code => $code, snuId => $snuId);
     print Dumper($result);
 };
 if ($@) {
@@ -13832,10 +13848,12 @@ swagger_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-query =  # PSNUQuery | Query format can be. ?name=Kyela&code=P12&snuId=7 (optional)
+name = name_example # String | Name of PSNU (optional)
+code = code_example # String | PSNU Code (optional)
+snuId = 56 # Integer | SNU where PSNU belongs (optional)
 
 try: 
-    api_response = api_instance.psnu_list_get(query=query)
+    api_response = api_instance.psnu_list_get(name=name, code=code, snuId=snuId)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->psnuListGet: %s\n" % e)</code></pre>
@@ -13854,19 +13872,57 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">query</td>
+                                <tr><td style="width:150px;">name</td>
                                 <td>
                                 
                                 
-                                    <div id="d2e199_psnuListGet_query">
+                                    <div id="d2e199_psnuListGet_name">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
-                                                    PSNUQuery
+                                                    String
                                                 </span>
                                 
                                                     <div class="inner description">
-                                                        Query format can be. ?name&#x3D;Kyela&amp;code&#x3D;P12&amp;snuId&#x3D;7
+                                                        Name of PSNU
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">code</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_psnuListGet_code">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        PSNU Code
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">snuId</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_psnuListGet_snuId">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        SNU where PSNU belongs
                                                     </div>
                                             </div>
                                         </div>

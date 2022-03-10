@@ -38,11 +38,54 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&eligible=true&enrollmentId=11&csoId=23&psnuId=130&wardId=12&dateOfBirthFrom=10-10-2007&dateOfBirthTo=12-10-2007"
-          name: query
+          description: "Date from where screen done"
+          name: dateFrom
           schema:
-            $ref: '#/components/schemas/ScreenQuery'
-          required: false
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Date to where screen done"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Candidate Date of birth start range"
+          name: dateOfBirthFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Candidate Date of birth end range"
+          name: dateOfBirthTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Pull all candidates who eligible or not"
+          name: eligible
+          schema:
+            type: boolean
+        - in: query
+          description: "Pull all candidates under ward"
+          name: wardId
+          schema:
+            type: integer
+        - in: query
+          description: "Pull candidate with enrollment code"
+          name: enrollmentCode
+          schema:
+            type: string
+        - in: query
+          description: "Pull all candidates under cso"
+          name: csoId
+          schema:
+            type: integer
+        - in: query
+          description: "Pull all candidates under psnu"
+          name: psnuId
+          schema:
+            type: integer
       responses:
         200:
           description: OK
@@ -59,11 +102,54 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&eligible=true&enrollmentId=11&csoId=23&psnuId=130&wardId=12&dateOfBirthFrom=10-10-2007&dateOfBirthTo=12-10-2007"
-          name: query
+          description: "Date from where screen done"
+          name: dateFrom
           schema:
-            $ref: '#/components/schemas/ScreenQuery'
-          required: false
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Date to where screen done"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Candidate Date of birth start range"
+          name: dateOfBirthFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Candidate Date of birth end range"
+          name: dateOfBirthTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Pull all candidates who eligible or not"
+          name: eligible
+          schema:
+            type: boolean
+        - in: query
+          description: "Pull all candidates under ward"
+          name: wardId
+          schema:
+            type: integer
+        - in: query
+          description: "Pull candidate with enrollment code"
+          name: enrollmentCode
+          schema:
+            type: string
+        - in: query
+          description: "Pull all candidates under cso"
+          name: csoId
+          schema:
+            type: integer
+        - in: query
+          description: "Pull all candidates under psnu"
+          name: psnuId
+          schema:
+            type: integer
       responses:
         200:
           description: OK
@@ -125,12 +211,54 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description:  "Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&eligible=true&enrollmentId=11&csoId=23&psnuId=130&wardId=12&dateOfBirthFrom=10-10-2007&dateOfBirthTo=12-10-2007"
-          name: query
-          style: form
+          description: "Date from where screen done"
+          name: dateFrom
           schema:
-            $ref: '#/components/schemas/ScreenQuery'
-          required: false
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Date to where screen done"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Candidate Date of birth start range"
+          name: dateOfBirthFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Candidate Date of birth end range"
+          name: dateOfBirthTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Pull all candidates who eligible or not"
+          name: eligible
+          schema:
+            type: boolean
+        - in: query
+          description: "Pull all candidates under ward"
+          name: wardId
+          schema:
+            type: integer
+        - in: query
+          description: "Pull candidate with enrollment code"
+          name: enrollmentCode
+          schema:
+            type: string
+        - in: query
+          description: "Pull all candidates under cso"
+          name: csoId
+          schema:
+            type: integer
+        - in: query
+          description: "Pull all candidates under psnu"
+          name: psnuId
+          schema:
+            type: integer
       responses:
         200:
           description: OK
@@ -166,11 +294,32 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&resolved=true&enrollmentId=11&serviceId=12"
-          name: query
+          description: "Date from where need recognised"
+          name: dateFrom
           schema:
-            $ref: '#/components/schemas/NeedQuery'
-          required: false
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Date to where need recognised"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment code with need"
+          name: enrollmentCode
+          schema:
+            type: string
+        - in: query
+          description: "Needs with service"
+          name: serviceId
+          schema:
+            type: integer
+        - in: query
+          description: "Needs which are resolved or not"
+          name: resolved
+          schema:
+            type: boolean
       responses:
         200:
           description: OK
@@ -187,11 +336,32 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?dateFrom=12-12-2021&dateTo=16-12-2022&resolved=true&enrollmentId=11&serviceId=12"
-          name: query
+          description: "Date from where need recognised"
+          name: dateFrom
           schema:
-            $ref: '#/components/schemas/NeedQuery'
-          required: false
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Date to where need recognised"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment code with need"
+          name: enrollmentCode
+          schema:
+            type: string
+        - in: query
+          description: "Needs with service"
+          name: serviceId
+          schema:
+            type: integer
+        - in: query
+          description: "Needs which are resolved or not"
+          name: resolved
+          schema:
+            type: boolean
       responses:
         200:
           description: OK
@@ -259,6 +429,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CSO'
+                
+  /cso/code/{code}:
+    description: Get CSO
+    get:
+      description: Get CSO by CODE
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass CSO CODE.
+          name: code
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CSO'
           
   /cso/list:
     description: List all CSO
@@ -268,10 +459,28 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be: ?code=C12&name=Tumaini&levelId=10&psnuId=11"
-          name: query
+          description: "CSO identity code"
+          name: "code"
           schema:
-            $ref: '#/components/schemas/CSOQquery'
+            type: string
+          required: false
+        - in: query
+          description: "CSO name"
+          name: "name"
+          schema:
+            type: string
+          required: false
+        - in: query
+          description: "Supported Level ID (All CSOs supported by level)"
+          name: "levelId"
+          schema:
+            type: string
+          required: false
+        - in: query
+          description: "PSNU ID. (All CSOs in PSNU)"
+          name: "psnuId"
+          schema:
+            type: string
           required: false
       responses:
         200:
@@ -289,10 +498,44 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be: ?name=10-12&startAgeFrom=1&startAgeTo=10&ward=11&endAgeFrom=10&endAgeTo=12&categoryId=3"
-          name: query
+          description: "Age from, start point"
+          name: "startAgeFrom"
           schema:
-            $ref: '#/components/schemas/levelQuery'
+            type: integer
+            example: 1
+          required: false
+        - in: query
+          description: "Age from, end point"
+          name: "startAgeTo"
+          schema:
+            type: integer
+            example: 9
+          required: false
+        - in: query
+          description: "End Age from, start point"
+          name: "endAgeFrom"
+          schema:
+            type: integer
+            example: 10
+          required: false
+        - in: query
+          description: "End Age to, end point"
+          name: "endAgeTo"
+          schema:
+            type: integer
+            example: 15
+          required: false
+        - in: query
+          description: "Level name"
+          name: "name"
+          schema:
+            type: string
+          required: false
+        - in: query
+          description: "Supported Category ID (All levels under category)"
+          name: "categoryId"
+          schema:
+            type: string
           required: false
       responses:
         200:
@@ -324,6 +567,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/level'
                 
+  /level/name/{name}:
+    description: Get level
+    get:
+      description: Get level by Name
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass Level Name.
+          name: name
+          required: true
+          example: 0
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/level'
+                
   /ward/list:
     description: List all wards
     get:
@@ -332,10 +597,22 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be: ?name=Baruku&code=W0009&psnuId=7"
-          name: query
+          description: "Name of ward"
+          name: name
           schema:
-            $ref: '#/components/schemas/WardQuery'
+            type: string
+          required: false
+        - in: query
+          description: "Code of ward"
+          name: code
+          schema:
+            type: string
+          required: false
+        - in: query
+          description: "PSNU ID where wards belong"
+          name: psnuId
+          schema:
+            type: integer
           required: false
       responses:
         200:
@@ -366,6 +643,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WardObject'
+  
+  /ward/code/{code}:
+    description: Get level
+    get:
+      description: Get ward by Code
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass ward Code.
+          name: code
+          required: true
+          example: 0
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WardObject'
 
   /period/list:
     description: List all periods
@@ -375,10 +674,46 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be: ?name=FY22&startDateFrom=01-02-2022&startDateTo=05-02-2022&endDateFrom=06-02-2022&endDateTo=07-02-2022&closed=false"
-          name: query
+          description: "Period start date, start point"
+          name: startDateFrom
           schema:
-            $ref: '#/components/schemas/PeriodQuery'
+            type: string
+            format: date("dd-mm-yyyy")
+          required: false
+        - in: query
+          description: "Period start date, end point"
+          name: startDateTo
+          schema:
+            type: string
+            format: date("dd-mm-yyyy")
+          required: false
+        - in: query
+          description: "Period end date, start point"
+          name: endDateFrom
+          schema:
+            type: string
+            format: date("dd-mm-yyyy")
+          required: false
+        - in: query
+          description: "Period end date, end point"
+          name: endDateTo
+          schema:
+            type: string
+            format: date("dd-mm-yyyy")
+          required: false
+        - in: query
+          description: "Period name"
+          name: name
+          schema:
+            type: string
+            example: "FY22Q1"
+          required: false
+        - in: query
+          description: "Is period closed/ fetch all period based on is closed flag"
+          name: closed
+          schema:
+            type: boolean
+            example: false
           required: false
       responses:
         200:
@@ -416,10 +751,46 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?name=condom provision&code=CON-12"
-          name: query
+          description: "Period start date, start point"
+          name: startDateFrom
           schema:
-            $ref: '#/components/schemas/ServiceQuery'
+            type: string
+            format: date("dd-mm-yyyy")
+          required: false
+        - in: query
+          description: "Period start date, end point"
+          name: startDateTo
+          schema:
+            type: string
+            format: date("dd-mm-yyyy")
+          required: false
+        - in: query
+          description: "Period end date, start point"
+          name: endDateFrom
+          schema:
+            type: string
+            format: date("dd-mm-yyyy")
+          required: false
+        - in: query
+          description: "Period end date, end point"
+          name: endDateTo
+          schema:
+            type: string
+            format: date("dd-mm-yyyy")
+          required: false
+        - in: query
+          description: "Period name"
+          name: name
+          schema:
+            type: string
+            example: "FY22Q1"
+          required: false
+        - in: query
+          description: "Is period closed/ fetch all period based on is closed flag"
+          name: closed
+          schema:
+            type: boolean
+            example: false
           required: false
       responses:
         200:
@@ -449,6 +820,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Service'
+  /service/stage/{code}:
+    description: Get Service Stage by Code
+    get:
+      description: Pass Service Stage Code to fetch Stage Object
+      security:
+        - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass service stage code.
+          name: code
+          required: true
+          example: "1234"
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stage'
   /intervention/list:
     description: List Interventions
     get:
@@ -457,10 +849,31 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?categoryId=2&levelId=5&serviceId=2&mandatory=false"
-          name: query
+          description: "All interventions under Category Id"
+          name: categoryId
           schema:
-            $ref: '#/components/schemas/InterventionQuery'
+            type: integer
+            example: 2
+          required: false
+        - in: query
+          description: "All interventions under Level Id"
+          name: levelId
+          schema:
+            type: integer
+            example: 0
+          required: false
+        - in: query
+          description: "All interventions has Service Id"
+          name: serviceId
+          schema:
+            type: integer
+          required: false
+        - in: query
+          description: "All interventions is/not mandatory"
+          name: mandatory
+          schema:
+            type: boolean
+            example: true
           required: false
       responses:
         200:
@@ -477,10 +890,31 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?categoryId=2&levelId=5&serviceId=2&mandatory=false"
-          name: query
+          description: "All interventions under Category Id"
+          name: categoryId
           schema:
-            $ref: '#/components/schemas/InterventionQuery'
+            type: integer
+            example: 2
+          required: false
+        - in: query
+          description: "All interventions under Level Id"
+          name: levelId
+          schema:
+            type: integer
+            example: 0
+          required: false
+        - in: query
+          description: "All interventions has Service Id"
+          name: serviceId
+          schema:
+            type: integer
+          required: false
+        - in: query
+          description: "All interventions is/not mandatory"
+          name: mandatory
+          schema:
+            type: boolean
+            example: true
           required: false
       responses:
         200:
@@ -512,7 +946,7 @@ paths:
                 $ref: '#/components/schemas/Intervention'
   /enrollment:
     description: Create or Update Enrollment
-    put:
+    post:
       description: "Create or Update Enrollment, For new code will create but for existing one will update. So the main identifying component is Code"
       security: 
          - basicAuth: []
@@ -598,11 +1032,72 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&wardIds=[11,13]&levelIds=[100,111]&csoIds=[1,3]&periodIds=[9,8]&graduationFrom=07-02-2022&graduationTo=08-02-2022&completedFrom=05-02-2022&completedTo=06-02-2022"
-          name: query
+          description: "Enrollment Code"
+          name: code
           schema:
-            $ref: '#/components/schemas/EnrollmentQuery'
-          required: false
+            type: string
+        - in: query
+          description: "Referral Enrollments"
+          name: referral
+          schema:
+            type: boolean
+        - in: query
+          description: "Enrollment Date from"
+          name: dateFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment Date to"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"  
+        - in: query
+          description: "Enrollment Wards IDs"
+          name: wardIds
+          schema:
+           type: array
+           items:
+            type: integer
+        - in: query
+          description: "Enrollment CSOs IDs"
+          name: csoIds
+          schema:
+           type: array
+           items:
+            type: integer
+        - in: query
+          description: "Enrollment Levels IDs"
+          name: levelIds
+          schema:
+           type: array
+           items:
+            type: integer
+        - in: query
+          description: "Enrollment Graduation Date from"
+          name: graduationFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment Graduation Date to"
+          name: graduationTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Enrollment Service Completion Date from"
+          name: completedFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment Service Completion Date to"
+          name: completedTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
       responses:
         200:
           description: OK
@@ -619,11 +1114,72 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&wardIds=[11,13]&levelIds=[100,111]&csoIds=[1,3]&periodIds=[9,8]&graduationFrom=07-02-2022&graduationTo=08-02-2022&completedFrom=05-02-2022&completedTo=06-02-2022"
-          name: query
+          description: "Enrollment Code"
+          name: code
           schema:
-            $ref: '#/components/schemas/EnrollmentQuery'
-          required: false
+            type: string
+        - in: query
+          description: "Referral Enrollments"
+          name: referral
+          schema:
+            type: boolean
+        - in: query
+          description: "Enrollment Date from"
+          name: dateFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment Date to"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"  
+        - in: query
+          description: "Enrollment Wards IDs"
+          name: wardIds
+          schema:
+           type: array
+           items:
+            type: integer
+        - in: query
+          description: "Enrollment CSOs IDs"
+          name: csoIds
+          schema:
+           type: array
+           items:
+            type: integer
+        - in: query
+          description: "Enrollment Levels IDs"
+          name: levelIds
+          schema:
+           type: array
+           items:
+            type: integer
+        - in: query
+          description: "Enrollment Graduation Date from"
+          name: graduationFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment Graduation Date to"
+          name: graduationTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Enrollment Service Completion Date from"
+          name: completedFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment Service Completion Date to"
+          name: completedTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
       responses:
         200:
           description: OK
@@ -640,11 +1196,72 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&wardIds=[11,13]&levelIds=[100,111]&csoIds=[1,3]&periodIds=[9,8]&graduationFrom=07-02-2022&graduationTo=08-02-2022&completedFrom=05-02-2022&completedTo=06-02-2022"
-          name: query
+          description: "Enrollment Code"
+          name: code
           schema:
-            $ref: '#/components/schemas/EnrollmentQuery'
-          required: false
+            type: string
+        - in: query
+          description: "Referral Enrollments"
+          name: referral
+          schema:
+            type: boolean
+        - in: query
+          description: "Enrollment Date from"
+          name: dateFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment Date to"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"  
+        - in: query
+          description: "Enrollment Wards IDs"
+          name: wardIds
+          schema:
+           type: array
+           items:
+            type: integer
+        - in: query
+          description: "Enrollment CSOs IDs"
+          name: csoIds
+          schema:
+           type: array
+           items:
+            type: integer
+        - in: query
+          description: "Enrollment Levels IDs"
+          name: levelIds
+          schema:
+           type: array
+           items:
+            type: integer
+        - in: query
+          description: "Enrollment Graduation Date from"
+          name: graduationFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment Graduation Date to"
+          name: graduationTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy" 
+        - in: query
+          description: "Enrollment Service Completion Date from"
+          name: completedFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment Service Completion Date to"
+          name: completedTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
       responses:
         200:
           description: OK
@@ -698,11 +1315,42 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&enrollmentId=6&wardId=11&serviceId=11&stageId=8&periodId=10"
-          name: query
+          description: "Encounters of Date from"
+          name: dateFrom
           schema:
-            $ref: '#/components/schemas/EncounterQuery'
-          required: false
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Encounters of Date to"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"  
+        - in: query
+          description: "Encounters of Enrollment code"
+          name: enrollmentCode
+          schema:
+            type: string
+        - in: query
+          description: "Encounters of Ward"
+          name: wardId
+          schema:
+            type: integer
+        - in: query
+          description: "Encounters of Period"
+          name: periodId
+          schema:
+            type: integer 
+        - in: query
+          description: "Encounters within service stage"
+          name: stageId
+          schema:
+            type: integer 
+        - in: query
+          description: "Encounters within service"
+          name: serviceId
+          schema:
+            type: integer 
       responses:
         200:
           description: OK
@@ -718,11 +1366,42 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&enrollmentId=6&wardId=11&serviceId=11&stageId=8&periodId=10"
-          name: query
+          description: "Encounters of Date from"
+          name: dateFrom
           schema:
-            $ref: '#/components/schemas/EncounterQuery'
-          required: false
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Encounters of Date to"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"  
+        - in: query
+          description: "Encounters of Enrollment code"
+          name: enrollmentCode
+          schema:
+            type: string
+        - in: query
+          description: "Encounters of Ward"
+          name: wardId
+          schema:
+            type: integer
+        - in: query
+          description: "Encounters of Period"
+          name: periodId
+          schema:
+            type: integer 
+        - in: query
+          description: "Encounters within service stage"
+          name: stageId
+          schema:
+            type: integer 
+        - in: query
+          description: "Encounters within service"
+          name: serviceId
+          schema:
+            type: integer 
       responses:
         200:
           description: OK
@@ -739,11 +1418,42 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query can be in format: ?dateForm=01-12-2021&dateTo=02-01-2022&enrollmentId=6&wardId=11&serviceId=11&stageId=8&periodId=10"
-          name: query
+          description: "Encounters of Date from"
+          name: dateFrom
           schema:
-            $ref: '#/components/schemas/EncounterQuery'
-          required: false
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Encounters of Date to"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"  
+        - in: query
+          description: "Encounters of Enrollment code"
+          name: enrollmentCode
+          schema:
+            type: string
+        - in: query
+          description: "Encounters of Ward"
+          name: wardId
+          schema:
+            type: integer
+        - in: query
+          description: "Encounters of Period"
+          name: periodId
+          schema:
+            type: integer 
+        - in: query
+          description: "Encounters within service stage"
+          name: stageId
+          schema:
+            type: integer 
+        - in: query
+          description: "Encounters within service"
+          name: serviceId
+          schema:
+            type: integer 
       responses:
         200:
           description: OK
@@ -768,6 +1478,7 @@ paths:
       responses:
         202:
           description: OK
+  
   /snu/list:
     description: List SNU
     get:
@@ -788,6 +1499,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SNUList'
+                
   /snu/{id}:
     description: Get SNU by ID
     get:
@@ -809,6 +1521,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SNU'
+                
+  /snu/code/{code}:
+    description: Get SNU by CODE
+    get:
+      description: Pass SNU CODE to fetch SNU Object
+      security:
+        - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass snu Code.
+          name: code
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SNU'
+                
   /psnu/list:
     description: List PSNU
     get:
@@ -817,11 +1551,22 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?name=Kyela&code=P12&snuId=7"
-          name: query
+          description: "Name of PSNU"
+          name: name
           schema:
-            $ref: '#/components/schemas/PSNUQuery'
-          required: false
+            type: string
+            example: Kyela
+        - in: query
+          description: "PSNU Code"
+          name: code
+          schema:
+            type: string
+            example: KYELA
+        - in: query
+          description: "SNU where PSNU belongs"
+          name: snuId
+          schema:
+            type: integer
       responses:
         200:
           description: OK
@@ -829,20 +1574,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PSNUSimpleList'
+                
   /psnu/{id}:
     description: Get PSNU by ID
     get:
-      description: Pass PSNU Id to fetch SNU Object
+      description: Pass PSNU Id to fetch PSNU Object
       security:
         - basicAuth: []
       parameters: 
         - in: path
-          description: Pass service id.
+          description: Pass PSNU id.
           name: id
           required: true
           example: 0
           schema:
             type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PSNU'
+  
+  /psnu/code/{code}:
+    description: Get PSNU by CODE
+    get:
+      description: Pass PSNU CODE to fetch PSNU Object
+      security:
+        - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass PSNU code.
+          name: code
+          required: true
+          schema:
+            type: string
       responses:
         200:
           description: OK
@@ -858,11 +1625,26 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?type=ENROLLMENT&periodId=16&partnerId=7&levelId=11&psnuId=12"
-          name: query
+          description: "Target type if is ENROLLMENT or PRIMARY_COMPLETION"
+          name: type
           schema:
-            $ref: '#/components/schemas/TargetQuery'
-          required: false
+            type: string
+            example: "PRIMARY_COMPLETION"
+        - in: query
+          description: "Target of period"
+          name: periodId
+          schema:
+            type: integer
+        - in: query
+          description: "Targets under psnu"
+          name: psnuId
+          schema:
+            type: integer
+        - in: query
+          description: "Targets under level"
+          name: levelId
+          schema:
+            type: integer
       responses:
         200:
           description: OK
@@ -879,11 +1661,26 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?type=ENROLLMENT&periodId=16&partnerId=7&levelId=11&psnuId=12"
-          name: query
+          description: "Target type if is ENROLLMENT or PRIMARY_COMPLETION"
+          name: type
           schema:
-            $ref: '#/components/schemas/NeedQuery'
-          required: false
+            type: string
+            example: "PRIMARY_COMPLETION"
+        - in: query
+          description: "Target of period"
+          name: periodId
+          schema:
+            type: integer
+        - in: query
+          description: "Targets under psnu"
+          name: psnuId
+          schema:
+            type: integer
+        - in: query
+          description: "Targets under level"
+          name: levelId
+          schema:
+            type: integer
       responses:
         200:
           description: OK
@@ -939,11 +1736,17 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?name=HJF&code=CD90"
-          name: query
+          description: "Partner name"
+          name: name
           schema:
-            $ref: '#/components/schemas/PartnerQuery'
-          required: false
+            type: string
+            example: HJf
+        - in: query
+          description: "Partner code"
+          name: code
+          schema:
+            type: string
+            example: P1
       responses:
         200:
           description: OK
@@ -960,11 +1763,17 @@ paths:
          - basicAuth: []
       parameters: 
         - in: query
-          description: "Query format can be. ?name=HJF&code=CD90"
-          name: query
+          description: "Partner name"
+          name: name
           schema:
-            $ref: '#/components/schemas/PartnerQuery'
-          required: false
+            type: string
+            example: HJf
+        - in: query
+          description: "Partner code"
+          name: code
+          schema:
+            type: string
+            example: P1
       responses:
         200:
           description: OK
