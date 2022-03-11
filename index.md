@@ -1,6 +1,3 @@
- <!-- | **[Definition of Terms](https://dames-tz.github.io)** |[Questions and Interpretations](https://dames-tz.github.io/indicators)| -->
-
-
 ## DEFINITIONS OF TERMS AND ABBREVIATIONS
 
 1. DREAMS Beneficiary
