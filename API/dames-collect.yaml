@@ -350,6 +350,177 @@ paths:
                 type: integer
                 example: 100
                 
+  /need:
+    description: Create Need 
+    post:
+      description: Post Need.
+      security: 
+         - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NeedCreate'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Need'
+                
+  /need/bulk:
+    description: Create Need in bulk
+    post:
+      description: Post Need in bulk.
+      security: 
+         - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NeedCreateList'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NeedList'
+                
+  /need/list:
+    description: Fetch all needs
+    get:
+      description: Fetch all needs
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: "Date from where need recognised"
+          name: dateFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Date to where need recognised"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment code with need"
+          name: enrollmentCode
+          schema:
+            type: string
+        - in: query
+          description: "Needs with service"
+          name: serviceId
+          schema:
+            type: integer
+        - in: query
+          description: "Needs which are resolved or not"
+          name: resolved
+          schema:
+            type: boolean
+        - in: query
+          description: "Hide or show beneficiary personal information"
+          name: pi
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NeedList'
+                
+  /need/page:
+    description: Fetch all needs in oages
+    get:
+      description: Fetch all needs in pages
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: query
+          description: "Date from where need recognised"
+          name: dateFrom
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Date to where need recognised"
+          name: dateTo
+          schema:
+            type: string
+            format: "dd-mm-yyyy"
+        - in: query
+          description: "Enrollment code with need"
+          name: enrollmentCode
+          schema:
+            type: string
+        - in: query
+          description: "Needs with service"
+          name: serviceId
+          schema:
+            type: integer
+        - in: query
+          description: "Needs which are resolved or not"
+          name: resolved
+          schema:
+            type: boolean
+        - in: query
+          description: "Hide or show beneficiary personal information"
+          name: pi
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NeedListWithPages'
+  /need/{id}:
+    description: Get Need
+    get:
+      description: Get Need by ID
+      security: 
+         - basicAuth: []
+      parameters: 
+        - in: path
+          description: Pass Need ID.
+          name: id
+          required: true
+          example: 0
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Need'
+                
+  /need/{id}/:
+    description: Delete Need
+    delete:
+      description: Delete Need
+      security: 
+         - basicAuth: []
+      parameters:
+        - in: path
+          description: Pass Need Id.
+          name: id
+          required: true
+          example: 23
+          schema:
+            type: integer
+      responses:
+        202:
+          description: OK 
+                
   /user/{userId}/cso:
     description: Get CSo by userID
     get:
@@ -2379,7 +2550,6 @@ components:
          type: integer
          example: 100
     CreateQuestionBody:
-      type: object
       title: "Query Create/Update Object"
       description: "Used during create and update question"
       required: 
@@ -2598,10 +2768,10 @@ components:
             example: "2022-02-17T14:00:18.074211"
         date:
           type: string
-          format: date('yyyy-mm-dd')
+          format: date('dd-MM-yyyy')
         dateOfBirth:
           type: string
-          format: date('yyyy-mm-dd')
+          format: date('dd-MM-yyyy')
         cso:
           type: integer
           example: 245
@@ -2807,3 +2977,100 @@ components:
       description: "Period list structure"
       items:
         $ref: '#/components/schemas/PeriodObject'
+    NeedCreate:
+      type: object
+      title: "Need Object for creating"
+      description: "Object for need creation"
+      properties:
+        recordedTime:
+          type: string
+          format: dateTime("dd-MM-yyyy HH:mm:ss")
+          description: "Time date recorded/noted"
+        date: 
+          type: string
+          format: date("dd-MM-yyyy")
+        enrollment:
+          type: integer
+        service:
+          type: integer
+        resolved:
+          type: boolean
+    Need:
+      type: object
+      title: "Need Object"
+      description: "Object for need"
+      properties:
+        date: 
+          type: string
+          format: date("dd-MM-yyyy")
+        enrollment:
+          $ref: '#/components/schemas/Enrollment'
+        service:
+          $ref: '#/components/schemas/Service'
+        resolved:
+          type: boolean
+    NeedCreateList:
+      type: array
+      items:
+        $ref: '#/components/schemas/NeedCreate'
+    NeedList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Need'
+    NeedListWithPages:
+      type: array
+      title: "Needs List with Pagination"
+      items:
+        properties:
+          content:
+            type: array
+            items:
+              $ref: '#/components/schemas/Need'
+          pageable:
+            type: object
+            properties:
+              sort:
+                type: object
+                properties:
+                  sorted:
+                    type: boolean
+                    example: false
+                  empty:
+                    type: boolean
+                    example: true
+                  unsorted:
+                    type: boolean
+                    example: true
+              pageSize:
+                type: integer
+                example: 20
+              pageNumber:
+                type: integer
+                example: 0
+              offset:
+                type: integer
+                example: 0
+              paged:
+                type: boolean
+                example: true
+              unpaged:
+                type: boolean
+                example: false
+          totalPages: 
+            type: integer
+            example: 1
+          totalElements:
+            type: integer
+            example: 2
+          last:
+            type: boolean
+            example: true
+          number: 
+            type: integer
+            example: 0
+          size:
+            type: integer
+            example: 0
+          numberOfElements:
+            type: integer
+            example: 2

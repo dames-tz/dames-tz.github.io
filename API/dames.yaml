@@ -285,7 +285,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Need'
-                
+  /need/bulk:
+    description: Create Need in bulk
+    post:
+      description: Post Need in bulk.
+      security: 
+         - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NeedCreateList'         
   /need/list:
     description: Fetch all needs
     get:
@@ -2709,6 +2719,10 @@ components:
           type: integer
         resolved:
           type: boolean
+    NeedCreateList:
+      type: array
+      items:
+        $ref: '#/components/schemas/NeedCreate'
     NeedQuery:
       type: object
       title: "Need Query"

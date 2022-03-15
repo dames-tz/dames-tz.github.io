@@ -787,7 +787,6 @@
             defs["CreateQuestionBody"] = {
   "title" : "Query Create/Update Object",
   "required" : [ "active", "answers", "code", "order", "title" ],
-  "type" : "object",
   "properties" : {
     "code" : {
       "type" : "string"
@@ -1501,6 +1500,146 @@
     "$ref" : "#/components/schemas/PeriodObject"
   }
 };
+            defs["Need"] = {
+  "title" : "Need Object",
+  "type" : "object",
+  "properties" : {
+    "date" : {
+      "type" : "string",
+      "format" : "date(\"dd-MM-yyyy\")"
+    },
+    "enrollment" : {
+      "$ref" : "#/components/schemas/Enrollment"
+    },
+    "service" : {
+      "$ref" : "#/components/schemas/Service"
+    },
+    "resolved" : {
+      "type" : "boolean"
+    }
+  },
+  "description" : "Object for need"
+};
+            defs["NeedCreate"] = {
+  "title" : "Need Object for creating",
+  "type" : "object",
+  "properties" : {
+    "recordedTime" : {
+      "type" : "string",
+      "description" : "Time date recorded/noted",
+      "format" : "dateTime(\"dd-MM-yyyy HH:mm:ss\")"
+    },
+    "date" : {
+      "type" : "string",
+      "format" : "date(\"dd-MM-yyyy\")"
+    },
+    "enrollment" : {
+      "type" : "integer"
+    },
+    "service" : {
+      "type" : "integer"
+    },
+    "resolved" : {
+      "type" : "boolean"
+    }
+  },
+  "description" : "Object for need creation"
+};
+            defs["NeedCreateList"] = {
+  "type" : "array",
+  "items" : {
+    "$ref" : "#/components/schemas/NeedCreate"
+  }
+};
+            defs["NeedList"] = {
+  "type" : "array",
+  "items" : {
+    "$ref" : "#/components/schemas/Need"
+  }
+};
+            defs["NeedListWithPages"] = {
+  "title" : "Needs List with Pagination",
+  "type" : "array",
+  "items" : {
+    "$ref" : "#/components/schemas/NeedListWithPages_inner"
+  }
+};
+            defs["NeedListWithPages_inner"] = {
+  "properties" : {
+    "content" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/Need"
+      }
+    },
+    "pageable" : {
+      "type" : "object",
+      "properties" : {
+        "sort" : {
+          "type" : "object",
+          "properties" : {
+            "sorted" : {
+              "type" : "boolean",
+              "example" : false
+            },
+            "empty" : {
+              "type" : "boolean",
+              "example" : true
+            },
+            "unsorted" : {
+              "type" : "boolean",
+              "example" : true
+            }
+          }
+        },
+        "pageSize" : {
+          "type" : "integer",
+          "example" : 20
+        },
+        "pageNumber" : {
+          "type" : "integer",
+          "example" : 0
+        },
+        "offset" : {
+          "type" : "integer",
+          "example" : 0
+        },
+        "paged" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "unpaged" : {
+          "type" : "boolean",
+          "example" : false
+        }
+      }
+    },
+    "totalPages" : {
+      "type" : "integer",
+      "example" : 1
+    },
+    "totalElements" : {
+      "type" : "integer",
+      "example" : 2
+    },
+    "last" : {
+      "type" : "boolean",
+      "example" : true
+    },
+    "number" : {
+      "type" : "integer",
+      "example" : 0
+    },
+    "size" : {
+      "type" : "integer",
+      "example" : 0
+    },
+    "numberOfElements" : {
+      "type" : "integer",
+      "example" : 2
+    }
+  }
+};
             defs["PSNU"] = {
   "title" : "PSNU Object",
   "type" : "object",
@@ -1903,11 +2042,11 @@
     },
     "date" : {
       "type" : "string",
-      "format" : "date('yyyy-mm-dd')"
+      "format" : "date('dd-MM-yyyy')"
     },
     "dateOfBirth" : {
       "type" : "string",
-      "format" : "date('yyyy-mm-dd')"
+      "format" : "date('dd-MM-yyyy')"
     },
     "cso" : {
       "type" : "integer",
@@ -2388,6 +2527,24 @@
                     <li data-group="Default" data-name="levelNameNameGet" class="">
                       <a href="#api-Default-levelNameNameGet">levelNameNameGet</a>
                     </li>
+                    <li data-group="Default" data-name="needBulkPost" class="">
+                      <a href="#api-Default-needBulkPost">needBulkPost</a>
+                    </li>
+                    <li data-group="Default" data-name="needIdDelete" class="">
+                      <a href="#api-Default-needIdDelete">needIdDelete</a>
+                    </li>
+                    <li data-group="Default" data-name="needIdGet" class="">
+                      <a href="#api-Default-needIdGet">needIdGet</a>
+                    </li>
+                    <li data-group="Default" data-name="needListGet" class="">
+                      <a href="#api-Default-needListGet">needListGet</a>
+                    </li>
+                    <li data-group="Default" data-name="needPageGet" class="">
+                      <a href="#api-Default-needPageGet">needPageGet</a>
+                    </li>
+                    <li data-group="Default" data-name="needPost" class="">
+                      <a href="#api-Default-needPost">needPost</a>
+                    </li>
                     <li data-group="Default" data-name="periodIdGet" class="">
                       <a href="#api-Default-periodIdGet">periodIdGet</a>
                     </li>
@@ -2478,8 +2635,8 @@
         </div>
         <div id="header">
           <div id="api-_">
-            <h2 id="welcome-to-apidoc">API and SDK Documentation <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></h2>
-              <div class="app-desc">Version: 1.0.0 <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></div>
+            <h2 id="welcome-to-apidoc">API and SDK Documentation  <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></h2>
+              <div class="app-desc">Version: 1.0.0</div>
             <hr>
             <div>Collect Api for dreams project</div>
           </div>
@@ -12173,6 +12330,2194 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-levelNameNameGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-needBulkPost">
+                      <article id="api-Default-needBulkPost-0" data-group="User" data-name="needBulkPost" data-version="0">
+                        <div class="pull-left">
+                          <h1>needBulkPost</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Post Need in bulk.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/need/bulk</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-needBulkPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-needBulkPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-needBulkPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-needBulkPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-needBulkPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-needBulkPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-needBulkPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-needBulkPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-needBulkPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-needBulkPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-needBulkPost-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-needBulkPost-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+ -H "Authorization: Basic [[basicHash]]"\
+-H "Accept: application/json"\
+-H "Content-Type: application/json"\
+"http://localhost:8080/api/v1/dames/need/bulk"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-needBulkPost-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        DefaultApi apiInstance = new DefaultApi();
+        array[NeedCreate] body = ; // array[NeedCreate] | 
+        try {
+            NeedList result = apiInstance.needBulkPost(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needBulkPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-needBulkPost-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        array[NeedCreate] body = ; // array[NeedCreate] | 
+        try {
+            NeedList result = apiInstance.needBulkPost(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needBulkPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-needBulkPost-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-needBulkPost-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: basicAuth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+array[NeedCreate] *body = ; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance needBulkPostWith:body
+              completionHandler: ^(NeedList output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needBulkPost-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var DamesCollectApi = require('dames_collect_api');
+var defaultClient = DamesCollectApi.ApiClient.instance;
+// Configure HTTP basic authorization: basicAuth
+var basicAuth = defaultClient.authentications['basicAuth'];
+basicAuth.username = 'YOUR USERNAME'
+basicAuth.password = 'YOUR PASSWORD'
+
+var api = new DamesCollectApi.DefaultApi()
+var opts = { 
+  'body':  // {{array[NeedCreate]}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.needBulkPost(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-needBulkPost-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-needBulkPost-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class needBulkPostExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: basicAuth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new DefaultApi();
+            var body = new array[NeedCreate](); // array[NeedCreate] |  (optional) 
+
+            try
+            {
+                NeedList result = apiInstance.needBulkPost(body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.needBulkPost: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needBulkPost-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+// Configure HTTP basic authorization: basicAuth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$body = ; // array[NeedCreate] | 
+
+try {
+    $result = $api_instance->needBulkPost($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->needBulkPost: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needBulkPost-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+# Configure HTTP basic authorization: basicAuth
+$WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
+$WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $body = [WWW::SwaggerClient::Object::array[NeedCreate]->new()]; # array[NeedCreate] | 
+
+eval { 
+    my $result = $api_instance->needBulkPost(body => $body);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->needBulkPost: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needBulkPost-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+# Configure HTTP basic authorization: basicAuth
+swagger_client.configuration.username = 'YOUR_USERNAME'
+swagger_client.configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+body =  # array[NeedCreate] |  (optional)
+
+try: 
+    api_response = api_instance.need_bulk_post(body=body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->needBulkPost: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body </td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/NeedCreateList"
+      }
+    }
+  }
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_needBulkPost_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_needBulkPost_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-needBulkPost-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-needBulkPost-200-schema">
+                                  <div id='responses-needBulkPost-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/NeedList"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-needBulkPost-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-needBulkPost-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-needBulkPost-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-needIdDelete">
+                      <article id="api-Default-needIdDelete-0" data-group="User" data-name="needIdDelete" data-version="0">
+                        <div class="pull-left">
+                          <h1>needIdDelete</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Delete Need</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/need/{id}/</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-needIdDelete-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-needIdDelete-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-needIdDelete-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-needIdDelete-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-needIdDelete-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-needIdDelete-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-needIdDelete-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-needIdDelete-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-needIdDelete-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-needIdDelete-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-needIdDelete-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-needIdDelete-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
+ -H "Authorization: Basic [[basicHash]]"\
+"http://localhost:8080/api/v1/dames/need/{id}/"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-needIdDelete-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        DefaultApi apiInstance = new DefaultApi();
+        Integer id = 56; // Integer | Pass Need Id.
+        try {
+            apiInstance.needIdDelete(id);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needIdDelete");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-needIdDelete-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Integer id = 56; // Integer | Pass Need Id.
+        try {
+            apiInstance.needIdDelete(id);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needIdDelete");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-needIdDelete-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-needIdDelete-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: basicAuth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+Integer *id = 56; // Pass Need Id.
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance needIdDeleteWith:id
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needIdDelete-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var DamesCollectApi = require('dames_collect_api');
+var defaultClient = DamesCollectApi.ApiClient.instance;
+// Configure HTTP basic authorization: basicAuth
+var basicAuth = defaultClient.authentications['basicAuth'];
+basicAuth.username = 'YOUR USERNAME'
+basicAuth.password = 'YOUR PASSWORD'
+
+var api = new DamesCollectApi.DefaultApi()
+var id = 56; // {{Integer}} Pass Need Id.
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.needIdDelete(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-needIdDelete-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-needIdDelete-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class needIdDeleteExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: basicAuth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new DefaultApi();
+            var id = 56;  // Integer | Pass Need Id.
+
+            try
+            {
+                apiInstance.needIdDelete(id);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.needIdDelete: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needIdDelete-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+// Configure HTTP basic authorization: basicAuth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$id = 56; // Integer | Pass Need Id.
+
+try {
+    $api_instance->needIdDelete($id);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->needIdDelete: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needIdDelete-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+# Configure HTTP basic authorization: basicAuth
+$WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
+$WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $id = 56; # Integer | Pass Need Id.
+
+eval { 
+    $api_instance->needIdDelete(id => $id);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->needIdDelete: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needIdDelete-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+# Configure HTTP basic authorization: basicAuth
+swagger_client.configuration.username = 'YOUR_USERNAME'
+swagger_client.configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+id = 56 # Integer | Pass Need Id.
+
+try: 
+    api_instance.need_id_delete(id)
+except ApiException as e:
+    print("Exception when calling DefaultApi->needIdDelete: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_needIdDelete_id">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Integer
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          Pass Need Id.
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 202 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-needIdGet">
+                      <article id="api-Default-needIdGet-0" data-group="User" data-name="needIdGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>needIdGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Get Need by ID</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/need/{id}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-needIdGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-needIdGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-needIdGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-needIdGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-needIdGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-needIdGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-needIdGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-needIdGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-needIdGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-needIdGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-needIdGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-needIdGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Basic [[basicHash]]"\
+-H "Accept: application/json"\
+"http://localhost:8080/api/v1/dames/need/{id}"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-needIdGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        DefaultApi apiInstance = new DefaultApi();
+        Integer id = 56; // Integer | Pass Need ID.
+        try {
+            Need result = apiInstance.needIdGet(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needIdGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-needIdGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Integer id = 56; // Integer | Pass Need ID.
+        try {
+            Need result = apiInstance.needIdGet(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needIdGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-needIdGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-needIdGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: basicAuth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+Integer *id = 56; // Pass Need ID.
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance needIdGetWith:id
+              completionHandler: ^(Need output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needIdGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var DamesCollectApi = require('dames_collect_api');
+var defaultClient = DamesCollectApi.ApiClient.instance;
+// Configure HTTP basic authorization: basicAuth
+var basicAuth = defaultClient.authentications['basicAuth'];
+basicAuth.username = 'YOUR USERNAME'
+basicAuth.password = 'YOUR PASSWORD'
+
+var api = new DamesCollectApi.DefaultApi()
+var id = 56; // {{Integer}} Pass Need ID.
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.needIdGet(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-needIdGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-needIdGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class needIdGetExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: basicAuth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new DefaultApi();
+            var id = 56;  // Integer | Pass Need ID.
+
+            try
+            {
+                Need result = apiInstance.needIdGet(id);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.needIdGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needIdGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+// Configure HTTP basic authorization: basicAuth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$id = 56; // Integer | Pass Need ID.
+
+try {
+    $result = $api_instance->needIdGet($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->needIdGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needIdGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+# Configure HTTP basic authorization: basicAuth
+$WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
+$WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $id = 56; # Integer | Pass Need ID.
+
+eval { 
+    my $result = $api_instance->needIdGet(id => $id);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->needIdGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needIdGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+# Configure HTTP basic authorization: basicAuth
+swagger_client.configuration.username = 'YOUR_USERNAME'
+swagger_client.configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+id = 56 # Integer | Pass Need ID.
+
+try: 
+    api_response = api_instance.need_id_get(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->needIdGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_needIdGet_id">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Integer
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          Pass Need ID.
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-needIdGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-needIdGet-200-schema">
+                                  <div id='responses-needIdGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Need"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-needIdGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-needIdGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-needIdGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-needListGet">
+                      <article id="api-Default-needListGet-0" data-group="User" data-name="needListGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>needListGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Fetch all needs</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/need/list</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-needListGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-needListGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-needListGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-needListGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-needListGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-needListGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-needListGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-needListGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-needListGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-needListGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-needListGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-needListGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Basic [[basicHash]]"\
+-H "Accept: application/json"\
+"http://localhost:8080/api/v1/dames/need/list?dateFrom=&dateTo=&enrollmentCode=&serviceId=&resolved=&pi="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-needListGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        DefaultApi apiInstance = new DefaultApi();
+        String dateFrom = dateFrom_example; // String | Date from where need recognised
+        String dateTo = dateTo_example; // String | Date to where need recognised
+        String enrollmentCode = enrollmentCode_example; // String | Enrollment code with need
+        Integer serviceId = 56; // Integer | Needs with service
+        Boolean resolved = true; // Boolean | Needs which are resolved or not
+        Boolean pi = true; // Boolean | Hide or show beneficiary personal information
+        try {
+            NeedList result = apiInstance.needListGet(dateFrom, dateTo, enrollmentCode, serviceId, resolved, pi);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needListGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-needListGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String dateFrom = dateFrom_example; // String | Date from where need recognised
+        String dateTo = dateTo_example; // String | Date to where need recognised
+        String enrollmentCode = enrollmentCode_example; // String | Enrollment code with need
+        Integer serviceId = 56; // Integer | Needs with service
+        Boolean resolved = true; // Boolean | Needs which are resolved or not
+        Boolean pi = true; // Boolean | Hide or show beneficiary personal information
+        try {
+            NeedList result = apiInstance.needListGet(dateFrom, dateTo, enrollmentCode, serviceId, resolved, pi);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needListGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-needListGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-needListGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: basicAuth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+String *dateFrom = dateFrom_example; // Date from where need recognised (optional)
+String *dateTo = dateTo_example; // Date to where need recognised (optional)
+String *enrollmentCode = enrollmentCode_example; // Enrollment code with need (optional)
+Integer *serviceId = 56; // Needs with service (optional)
+Boolean *resolved = true; // Needs which are resolved or not (optional)
+Boolean *pi = true; // Hide or show beneficiary personal information (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance needListGetWith:dateFrom
+    dateTo:dateTo
+    enrollmentCode:enrollmentCode
+    serviceId:serviceId
+    resolved:resolved
+    pi:pi
+              completionHandler: ^(NeedList output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needListGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var DamesCollectApi = require('dames_collect_api');
+var defaultClient = DamesCollectApi.ApiClient.instance;
+// Configure HTTP basic authorization: basicAuth
+var basicAuth = defaultClient.authentications['basicAuth'];
+basicAuth.username = 'YOUR USERNAME'
+basicAuth.password = 'YOUR PASSWORD'
+
+var api = new DamesCollectApi.DefaultApi()
+var opts = { 
+  'dateFrom': dateFrom_example, // {{String}} Date from where need recognised
+  'dateTo': dateTo_example, // {{String}} Date to where need recognised
+  'enrollmentCode': enrollmentCode_example, // {{String}} Enrollment code with need
+  'serviceId': 56, // {{Integer}} Needs with service
+  'resolved': true, // {{Boolean}} Needs which are resolved or not
+  'pi': true // {{Boolean}} Hide or show beneficiary personal information
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.needListGet(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-needListGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-needListGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class needListGetExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: basicAuth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new DefaultApi();
+            var dateFrom = dateFrom_example;  // String | Date from where need recognised (optional) 
+            var dateTo = dateTo_example;  // String | Date to where need recognised (optional) 
+            var enrollmentCode = enrollmentCode_example;  // String | Enrollment code with need (optional) 
+            var serviceId = 56;  // Integer | Needs with service (optional) 
+            var resolved = true;  // Boolean | Needs which are resolved or not (optional) 
+            var pi = true;  // Boolean | Hide or show beneficiary personal information (optional) 
+
+            try
+            {
+                NeedList result = apiInstance.needListGet(dateFrom, dateTo, enrollmentCode, serviceId, resolved, pi);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.needListGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needListGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+// Configure HTTP basic authorization: basicAuth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$dateFrom = dateFrom_example; // String | Date from where need recognised
+$dateTo = dateTo_example; // String | Date to where need recognised
+$enrollmentCode = enrollmentCode_example; // String | Enrollment code with need
+$serviceId = 56; // Integer | Needs with service
+$resolved = true; // Boolean | Needs which are resolved or not
+$pi = true; // Boolean | Hide or show beneficiary personal information
+
+try {
+    $result = $api_instance->needListGet($dateFrom, $dateTo, $enrollmentCode, $serviceId, $resolved, $pi);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->needListGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needListGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+# Configure HTTP basic authorization: basicAuth
+$WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
+$WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $dateFrom = dateFrom_example; # String | Date from where need recognised
+my $dateTo = dateTo_example; # String | Date to where need recognised
+my $enrollmentCode = enrollmentCode_example; # String | Enrollment code with need
+my $serviceId = 56; # Integer | Needs with service
+my $resolved = true; # Boolean | Needs which are resolved or not
+my $pi = true; # Boolean | Hide or show beneficiary personal information
+
+eval { 
+    my $result = $api_instance->needListGet(dateFrom => $dateFrom, dateTo => $dateTo, enrollmentCode => $enrollmentCode, serviceId => $serviceId, resolved => $resolved, pi => $pi);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->needListGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needListGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+# Configure HTTP basic authorization: basicAuth
+swagger_client.configuration.username = 'YOUR_USERNAME'
+swagger_client.configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+dateFrom = dateFrom_example # String | Date from where need recognised (optional)
+dateTo = dateTo_example # String | Date to where need recognised (optional)
+enrollmentCode = enrollmentCode_example # String | Enrollment code with need (optional)
+serviceId = 56 # Integer | Needs with service (optional)
+resolved = true # Boolean | Needs which are resolved or not (optional)
+pi = true # Boolean | Hide or show beneficiary personal information (optional)
+
+try: 
+    api_response = api_instance.need_list_get(dateFrom=dateFrom, dateTo=dateTo, enrollmentCode=enrollmentCode, serviceId=serviceId, resolved=resolved, pi=pi)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->needListGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">dateFrom</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needListGet_dateFrom">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                                    <span class="format">
+                                                        (dd-mm-yyyy)
+                                                    </span>
+                                
+                                                    <div class="inner description">
+                                                        Date from where need recognised
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">dateTo</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needListGet_dateTo">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                                    <span class="format">
+                                                        (dd-mm-yyyy)
+                                                    </span>
+                                
+                                                    <div class="inner description">
+                                                        Date to where need recognised
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">enrollmentCode</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needListGet_enrollmentCode">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Enrollment code with need
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">serviceId</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needListGet_serviceId">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Needs with service
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">resolved</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needListGet_resolved">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Boolean
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Needs which are resolved or not
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">pi</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needListGet_pi">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Boolean
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Hide or show beneficiary personal information
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-needListGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-needListGet-200-schema">
+                                  <div id='responses-needListGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/NeedList"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-needListGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-needListGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-needListGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-needPageGet">
+                      <article id="api-Default-needPageGet-0" data-group="User" data-name="needPageGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>needPageGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Fetch all needs in pages</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/need/page</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-needPageGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-needPageGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-needPageGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-needPageGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-needPageGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-needPageGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-needPageGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-needPageGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-needPageGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-needPageGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-needPageGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-needPageGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Basic [[basicHash]]"\
+-H "Accept: application/json"\
+"http://localhost:8080/api/v1/dames/need/page?dateFrom=&dateTo=&enrollmentCode=&serviceId=&resolved=&pi="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-needPageGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        DefaultApi apiInstance = new DefaultApi();
+        String dateFrom = dateFrom_example; // String | Date from where need recognised
+        String dateTo = dateTo_example; // String | Date to where need recognised
+        String enrollmentCode = enrollmentCode_example; // String | Enrollment code with need
+        Integer serviceId = 56; // Integer | Needs with service
+        Boolean resolved = true; // Boolean | Needs which are resolved or not
+        Boolean pi = true; // Boolean | Hide or show beneficiary personal information
+        try {
+            NeedListWithPages result = apiInstance.needPageGet(dateFrom, dateTo, enrollmentCode, serviceId, resolved, pi);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needPageGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-needPageGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String dateFrom = dateFrom_example; // String | Date from where need recognised
+        String dateTo = dateTo_example; // String | Date to where need recognised
+        String enrollmentCode = enrollmentCode_example; // String | Enrollment code with need
+        Integer serviceId = 56; // Integer | Needs with service
+        Boolean resolved = true; // Boolean | Needs which are resolved or not
+        Boolean pi = true; // Boolean | Hide or show beneficiary personal information
+        try {
+            NeedListWithPages result = apiInstance.needPageGet(dateFrom, dateTo, enrollmentCode, serviceId, resolved, pi);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needPageGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-needPageGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-needPageGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: basicAuth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+String *dateFrom = dateFrom_example; // Date from where need recognised (optional)
+String *dateTo = dateTo_example; // Date to where need recognised (optional)
+String *enrollmentCode = enrollmentCode_example; // Enrollment code with need (optional)
+Integer *serviceId = 56; // Needs with service (optional)
+Boolean *resolved = true; // Needs which are resolved or not (optional)
+Boolean *pi = true; // Hide or show beneficiary personal information (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance needPageGetWith:dateFrom
+    dateTo:dateTo
+    enrollmentCode:enrollmentCode
+    serviceId:serviceId
+    resolved:resolved
+    pi:pi
+              completionHandler: ^(NeedListWithPages output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needPageGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var DamesCollectApi = require('dames_collect_api');
+var defaultClient = DamesCollectApi.ApiClient.instance;
+// Configure HTTP basic authorization: basicAuth
+var basicAuth = defaultClient.authentications['basicAuth'];
+basicAuth.username = 'YOUR USERNAME'
+basicAuth.password = 'YOUR PASSWORD'
+
+var api = new DamesCollectApi.DefaultApi()
+var opts = { 
+  'dateFrom': dateFrom_example, // {{String}} Date from where need recognised
+  'dateTo': dateTo_example, // {{String}} Date to where need recognised
+  'enrollmentCode': enrollmentCode_example, // {{String}} Enrollment code with need
+  'serviceId': 56, // {{Integer}} Needs with service
+  'resolved': true, // {{Boolean}} Needs which are resolved or not
+  'pi': true // {{Boolean}} Hide or show beneficiary personal information
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.needPageGet(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-needPageGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-needPageGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class needPageGetExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: basicAuth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new DefaultApi();
+            var dateFrom = dateFrom_example;  // String | Date from where need recognised (optional) 
+            var dateTo = dateTo_example;  // String | Date to where need recognised (optional) 
+            var enrollmentCode = enrollmentCode_example;  // String | Enrollment code with need (optional) 
+            var serviceId = 56;  // Integer | Needs with service (optional) 
+            var resolved = true;  // Boolean | Needs which are resolved or not (optional) 
+            var pi = true;  // Boolean | Hide or show beneficiary personal information (optional) 
+
+            try
+            {
+                NeedListWithPages result = apiInstance.needPageGet(dateFrom, dateTo, enrollmentCode, serviceId, resolved, pi);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.needPageGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needPageGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+// Configure HTTP basic authorization: basicAuth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$dateFrom = dateFrom_example; // String | Date from where need recognised
+$dateTo = dateTo_example; // String | Date to where need recognised
+$enrollmentCode = enrollmentCode_example; // String | Enrollment code with need
+$serviceId = 56; // Integer | Needs with service
+$resolved = true; // Boolean | Needs which are resolved or not
+$pi = true; // Boolean | Hide or show beneficiary personal information
+
+try {
+    $result = $api_instance->needPageGet($dateFrom, $dateTo, $enrollmentCode, $serviceId, $resolved, $pi);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->needPageGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needPageGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+# Configure HTTP basic authorization: basicAuth
+$WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
+$WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $dateFrom = dateFrom_example; # String | Date from where need recognised
+my $dateTo = dateTo_example; # String | Date to where need recognised
+my $enrollmentCode = enrollmentCode_example; # String | Enrollment code with need
+my $serviceId = 56; # Integer | Needs with service
+my $resolved = true; # Boolean | Needs which are resolved or not
+my $pi = true; # Boolean | Hide or show beneficiary personal information
+
+eval { 
+    my $result = $api_instance->needPageGet(dateFrom => $dateFrom, dateTo => $dateTo, enrollmentCode => $enrollmentCode, serviceId => $serviceId, resolved => $resolved, pi => $pi);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->needPageGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needPageGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+# Configure HTTP basic authorization: basicAuth
+swagger_client.configuration.username = 'YOUR_USERNAME'
+swagger_client.configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+dateFrom = dateFrom_example # String | Date from where need recognised (optional)
+dateTo = dateTo_example # String | Date to where need recognised (optional)
+enrollmentCode = enrollmentCode_example # String | Enrollment code with need (optional)
+serviceId = 56 # Integer | Needs with service (optional)
+resolved = true # Boolean | Needs which are resolved or not (optional)
+pi = true # Boolean | Hide or show beneficiary personal information (optional)
+
+try: 
+    api_response = api_instance.need_page_get(dateFrom=dateFrom, dateTo=dateTo, enrollmentCode=enrollmentCode, serviceId=serviceId, resolved=resolved, pi=pi)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->needPageGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">dateFrom</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needPageGet_dateFrom">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                                    <span class="format">
+                                                        (dd-mm-yyyy)
+                                                    </span>
+                                
+                                                    <div class="inner description">
+                                                        Date from where need recognised
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">dateTo</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needPageGet_dateTo">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                                    <span class="format">
+                                                        (dd-mm-yyyy)
+                                                    </span>
+                                
+                                                    <div class="inner description">
+                                                        Date to where need recognised
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">enrollmentCode</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needPageGet_enrollmentCode">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Enrollment code with need
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">serviceId</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needPageGet_serviceId">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Needs with service
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">resolved</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needPageGet_resolved">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Boolean
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Needs which are resolved or not
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">pi</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_needPageGet_pi">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Boolean
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Hide or show beneficiary personal information
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-needPageGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-needPageGet-200-schema">
+                                  <div id='responses-needPageGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/NeedListWithPages"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-needPageGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-needPageGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-needPageGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-needPost">
+                      <article id="api-Default-needPost-0" data-group="User" data-name="needPost" data-version="0">
+                        <div class="pull-left">
+                          <h1>needPost</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Post Need.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/need</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-needPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-needPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-needPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-needPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-needPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-needPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-needPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-needPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-needPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-needPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-needPost-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-needPost-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+ -H "Authorization: Basic [[basicHash]]"\
+-H "Accept: application/json"\
+-H "Content-Type: application/json"\
+"http://localhost:8080/api/v1/dames/need"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-needPost-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        DefaultApi apiInstance = new DefaultApi();
+        NeedCreate body = ; // NeedCreate | 
+        try {
+            Need result = apiInstance.needPost(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-needPost-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        NeedCreate body = ; // NeedCreate | 
+        try {
+            Need result = apiInstance.needPost(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#needPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-needPost-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-needPost-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: basicAuth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+NeedCreate *body = ; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance needPostWith:body
+              completionHandler: ^(Need output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needPost-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var DamesCollectApi = require('dames_collect_api');
+var defaultClient = DamesCollectApi.ApiClient.instance;
+// Configure HTTP basic authorization: basicAuth
+var basicAuth = defaultClient.authentications['basicAuth'];
+basicAuth.username = 'YOUR USERNAME'
+basicAuth.password = 'YOUR PASSWORD'
+
+var api = new DamesCollectApi.DefaultApi()
+var opts = { 
+  'body':  // {{NeedCreate}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.needPost(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-needPost-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-needPost-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class needPostExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: basicAuth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new DefaultApi();
+            var body = new NeedCreate(); // NeedCreate |  (optional) 
+
+            try
+            {
+                Need result = apiInstance.needPost(body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.needPost: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needPost-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+// Configure HTTP basic authorization: basicAuth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$body = ; // NeedCreate | 
+
+try {
+    $result = $api_instance->needPost($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->needPost: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needPost-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+# Configure HTTP basic authorization: basicAuth
+$WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
+$WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $body = WWW::SwaggerClient::Object::NeedCreate->new(); # NeedCreate | 
+
+eval { 
+    my $result = $api_instance->needPost(body => $body);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->needPost: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-needPost-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+# Configure HTTP basic authorization: basicAuth
+swagger_client.configuration.username = 'YOUR_USERNAME'
+swagger_client.configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+body =  # NeedCreate |  (optional)
+
+try: 
+    api_response = api_instance.need_post(body=body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->needPost: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body </td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/NeedCreate"
+      }
+    }
+  }
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_needPost_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_needPost_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-needPost-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-needPost-200-schema">
+                                  <div id='responses-needPost-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Need"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-needPost-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-needPost-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-needPost-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
