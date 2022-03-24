@@ -459,6 +459,38 @@
         }
       }
     },
+    "/need/bulk": {
+      "description": "Create Need in bulk",
+      "post": {
+        "description": "Post Need in bulk.",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NeedCreateList"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NeedList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/need/list": {
       "description": "Fetch all needs",
       "get": {
@@ -2360,6 +2392,82 @@
         }
       }
     },
+    "/encounter/": {
+      "description": "Delete Encounters",
+      "delete": {
+        "description": "Delete Encounters based on query passed",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "description": "Encounters of Date from",
+            "name": "dateFrom",
+            "schema": {
+              "type": "string",
+              "format": "dd-mm-yyyy"
+            }
+          },
+          {
+            "in": "query",
+            "description": "Encounters of Date to",
+            "name": "dateTo",
+            "schema": {
+              "type": "string",
+              "format": "dd-mm-yyyy"
+            }
+          },
+          {
+            "in": "query",
+            "description": "Encounters of Enrollment code",
+            "name": "enrollmentCode",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "description": "Encounters of Ward",
+            "name": "wardId",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "description": "Encounters of Period",
+            "name": "periodId",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "description": "Encounters within service stage",
+            "name": "stageId",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "description": "Encounters within service",
+            "name": "serviceId",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/snu/list": {
       "description": "List SNU",
       "get": {
@@ -4160,6 +4268,12 @@
           "resolved": {
             "type": "boolean"
           }
+        }
+      },
+      "NeedCreateList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NeedCreate"
         }
       },
       "NeedQuery": {
