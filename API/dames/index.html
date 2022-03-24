@@ -2461,16 +2461,16 @@
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>Dames API <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></h1>
+            <h1>Dames API <a href="./openapi.json" targe="_blank">[VIEW OPEN API]</a></h1>
           </div>
           <div class="clearfix"></div>
         </div>
         <div id="header">
           <div id="api-_">
-            <h2 id="welcome-to-apidoc">API and SDK Documentation <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></h2>
+            <h2 id="welcome-to-apidoc">API and SDK Documentation <a href="./openapi.json" targe="_blank">[VIEW OPEN API]</a></h2>
               <div class="app-desc">Version: 1.0.0</div>
             <hr>
-            <div>Dames Api for Dreams project. Help to connect/send data to Dames Dashboard <a href="./openapi.json" target="_blank">[VIEW OPEN API]</a></div>
+            <div>Dames Api for Dreams project. Help to read from/send data to Dames Dashboard</div>
           </div>
         </div>
         <div id="sections">
@@ -3888,7 +3888,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Basic [[basicHash]]"\
 -H "Accept: application/text"\
-"http://localhost:8080/api/v1/dames/encounter/count?dateFrom=&dateTo=&enrollmentCode=&wardId=&periodId=&stageId=&serviceId="</code></pre>
+"http://localhost:8080/api/v1/dames/encounter/count?dateFrom=&dateTo=&enrollmentCode=&wardId=&periodId=&stageId=&serviceId=&csoId=&partnerId="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-encounterCountGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3916,8 +3916,10 @@ public class DefaultApiExample {
         Integer periodId = 56; // Integer | Encounters of Period
         Integer stageId = 56; // Integer | Encounters within service stage
         Integer serviceId = 56; // Integer | Encounters within service
+        Integer csoId = 56; // Integer | CSO id, CSO who register it
+        Integer partnerId = 56; // Integer | Partner id, All encounters under partner
         try {
-            'Integer' result = apiInstance.encounterCountGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+            'Integer' result = apiInstance.encounterCountGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#encounterCountGet");
@@ -3941,8 +3943,10 @@ public class DefaultApiExample {
         Integer periodId = 56; // Integer | Encounters of Period
         Integer stageId = 56; // Integer | Encounters within service stage
         Integer serviceId = 56; // Integer | Encounters within service
+        Integer csoId = 56; // Integer | CSO id, CSO who register it
+        Integer partnerId = 56; // Integer | Partner id, All encounters under partner
         try {
-            'Integer' result = apiInstance.encounterCountGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+            'Integer' result = apiInstance.encounterCountGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#encounterCountGet");
@@ -3967,6 +3971,8 @@ Integer *wardId = 56; // Encounters of Ward (optional)
 Integer *periodId = 56; // Encounters of Period (optional)
 Integer *stageId = 56; // Encounters within service stage (optional)
 Integer *serviceId = 56; // Encounters within service (optional)
+Integer *csoId = 56; // CSO id, CSO who register it (optional)
+Integer *partnerId = 56; // Partner id, All encounters under partner (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -3977,6 +3983,8 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
     periodId:periodId
     stageId:stageId
     serviceId:serviceId
+    csoId:csoId
+    partnerId:partnerId
               completionHandler: ^('Integer' output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -4004,7 +4012,9 @@ var opts = {
   'wardId': 56, // {{Integer}} Encounters of Ward
   'periodId': 56, // {{Integer}} Encounters of Period
   'stageId': 56, // {{Integer}} Encounters within service stage
-  'serviceId': 56 // {{Integer}} Encounters within service
+  'serviceId': 56, // {{Integer}} Encounters within service
+  'csoId': 56, // {{Integer}} CSO id, CSO who register it
+  'partnerId': 56 // {{Integer}} Partner id, All encounters under partner
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -4045,10 +4055,12 @@ namespace Example
             var periodId = 56;  // Integer | Encounters of Period (optional) 
             var stageId = 56;  // Integer | Encounters within service stage (optional) 
             var serviceId = 56;  // Integer | Encounters within service (optional) 
+            var csoId = 56;  // Integer | CSO id, CSO who register it (optional) 
+            var partnerId = 56;  // Integer | Partner id, All encounters under partner (optional) 
 
             try
             {
-                'Integer' result = apiInstance.encounterCountGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+                'Integer' result = apiInstance.encounterCountGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -4076,9 +4088,11 @@ $wardId = 56; // Integer | Encounters of Ward
 $periodId = 56; // Integer | Encounters of Period
 $stageId = 56; // Integer | Encounters within service stage
 $serviceId = 56; // Integer | Encounters within service
+$csoId = 56; // Integer | CSO id, CSO who register it
+$partnerId = 56; // Integer | Partner id, All encounters under partner
 
 try {
-    $result = $api_instance->encounterCountGet($dateFrom, $dateTo, $enrollmentCode, $wardId, $periodId, $stageId, $serviceId);
+    $result = $api_instance->encounterCountGet($dateFrom, $dateTo, $enrollmentCode, $wardId, $periodId, $stageId, $serviceId, $csoId, $partnerId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->encounterCountGet: ', $e->getMessage(), PHP_EOL;
@@ -4102,9 +4116,11 @@ my $wardId = 56; # Integer | Encounters of Ward
 my $periodId = 56; # Integer | Encounters of Period
 my $stageId = 56; # Integer | Encounters within service stage
 my $serviceId = 56; # Integer | Encounters within service
+my $csoId = 56; # Integer | CSO id, CSO who register it
+my $partnerId = 56; # Integer | Partner id, All encounters under partner
 
 eval { 
-    my $result = $api_instance->encounterCountGet(dateFrom => $dateFrom, dateTo => $dateTo, enrollmentCode => $enrollmentCode, wardId => $wardId, periodId => $periodId, stageId => $stageId, serviceId => $serviceId);
+    my $result = $api_instance->encounterCountGet(dateFrom => $dateFrom, dateTo => $dateTo, enrollmentCode => $enrollmentCode, wardId => $wardId, periodId => $periodId, stageId => $stageId, serviceId => $serviceId, csoId => $csoId, partnerId => $partnerId);
     print Dumper($result);
 };
 if ($@) {
@@ -4131,9 +4147,11 @@ wardId = 56 # Integer | Encounters of Ward (optional)
 periodId = 56 # Integer | Encounters of Period (optional)
 stageId = 56 # Integer | Encounters within service stage (optional)
 serviceId = 56 # Integer | Encounters within service (optional)
+csoId = 56 # Integer | CSO id, CSO who register it (optional)
+partnerId = 56 # Integer | Partner id, All encounters under partner (optional)
 
 try: 
-    api_response = api_instance.encounter_count_get(dateFrom=dateFrom, dateTo=dateTo, enrollmentCode=enrollmentCode, wardId=wardId, periodId=periodId, stageId=stageId, serviceId=serviceId)
+    api_response = api_instance.encounter_count_get(dateFrom=dateFrom, dateTo=dateTo, enrollmentCode=enrollmentCode, wardId=wardId, periodId=periodId, stageId=stageId, serviceId=serviceId, csoId=csoId, partnerId=partnerId)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->encounterCountGet: %s\n" % e)</code></pre>
@@ -4291,6 +4309,44 @@ except ApiException as e:
                                     </div>
                                 </td>
                                 </tr>
+                                <tr><td style="width:150px;">csoId</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_encounterCountGet_csoId">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        CSO id, CSO who register it
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">partnerId</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_encounterCountGet_partnerId">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Partner id, All encounters under partner
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
                             </table>
 
                           <h2>Responses</h2>
@@ -4381,7 +4437,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-encounterDelete-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
  -H "Authorization: Basic [[basicHash]]"\
-"http://localhost:8080/api/v1/dames/encounter/?dateFrom=&dateTo=&enrollmentCode=&wardId=&periodId=&stageId=&serviceId="</code></pre>
+"http://localhost:8080/api/v1/dames/encounter/?dateFrom=&dateTo=&enrollmentCode=&wardId=&periodId=&stageId=&serviceId=&csoId=&partnerId="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-encounterDelete-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4409,8 +4465,10 @@ public class DefaultApiExample {
         Integer periodId = 56; // Integer | Encounters of Period
         Integer stageId = 56; // Integer | Encounters within service stage
         Integer serviceId = 56; // Integer | Encounters within service
+        Integer csoId = 56; // Integer | CSO id, CSO who register it
+        Integer partnerId = 56; // Integer | Partner id, All encounters under partner
         try {
-            apiInstance.encounterDelete(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+            apiInstance.encounterDelete(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#encounterDelete");
             e.printStackTrace();
@@ -4433,8 +4491,10 @@ public class DefaultApiExample {
         Integer periodId = 56; // Integer | Encounters of Period
         Integer stageId = 56; // Integer | Encounters within service stage
         Integer serviceId = 56; // Integer | Encounters within service
+        Integer csoId = 56; // Integer | CSO id, CSO who register it
+        Integer partnerId = 56; // Integer | Partner id, All encounters under partner
         try {
-            apiInstance.encounterDelete(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+            apiInstance.encounterDelete(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#encounterDelete");
             e.printStackTrace();
@@ -4458,6 +4518,8 @@ Integer *wardId = 56; // Encounters of Ward (optional)
 Integer *periodId = 56; // Encounters of Period (optional)
 Integer *stageId = 56; // Encounters within service stage (optional)
 Integer *serviceId = 56; // Encounters within service (optional)
+Integer *csoId = 56; // CSO id, CSO who register it (optional)
+Integer *partnerId = 56; // Partner id, All encounters under partner (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -4468,6 +4530,8 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
     periodId:periodId
     stageId:stageId
     serviceId:serviceId
+    csoId:csoId
+    partnerId:partnerId
               completionHandler: ^(NSError* error) {
                             if (error) {
                                 NSLog(@"Error: %@", error);
@@ -4492,7 +4556,9 @@ var opts = {
   'wardId': 56, // {{Integer}} Encounters of Ward
   'periodId': 56, // {{Integer}} Encounters of Period
   'stageId': 56, // {{Integer}} Encounters within service stage
-  'serviceId': 56 // {{Integer}} Encounters within service
+  'serviceId': 56, // {{Integer}} Encounters within service
+  'csoId': 56, // {{Integer}} CSO id, CSO who register it
+  'partnerId': 56 // {{Integer}} Partner id, All encounters under partner
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -4533,10 +4599,12 @@ namespace Example
             var periodId = 56;  // Integer | Encounters of Period (optional) 
             var stageId = 56;  // Integer | Encounters within service stage (optional) 
             var serviceId = 56;  // Integer | Encounters within service (optional) 
+            var csoId = 56;  // Integer | CSO id, CSO who register it (optional) 
+            var partnerId = 56;  // Integer | Partner id, All encounters under partner (optional) 
 
             try
             {
-                apiInstance.encounterDelete(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+                apiInstance.encounterDelete(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
             }
             catch (Exception e)
             {
@@ -4563,9 +4631,11 @@ $wardId = 56; // Integer | Encounters of Ward
 $periodId = 56; // Integer | Encounters of Period
 $stageId = 56; // Integer | Encounters within service stage
 $serviceId = 56; // Integer | Encounters within service
+$csoId = 56; // Integer | CSO id, CSO who register it
+$partnerId = 56; // Integer | Partner id, All encounters under partner
 
 try {
-    $api_instance->encounterDelete($dateFrom, $dateTo, $enrollmentCode, $wardId, $periodId, $stageId, $serviceId);
+    $api_instance->encounterDelete($dateFrom, $dateTo, $enrollmentCode, $wardId, $periodId, $stageId, $serviceId, $csoId, $partnerId);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->encounterDelete: ', $e->getMessage(), PHP_EOL;
 }
@@ -4588,9 +4658,11 @@ my $wardId = 56; # Integer | Encounters of Ward
 my $periodId = 56; # Integer | Encounters of Period
 my $stageId = 56; # Integer | Encounters within service stage
 my $serviceId = 56; # Integer | Encounters within service
+my $csoId = 56; # Integer | CSO id, CSO who register it
+my $partnerId = 56; # Integer | Partner id, All encounters under partner
 
 eval { 
-    $api_instance->encounterDelete(dateFrom => $dateFrom, dateTo => $dateTo, enrollmentCode => $enrollmentCode, wardId => $wardId, periodId => $periodId, stageId => $stageId, serviceId => $serviceId);
+    $api_instance->encounterDelete(dateFrom => $dateFrom, dateTo => $dateTo, enrollmentCode => $enrollmentCode, wardId => $wardId, periodId => $periodId, stageId => $stageId, serviceId => $serviceId, csoId => $csoId, partnerId => $partnerId);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->encounterDelete: $@\n";
@@ -4616,9 +4688,11 @@ wardId = 56 # Integer | Encounters of Ward (optional)
 periodId = 56 # Integer | Encounters of Period (optional)
 stageId = 56 # Integer | Encounters within service stage (optional)
 serviceId = 56 # Integer | Encounters within service (optional)
+csoId = 56 # Integer | CSO id, CSO who register it (optional)
+partnerId = 56 # Integer | Partner id, All encounters under partner (optional)
 
 try: 
-    api_instance.encounter_delete(dateFrom=dateFrom, dateTo=dateTo, enrollmentCode=enrollmentCode, wardId=wardId, periodId=periodId, stageId=stageId, serviceId=serviceId)
+    api_instance.encounter_delete(dateFrom=dateFrom, dateTo=dateTo, enrollmentCode=enrollmentCode, wardId=wardId, periodId=periodId, stageId=stageId, serviceId=serviceId, csoId=csoId, partnerId=partnerId)
 except ApiException as e:
     print("Exception when calling DefaultApi->encounterDelete: %s\n" % e)</code></pre>
                             </div>
@@ -4769,6 +4843,44 @@ except ApiException as e:
                                 
                                                     <div class="inner description">
                                                         Encounters within service
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">csoId</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_encounterDelete_csoId">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        CSO id, CSO who register it
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">partnerId</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_encounterDelete_partnerId">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Partner id, All encounters under partner
                                                     </div>
                                             </div>
                                         </div>
@@ -5094,7 +5206,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Basic [[basicHash]]"\
 -H "Accept: application/json"\
-"http://localhost:8080/api/v1/dames/encounter/list?dateFrom=&dateTo=&enrollmentCode=&wardId=&periodId=&stageId=&serviceId="</code></pre>
+"http://localhost:8080/api/v1/dames/encounter/list?dateFrom=&dateTo=&enrollmentCode=&wardId=&periodId=&stageId=&serviceId=&csoId=&partnerId="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-encounterListGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5122,8 +5234,10 @@ public class DefaultApiExample {
         Integer periodId = 56; // Integer | Encounters of Period
         Integer stageId = 56; // Integer | Encounters within service stage
         Integer serviceId = 56; // Integer | Encounters within service
+        Integer csoId = 56; // Integer | CSO id, CSO who register it
+        Integer partnerId = 56; // Integer | Partner id, All encounters under partner
         try {
-            EncounterList result = apiInstance.encounterListGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+            EncounterList result = apiInstance.encounterListGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#encounterListGet");
@@ -5147,8 +5261,10 @@ public class DefaultApiExample {
         Integer periodId = 56; // Integer | Encounters of Period
         Integer stageId = 56; // Integer | Encounters within service stage
         Integer serviceId = 56; // Integer | Encounters within service
+        Integer csoId = 56; // Integer | CSO id, CSO who register it
+        Integer partnerId = 56; // Integer | Partner id, All encounters under partner
         try {
-            EncounterList result = apiInstance.encounterListGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+            EncounterList result = apiInstance.encounterListGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#encounterListGet");
@@ -5173,6 +5289,8 @@ Integer *wardId = 56; // Encounters of Ward (optional)
 Integer *periodId = 56; // Encounters of Period (optional)
 Integer *stageId = 56; // Encounters within service stage (optional)
 Integer *serviceId = 56; // Encounters within service (optional)
+Integer *csoId = 56; // CSO id, CSO who register it (optional)
+Integer *partnerId = 56; // Partner id, All encounters under partner (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -5183,6 +5301,8 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
     periodId:periodId
     stageId:stageId
     serviceId:serviceId
+    csoId:csoId
+    partnerId:partnerId
               completionHandler: ^(EncounterList output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -5210,7 +5330,9 @@ var opts = {
   'wardId': 56, // {{Integer}} Encounters of Ward
   'periodId': 56, // {{Integer}} Encounters of Period
   'stageId': 56, // {{Integer}} Encounters within service stage
-  'serviceId': 56 // {{Integer}} Encounters within service
+  'serviceId': 56, // {{Integer}} Encounters within service
+  'csoId': 56, // {{Integer}} CSO id, CSO who register it
+  'partnerId': 56 // {{Integer}} Partner id, All encounters under partner
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -5251,10 +5373,12 @@ namespace Example
             var periodId = 56;  // Integer | Encounters of Period (optional) 
             var stageId = 56;  // Integer | Encounters within service stage (optional) 
             var serviceId = 56;  // Integer | Encounters within service (optional) 
+            var csoId = 56;  // Integer | CSO id, CSO who register it (optional) 
+            var partnerId = 56;  // Integer | Partner id, All encounters under partner (optional) 
 
             try
             {
-                EncounterList result = apiInstance.encounterListGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+                EncounterList result = apiInstance.encounterListGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -5282,9 +5406,11 @@ $wardId = 56; // Integer | Encounters of Ward
 $periodId = 56; // Integer | Encounters of Period
 $stageId = 56; // Integer | Encounters within service stage
 $serviceId = 56; // Integer | Encounters within service
+$csoId = 56; // Integer | CSO id, CSO who register it
+$partnerId = 56; // Integer | Partner id, All encounters under partner
 
 try {
-    $result = $api_instance->encounterListGet($dateFrom, $dateTo, $enrollmentCode, $wardId, $periodId, $stageId, $serviceId);
+    $result = $api_instance->encounterListGet($dateFrom, $dateTo, $enrollmentCode, $wardId, $periodId, $stageId, $serviceId, $csoId, $partnerId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->encounterListGet: ', $e->getMessage(), PHP_EOL;
@@ -5308,9 +5434,11 @@ my $wardId = 56; # Integer | Encounters of Ward
 my $periodId = 56; # Integer | Encounters of Period
 my $stageId = 56; # Integer | Encounters within service stage
 my $serviceId = 56; # Integer | Encounters within service
+my $csoId = 56; # Integer | CSO id, CSO who register it
+my $partnerId = 56; # Integer | Partner id, All encounters under partner
 
 eval { 
-    my $result = $api_instance->encounterListGet(dateFrom => $dateFrom, dateTo => $dateTo, enrollmentCode => $enrollmentCode, wardId => $wardId, periodId => $periodId, stageId => $stageId, serviceId => $serviceId);
+    my $result = $api_instance->encounterListGet(dateFrom => $dateFrom, dateTo => $dateTo, enrollmentCode => $enrollmentCode, wardId => $wardId, periodId => $periodId, stageId => $stageId, serviceId => $serviceId, csoId => $csoId, partnerId => $partnerId);
     print Dumper($result);
 };
 if ($@) {
@@ -5337,9 +5465,11 @@ wardId = 56 # Integer | Encounters of Ward (optional)
 periodId = 56 # Integer | Encounters of Period (optional)
 stageId = 56 # Integer | Encounters within service stage (optional)
 serviceId = 56 # Integer | Encounters within service (optional)
+csoId = 56 # Integer | CSO id, CSO who register it (optional)
+partnerId = 56 # Integer | Partner id, All encounters under partner (optional)
 
 try: 
-    api_response = api_instance.encounter_list_get(dateFrom=dateFrom, dateTo=dateTo, enrollmentCode=enrollmentCode, wardId=wardId, periodId=periodId, stageId=stageId, serviceId=serviceId)
+    api_response = api_instance.encounter_list_get(dateFrom=dateFrom, dateTo=dateTo, enrollmentCode=enrollmentCode, wardId=wardId, periodId=periodId, stageId=stageId, serviceId=serviceId, csoId=csoId, partnerId=partnerId)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->encounterListGet: %s\n" % e)</code></pre>
@@ -5497,6 +5627,44 @@ except ApiException as e:
                                     </div>
                                 </td>
                                 </tr>
+                                <tr><td style="width:150px;">csoId</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_encounterListGet_csoId">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        CSO id, CSO who register it
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">partnerId</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_encounterListGet_partnerId">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Partner id, All encounters under partner
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
                             </table>
 
                           <h2>Responses</h2>
@@ -5586,7 +5754,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Basic [[basicHash]]"\
 -H "Accept: application/json"\
-"http://localhost:8080/api/v1/dames/encounter/page?dateFrom=&dateTo=&enrollmentCode=&wardId=&periodId=&stageId=&serviceId="</code></pre>
+"http://localhost:8080/api/v1/dames/encounter/page?dateFrom=&dateTo=&enrollmentCode=&wardId=&periodId=&stageId=&serviceId=&csoId=&partnerId="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-encounterPageGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5614,8 +5782,10 @@ public class DefaultApiExample {
         Integer periodId = 56; // Integer | Encounters of Period
         Integer stageId = 56; // Integer | Encounters within service stage
         Integer serviceId = 56; // Integer | Encounters within service
+        Integer csoId = 56; // Integer | CSO id, CSO who register it
+        Integer partnerId = 56; // Integer | Partner id, All encounters under partner
         try {
-            EncounterListWithPagination result = apiInstance.encounterPageGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+            EncounterListWithPagination result = apiInstance.encounterPageGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#encounterPageGet");
@@ -5639,8 +5809,10 @@ public class DefaultApiExample {
         Integer periodId = 56; // Integer | Encounters of Period
         Integer stageId = 56; // Integer | Encounters within service stage
         Integer serviceId = 56; // Integer | Encounters within service
+        Integer csoId = 56; // Integer | CSO id, CSO who register it
+        Integer partnerId = 56; // Integer | Partner id, All encounters under partner
         try {
-            EncounterListWithPagination result = apiInstance.encounterPageGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+            EncounterListWithPagination result = apiInstance.encounterPageGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#encounterPageGet");
@@ -5665,6 +5837,8 @@ Integer *wardId = 56; // Encounters of Ward (optional)
 Integer *periodId = 56; // Encounters of Period (optional)
 Integer *stageId = 56; // Encounters within service stage (optional)
 Integer *serviceId = 56; // Encounters within service (optional)
+Integer *csoId = 56; // CSO id, CSO who register it (optional)
+Integer *partnerId = 56; // Partner id, All encounters under partner (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -5675,6 +5849,8 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
     periodId:periodId
     stageId:stageId
     serviceId:serviceId
+    csoId:csoId
+    partnerId:partnerId
               completionHandler: ^(EncounterListWithPagination output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -5702,7 +5878,9 @@ var opts = {
   'wardId': 56, // {{Integer}} Encounters of Ward
   'periodId': 56, // {{Integer}} Encounters of Period
   'stageId': 56, // {{Integer}} Encounters within service stage
-  'serviceId': 56 // {{Integer}} Encounters within service
+  'serviceId': 56, // {{Integer}} Encounters within service
+  'csoId': 56, // {{Integer}} CSO id, CSO who register it
+  'partnerId': 56 // {{Integer}} Partner id, All encounters under partner
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -5743,10 +5921,12 @@ namespace Example
             var periodId = 56;  // Integer | Encounters of Period (optional) 
             var stageId = 56;  // Integer | Encounters within service stage (optional) 
             var serviceId = 56;  // Integer | Encounters within service (optional) 
+            var csoId = 56;  // Integer | CSO id, CSO who register it (optional) 
+            var partnerId = 56;  // Integer | Partner id, All encounters under partner (optional) 
 
             try
             {
-                EncounterListWithPagination result = apiInstance.encounterPageGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId);
+                EncounterListWithPagination result = apiInstance.encounterPageGet(dateFrom, dateTo, enrollmentCode, wardId, periodId, stageId, serviceId, csoId, partnerId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -5774,9 +5954,11 @@ $wardId = 56; // Integer | Encounters of Ward
 $periodId = 56; // Integer | Encounters of Period
 $stageId = 56; // Integer | Encounters within service stage
 $serviceId = 56; // Integer | Encounters within service
+$csoId = 56; // Integer | CSO id, CSO who register it
+$partnerId = 56; // Integer | Partner id, All encounters under partner
 
 try {
-    $result = $api_instance->encounterPageGet($dateFrom, $dateTo, $enrollmentCode, $wardId, $periodId, $stageId, $serviceId);
+    $result = $api_instance->encounterPageGet($dateFrom, $dateTo, $enrollmentCode, $wardId, $periodId, $stageId, $serviceId, $csoId, $partnerId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->encounterPageGet: ', $e->getMessage(), PHP_EOL;
@@ -5800,9 +5982,11 @@ my $wardId = 56; # Integer | Encounters of Ward
 my $periodId = 56; # Integer | Encounters of Period
 my $stageId = 56; # Integer | Encounters within service stage
 my $serviceId = 56; # Integer | Encounters within service
+my $csoId = 56; # Integer | CSO id, CSO who register it
+my $partnerId = 56; # Integer | Partner id, All encounters under partner
 
 eval { 
-    my $result = $api_instance->encounterPageGet(dateFrom => $dateFrom, dateTo => $dateTo, enrollmentCode => $enrollmentCode, wardId => $wardId, periodId => $periodId, stageId => $stageId, serviceId => $serviceId);
+    my $result = $api_instance->encounterPageGet(dateFrom => $dateFrom, dateTo => $dateTo, enrollmentCode => $enrollmentCode, wardId => $wardId, periodId => $periodId, stageId => $stageId, serviceId => $serviceId, csoId => $csoId, partnerId => $partnerId);
     print Dumper($result);
 };
 if ($@) {
@@ -5829,9 +6013,11 @@ wardId = 56 # Integer | Encounters of Ward (optional)
 periodId = 56 # Integer | Encounters of Period (optional)
 stageId = 56 # Integer | Encounters within service stage (optional)
 serviceId = 56 # Integer | Encounters within service (optional)
+csoId = 56 # Integer | CSO id, CSO who register it (optional)
+partnerId = 56 # Integer | Partner id, All encounters under partner (optional)
 
 try: 
-    api_response = api_instance.encounter_page_get(dateFrom=dateFrom, dateTo=dateTo, enrollmentCode=enrollmentCode, wardId=wardId, periodId=periodId, stageId=stageId, serviceId=serviceId)
+    api_response = api_instance.encounter_page_get(dateFrom=dateFrom, dateTo=dateTo, enrollmentCode=enrollmentCode, wardId=wardId, periodId=periodId, stageId=stageId, serviceId=serviceId, csoId=csoId, partnerId=partnerId)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->encounterPageGet: %s\n" % e)</code></pre>
@@ -5983,6 +6169,44 @@ except ApiException as e:
                                 
                                                     <div class="inner description">
                                                         Encounters within service
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">csoId</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_encounterPageGet_csoId">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        CSO id, CSO who register it
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">partnerId</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_encounterPageGet_partnerId">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Partner id, All encounters under partner
                                                     </div>
                                             </div>
                                         </div>

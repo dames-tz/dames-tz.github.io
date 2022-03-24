@@ -1367,6 +1367,16 @@ paths:
           description: "Encounters within service"
           name: serviceId
           schema:
+            type: integer
+        - in: query
+          description: "CSO id, CSO who register it"
+          name: csoId
+          schema:
+            type: integer
+        - in: query
+          description: "Partner id, All encounters under partner"
+          name: partnerId
+          schema:
             type: integer 
       responses:
         200:
@@ -1418,7 +1428,17 @@ paths:
           description: "Encounters within service"
           name: serviceId
           schema:
-            type: integer 
+            type: integer
+        - in: query
+          description: "CSO id, CSO who register it"
+          name: csoId
+          schema:
+            type: integer
+        - in: query
+          description: "Partner id, All encounters under partner"
+          name: partnerId
+          schema:
+            type: integer
       responses:
         200:
           description: OK
@@ -1469,6 +1489,16 @@ paths:
         - in: query
           description: "Encounters within service"
           name: serviceId
+          schema:
+            type: integer
+        - in: query
+          description: "CSO id, CSO who register it"
+          name: csoId
+          schema:
+            type: integer
+        - in: query
+          description: "Partner id, All encounters under partner"
+          name: partnerId
           schema:
             type: integer 
       responses:
@@ -1539,6 +1569,16 @@ paths:
           name: serviceId
           schema:
             type: integer
+        - in: query
+          description: "CSO id, CSO who register it"
+          name: csoId
+          schema:
+            type: integer
+        - in: query
+          description: "Partner id, All encounters under partner"
+          name: partnerId
+          schema:
+            type: integer  
       responses:
         202:
           description: OK

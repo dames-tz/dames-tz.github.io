@@ -2181,6 +2181,22 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "in": "query",
+            "description": "CSO id, CSO who register it",
+            "name": "csoId",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "description": "Partner id, All encounters under partner",
+            "name": "partnerId",
+            "schema": {
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -2261,6 +2277,22 @@
             "in": "query",
             "description": "Encounters within service",
             "name": "serviceId",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "description": "CSO id, CSO who register it",
+            "name": "csoId",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "description": "Partner id, All encounters under partner",
+            "name": "partnerId",
             "schema": {
               "type": "integer"
             }
@@ -2345,6 +2377,22 @@
             "in": "query",
             "description": "Encounters within service",
             "name": "serviceId",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "description": "CSO id, CSO who register it",
+            "name": "csoId",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "description": "Partner id, All encounters under partner",
+            "name": "partnerId",
             "schema": {
               "type": "integer"
             }
@@ -2456,6 +2504,22 @@
             "in": "query",
             "description": "Encounters within service",
             "name": "serviceId",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "description": "CSO id, CSO who register it",
+            "name": "csoId",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "description": "Partner id, All encounters under partner",
+            "name": "partnerId",
             "schema": {
               "type": "integer"
             }
