@@ -1,28 +1,131 @@
 <!DOCTYPE html>
 <html>
-<title>DREAMS service/package completion status among active AGYW over time</title>
-
+<head>
+    <title>DREAMS service/package completion status among active AGYW over time</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <link href="styles/custom.css">
+</head>
 <body>
-    <h5>How to interpret the graph and indicator definition(s):</h5>
-    <p>This cascade shows the number of active girls in the selected year (regardless of the year
-        they were enrolled in the program) and their pathways toward DREAMS completion.
-        Each bar in the cascade is a subset of the previous one.</p>
-    <p><b>Active as defined:</b> AGYWS who have been enrolled in DREAMS and have started or
-        completed at least one DREAMS service/intervention in the reporting period
-    </p>
-    <p>
-        <b>Primary Package completion as defined:</b> These are interventions/services that ALL
-        AGYW in an age group should receive if they are enrolled in DREAMS.<br>
-        For the FY22 the following services are counted under primary services<br>
-        <b>Age group 10-14:</b> HURU SRH and Educational subsistence<br>
-        <b>Age group 15-19 & 20-24:</b> HTS, Condom, provision, Community-based HIV and Violence
-        Prevention (Stepping Stone) and Financial Literacy including Savings Groups (WORTH+)
-    </p>
-    <p>
-        <b>Completed DREAMS:</b> Requires that an individual AGYW has completed both the primary
-        package for her age group, as well as all secondary interventions that as well as all
-        secondary interventions that are appropriate based on her needs
-    </p>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">DAMES</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3 class="mt-4">Documentation</h3>
+            <p>Other visual interpretations.</p>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="dm-agyw-aggregate-time-trend.html">DREAMS service/package
+                        completion status among active AGYW over time</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-agyw-intervention-completion.html">DREAMS beneficiaries receiving each
+                        service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-agyw-intervention-completion.html">DREAMS beneficiaries receiving each
+                        service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-agyw-proportion-agyw-prev-disaggr.html">DREAMS service/package
+                        completion status among active DREAMS
+                        beneficiaries in the reporting period</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-agyw-referrals-report.html">
+                        Newly enrolled AGYW (number and proportion)
+                        that were referred from health care facilities
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-agyw-served-against-program-target-report.html">
+                        Number of girls served in DREAMS in the reporting period
+                        and how they align with program targets
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-main-target-progress.html">
+                        Progress to annual target for AGYW_PREV
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-primary-package-completion-proportion.html">
+                        Number of girls enrolled in DREAMS in the reporting period who are active and who completed at
+                        least the primary package
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-primary-services-not-reaching-as-intended-report.html">
+                        Specific primary services/interventions that are
+                        not reaching AGYW as intended
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-program-completion-proportion.html">
+                        DREAMS program completion among active AGYW in the reporting period
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-program-completion-rate.html">
+                        DREAMS program completion rate among active
+                        DREAMS beneficiaries during the reporting period
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-program-layering-report.html">
+                        Layering of DREAMS services within the reporting period
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dm-program-layering-time-trend-report.html">
+                        Layering of DREAMS services over time
+                    </a>
+                </li>
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-7">
+            <h2>DREAMS service/package completion status among active AGYW over time</h2>
+            <h5>How to interpret the graph and indicator definition(s):</h5>
+            <p>This cascade shows the number of active girls in the selected year (regardless of the year
+                they were enrolled in the program) and their pathways toward DREAMS completion.
+                Each bar in the cascade is a subset of the previous one.</p>
+            <p><b>Active as defined:</b> AGYWS who have been enrolled in DREAMS and have started or
+                completed at least one DREAMS service/intervention in the reporting period
+            </p>
+            <p>
+                <b>Primary Package completion as defined:</b> These are interventions/services that ALL
+                AGYW in an age group should receive if they are enrolled in DREAMS.<br>
+                For the FY22 the following services are counted under primary services<br>
+                <b>Age group 10-14:</b> HURU SRH and Educational subsistence<br>
+                <b>Age group 15-19 & 20-24:</b> HTS, Condom, provision, Community-based HIV and Violence
+                Prevention (Stepping Stone) and Financial Literacy including Savings Groups (WORTH+)
+            </p>
+            <p>
+                <b>Completed DREAMS:</b> Requires that an individual AGYW has completed both the primary
+                package for her age group, as well as all secondary interventions that as well as all
+                secondary interventions that are appropriate based on her needs
+            </p>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>
