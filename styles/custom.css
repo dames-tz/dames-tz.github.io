@@ -11,6 +11,7 @@
 
 .nav-pills .nav-link:hover {
     text-decoration: underline;
+    color: #9c367f;
 }
 
 .nav-link {
